@@ -175,6 +175,38 @@
 			}
 		});
 
+		// Form Submission to Google Sheets
+		$("#contact-form").on("submit", function (e) {
+			e.preventDefault(); // Prevent the default form submission
+
+			// Collecting form data
+			const formData = {
+				name: $("#name").val(),
+				school: $("#school").val(),
+				standard: $("#standard").val(),
+				phone: $("#phone").val(),
+				email: $("#email").val(),
+				message: $("#message").val(),
+			};
+
+			// Sending data to Google Sheets via Google Apps Script Web App
+			fetch("https://script.google.com/macros/s/AKfycbyaBzyyF1wpVot3ZPA616Dh1dUPFgGHBb5QlS6XbMg27yhaMNm5_dTFAHm-spVINpWLSQ/exec", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					alert("Form submitted successfully!");
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+					alert("There was an error submitting the form.");
+				});
+		});
+
 	});
 
 })(jQuery);
