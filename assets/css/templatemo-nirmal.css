@@ -117,6 +117,7 @@ Global Styles
 html,
 body {
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -377,11 +378,11 @@ Header Style
   cursor: pointer;
   position: absolute;
   top: 33px;
+  right: 20px;
   width: 32px;
   height: 40px;
   text-indent: -9999em;
   z-index: 99;
-  right: 20px;
   display: none;
 }
 
@@ -390,25 +391,18 @@ Header Style
 }
 
 .header-area .main-nav .menu-trigger span,
-.header-area .main-nav .menu-trigger span::before,
-.header-area .main-nav .menu-trigger span::after {
-  transition: all 0.4s ease-in-out; /* Removed outdated vendor prefixes */
-  background-color: #fff;
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after {
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  background-color: #1708ed;
   display: block;
   position: absolute;
   width: 30px;
   height: 2px;
   left: 0;
-  content: ""; /* Required for pseudo-elements */
-}
-
-/* Positioning for the before and after lines */
-.header-area .main-nav .menu-trigger span::before {
-  top: -8px;
-}
-
-.header-area .main-nav .menu-trigger span::after {
-  top: 8px;
 }
 
 .header-area .main-nav .menu-trigger span:before,
@@ -417,7 +411,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #fff;
+  background-color: #1708ed;
   display: block;
   position: absolute;
   width: 30px;
@@ -464,7 +458,7 @@ Header Style
   -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
   -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
   transform: translateY(6px) translateX(1px) rotate(45deg);
-  background-color: #fff;
+  background-color: #1708ed;
 }
 
 .background-header .main-nav .menu-trigger.active span:before {
@@ -476,7 +470,7 @@ Header Style
   -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  background-color: #fff;
+  background-color: #1708ed;
 }
 
 .background-header .main-nav .menu-trigger.active span:after {
@@ -575,19 +569,21 @@ Header Style
   }
   .header-area .main-nav {
     overflow: hidden;
+    color: #1708ed;
   }
   .header-area .main-nav .nav {
     float: none;
     width: 100%;
-    display: none;
+    display: block;
     -webkit-transition: all 0s ease 0s;
     -moz-transition: all 0s ease 0s;
     -o-transition: all 0s ease 0s;
     transition: all 0s ease 0s;
     margin-left: 0px;
+
   }
   .header-area .main-nav .nav li:first-child {
-    border-top: 1px solid #eee;
+    border-top: 1px solid ;
   }
   .header-area.header-sticky .nav {
     margin-top: 100px !important;
@@ -1781,9 +1777,9 @@ Responsive Style
 --------------------------------------------- 
 */
 /* Prevents Horizontal Scrolling */
-body {
+/* body {
   overflow-x: hidden;
-}
+} */
 
 /* Mobile Styles (max-width: 767px) */
 @media (max-width: 767px) {

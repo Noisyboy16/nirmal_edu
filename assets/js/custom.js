@@ -116,28 +116,28 @@
 		});
 
 		// Mobile Menu Toggle
-		$(".menu-trigger").on("click", function () {
-			$(this).toggleClass("active");
-			$(".header-area .nav").slideToggle(200);
-		});
-
-		// Smooth Scroll for Anchor Links
-		$(".scroll-to-section a[href^='#']").on("click", function (e) {
+		$(".menu-trigger").on("click", function() {
+			$(this).toggleClass("active"); // Toggle the 'active' class
+			$(".header-area .nav").slideToggle(200); // Slide open/close the menu
+		  });
+		
+		  // Smooth scroll for anchor links and close the menu when a link is clicked on mobile
+		  $(".scroll-to-section a[href^='#']").on("click", function(e) {
 			e.preventDefault();
-
-			let target = $(this.hash);
+			var target = $(this.hash);
 			if (target.length) {
-				let width = $(window).width();
-				if (width < 767) {
-					$(".menu-trigger").removeClass("active");
-					$(".header-area .nav").slideUp(200);
-				}
-				$("html, body").animate(
-					{ scrollTop: target.offset().top - 80 },
-					700
-				);
+			  // Close the menu on mobile when a link is clicked
+			  if ($(window).width() < 767) {
+				$(".menu-trigger").removeClass("active");
+				$(".header-area .nav").slideUp(200); // Close menu
+			  }
+			  $("html, body").animate({
+				scrollTop: target.offset().top - 80 // Adjust for header
+			  }, 700);
 			}
-		});
+		  });
+  
+
 
 		// Active Menu Item on Scroll
 		function onScroll() {
