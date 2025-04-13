@@ -88,7 +88,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: white;
+  color: black;
   margin-top: 0px;
   margin-bottom: 0px;
   font-weight: 700;
@@ -101,7 +101,7 @@ ul {
 p {
   font-size: 14px;
   line-height: 28px;
-  color: white;
+  color: black;
 }
 
 img {
@@ -118,6 +118,7 @@ html,
 body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
+  background-color: rgba(89, 67, 228, 0.078);
 }
 
 ::selection {
@@ -257,6 +258,19 @@ Header Style
 --------------------------------------------- 
 */
 
+/* .container{
+  display: flex;
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between; 
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block; 
+  gap: 0;         
+  padding: 0 15px; 
+} */
+
 .background-header {
   background-color: #fff;
   border-radius: 0 0 25px 25px;
@@ -271,7 +285,9 @@ Header Style
 
 .header-area {
   position: sticky;
-  background-color: #f7f6f9;
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 10px;
   top: 0;
   left: 0;
   right: 0;
@@ -280,13 +296,18 @@ Header Style
 }
 
 .header-area .main-nav {
-  background: transparent;
-  display: flex
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
+
 .header-area .main-nav .logo {
-  transition: all 0.3s ease 0s;
-  display: inline-block;
+  margin: 0; /* reset margins if needed */
+  padding: 0;
+  flex-shrink: 0; /* don't allow logo to shrink */
 }
 
 .header-area .main-nav .logo h1 {
@@ -305,14 +326,11 @@ Header Style
 }
 
 .header-area .main-nav ul.nav {
-  border-radius: 0 0 25px 25px;
-  flex-basis: 100%; /* Allows it to adjust based on content */
-  margin-right: 0;
+  margin-left: auto;
   display: flex;
-  justify-content: right; /* Ensures proper right alignment */
-  transition: all 0.3s ease-in-out; /* Removed redundant vendor prefixes */
-  position: relative;
-  z-index: 999;
+  justify-content: flex-end;
+  align-items: center; 
+  height: 100%; 
 }
 
 .header-area .main-nav .nav li:last-child {
@@ -322,10 +340,11 @@ Header Style
 .header-area .main-nav .nav li {
   padding-left: 5px;
   padding-right: 5px;
-  height: 40px;
-  padding-top: 10px;
-  line-height: 40px;
+  height: 100%; 
+  display: flex; 
+  align-items: center; 
 }
+
 
 .header-area .main-nav .nav li a {
   display: block;
@@ -377,7 +396,7 @@ Header Style
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
   position: absolute;
-  top: 33px;
+  top: 10px;
   right: 20px;
   width: 32px;
   height: 40px;
@@ -484,24 +503,26 @@ Header Style
 .visible{
   display:inline !important;
 }
-
-@media (max-width: 1200px) {
-  .header-area .main-nav .nav li {
-    padding-left: 2px;
-    padding-right: 2px;
-  }
-  .header-area .main-nav .nav li a {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-}
-
 @media (max-width: 767px) {
   .background-header .main-nav .nav,
   .header-area .main-nav .nav {
-    background-color: #f1f0fe;
+    background-color: white;
+    width: 100%;
+    text-align: center;
   }
+
+  .background-header .main-nav .nav li,
+  .header-area .main-nav .nav li {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    background-color: #f1f0fe;
+    height: 50px;
+    border-radius: 0 0 25px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .background-header .main-nav .nav li a,
   .header-area .main-nav .nav li a {
     line-height: 50px;
@@ -509,96 +530,77 @@ Header Style
     font-weight: 400;
     color: #1e1e1e;
     background-color: #f1f0fe;
-     border-radius: 0px 0px 25px 25px;
-  }
-  .background-header .main-nav .nav li,
-  .header-area .main-nav .nav li {
-    border-top: 1px solid #ddd;
-    background-color: #f1f0fe;
-    height: 50px;
-    border-radius: 0px 0px 25px 25px;
-  }
-  .background-header .main-nav .nav li:last-child,
-  .header-area .main-nav .nav li:last-child {
-    border-radius: 0px 0px 25px 25px;
-  }
-  .header-area .main-nav .nav {
-    height: auto;
-    flex-basis: 100%;
-  }
-  .header-area .main-nav .logo {
-    position: absolute;
-    left: 30px;
-    top: 0px;
-  }
-  .background-header .main-nav .logo {
-    top: 0px;
-  }
-  .background-header .main-nav .border-button {
-    top: 0px !important;
-  }
-  .header-area .main-nav .border-button {
-    position: absolute;
-    top: 15px;
-    right: 70px;
-  }
-  .header-area.header-sticky .nav li a:hover,
-  .header-area.header-sticky .nav li a.active {
-    color: #7a6ad8!important;
-    opacity: 1;
-  }
-  .header-area.header-sticky .nav li.search-icon a {
+    border-radius: 0 0 25px 25px;
     width: 100%;
-  }
-  .header-area {
-    background-color: transparent;
-    padding: 0px 15px;
-    height: 80px;
-    box-shadow: none;
     text-align: center;
+    padding: 0;
   }
-  .header-area .container {
-    padding: 0px;
-  }
-  .header-area .logo {
-    margin-left: 0px;
-    margin-top: 30px;
-  }
-  .header-area .menu-trigger {
-    display: block !important;
-  }
+
   .header-area .main-nav {
     overflow: hidden;
     color: #1708ed;
   }
+
   .header-area .main-nav .nav {
     float: none;
-    width: 100%;
     display: block;
-    -webkit-transition: all 0s ease 0s;
-    -moz-transition: all 0s ease 0s;
-    -o-transition: all 0s ease 0s;
+    margin-left: 0;
     transition: all 0s ease 0s;
-    margin-left: 0px;
+  }
 
-  }
   .header-area .main-nav .nav li:first-child {
-    border-top: 1px solid ;
+    border-top: 1px solid #ddd;
   }
-  .header-area.header-sticky .nav {
-    margin-top: 100px !important;
-  }
+
+  .header-area.header-sticky .nav,
   .background-header.header-sticky .nav {
     margin-top: 80px !important;
   }
+
   .header-area .main-nav .nav li {
-    width: 100%;
-    background: #fff;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+    padding: 0 !important;
   }
-  
+
+  .header-area .main-nav .logo,
+  .background-header .main-nav .logo {
+    position: absolute;
+    left: 30px;
+    top: 0;
+  }
+
+  .header-area .menu-trigger {
+    display: block !important;
+  }
+
+  .header-area {
+    background-color: transparent;
+    padding: 0 15px;
+    height: 80px;
+    box-shadow: none;
+    text-align: center;
+  }
+
+  .header-area .container {
+    padding: 0;
+  }
+
+  .header-area .logo {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+
+  .header-area.header-sticky .nav li a:hover,
+  .header-area.header-sticky .nav li a.active {
+    color: #7a6ad8 !important;
+    opacity: 1;
+  }
+
+  .header-area.header-sticky .nav li.search-icon a {
+    width: 100%;
+  }
 }
+
+
 
 /*
 --------------------------------------------
@@ -607,20 +609,25 @@ about us
 */
 /* About Us Image Container */
 .about-us-container {
-  width: 50%; /* Adjust image size */
-  max-width: 400px; /* Limit max width */
-  height: auto;
-  display: block; /* Prevent extra spacing */
-  margin: 20px auto; /* Center the image */
+  width: 100%; /* Full width to allow centering */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically if needed */
+  margin-top: 25px;
+  padding: 0 15px; /* Optional: Responsive padding */
+  box-sizing: border-box;
 }
 
 /* About Us Image */
 .about-us-container img {
-  max-width: 80%; /* Adjust size */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 10px; /* Optional: Adds rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  max-width: 100%;
+  width: 100%;
+  max-width: 250px; /* Limit the image size */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 /* 
 ---------------------------------------------
 Banner Style
@@ -628,7 +635,7 @@ Banner Style
 */
 /* Main Container */
 .main-container {
-  width: 65%; /* Reduced from 80% */
+  width: 75%; /* Reduced from 80% */
   margin: auto;
   overflow: hidden;
   position: relative;
@@ -653,7 +660,7 @@ Banner Style
   min-height: 300px; /* Reduced height */
   align-items: center;
   justify-content: center;
-  background-color: #f4f4f4;
+  background-color: #fff;
   padding: 20px; /* Reduced padding */
   position: relative;
   border-radius: 10px;
@@ -676,7 +683,7 @@ Banner Style
 }
 
 .left img {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
   border-radius: 10px;
 }
@@ -684,8 +691,8 @@ Banner Style
 /* Right Container (Text) */
 .right {
   width: 50%;
-  padding: 15px;
-  text-align: left;
+  padding: 5px;
+  text-align: center;
   background: white; /* Set background to white */
   color: black; /* Set text color to black */
   border-radius: 10px;
@@ -694,8 +701,9 @@ Banner Style
 
 /* Quote Text */
 .right p {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 2.0;
   padding: 15px;
   font-family: 'Times New Roman', Times, serif;
   color: rgb(22, 21, 21);
@@ -737,20 +745,65 @@ Banner Style
   object-fit: cover;
 }
 
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center;
+  }
+
+  .left, .right {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .quote-left {
+    top: 0;
+    left: 10px;
+  }
+
+  .quote-right {
+    bottom: 0;
+    right: 10px;
+  }
+
+  .right p {
+    font-size: 13px;
+    padding: 10px;
+    line-height: 1.6;
+  }
+
+  .main-container {
+    width: 95%; /* Increase width slightly for smaller screens */
+  }
+
+  .slide {
+    flex-direction: column; /* Optional: in case slide content also needs stacking */
+    padding: 10px;
+  }
+
+  .left img {
+    max-width: 90%;
+    height: auto;
+  }
+}
+
+
 /* 
 ---------------------------------------------
 Services Style
 --------------------------------------------- 
 */
-.container {
+
+
+.section.courses .course-container {
   display: flex;
-  flex-direction: row; /* Places left and right containers side by side */
-  align-items: center; /* Aligns content vertically */
-  justify-content: space-between; /* Adds space between left and right */
-  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 40px 20px;
   max-width: 1200px;
-  margin: 0 auto; /* Centers the container */
-  gap: 30px; /* Space between left and right */
+  margin: 0 auto;
+  flex-wrap: wrap; /* Important for wrapping on smaller screens */
 }
 
 .left-container {
@@ -788,6 +841,35 @@ Services Style
   margin-bottom: 15px;
 }
 
+
+/* Responsive layout for mobile and tablets */
+@media (max-width: 768px) {
+  .section.courses .course-container {
+    flex-direction: column;
+    padding: 20px 15px;
+  }
+
+  .left-container,
+  .right-container {
+    width: 100%;
+    padding: 20px 10px;
+  }
+
+  .right-container {
+    padding: 20px 10px; /* Adjusted for smaller screens */
+    text-align: center;
+  }
+
+  .right-container h2 {
+    font-size: 20px;
+  }
+
+  .right-container p {
+    font-size: 14px;
+  }
+}
+
+
 /*
 --------------------------------------------
 guest lectures 
@@ -795,7 +877,7 @@ guest lectures
 */
 /* Guest Lecture Container */
 .events {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 .guest-lecture-container {
   display: flex; /* Enables centering */
@@ -810,7 +892,7 @@ guest lectures
 
 /* Guest Lecture Image */
 .guest-lecture-container img {
-  width: 30%; /* Makes image smaller */
+  width:35%; /* Makes image smaller */
   max-width: 600px; /* Limits size */
   height: auto; /* Maintains aspect ratio */
   border-radius: 10px; /* Optional: Rounded corners */
@@ -851,6 +933,30 @@ guest lectures
   object-fit: contain; /* Ensures full image is visible without cutting */
   border-radius: 10px;
 }
+
+@media (max-width: 767px) {
+  .main-container-guest {
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center them */
+    padding: 20px;
+    background: linear-gradient(135deg, #5147e0 0%, #dcd5ff 100%);;
+  }
+
+  .left-container-guest,
+  .right-container-guest {
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Allow height to adjust */
+    margin: 10px 0; /* Vertical spacing */
+  }
+
+  .left-container-guest img,
+  .right-container-guest img {
+    height: auto; /* Let image adjust naturally */
+    max-height: 375px; /* Optional: limit height */
+  }
+}
+
+
 
 /*
 --------------------------------------------
@@ -916,15 +1022,24 @@ About Style
 --------------------------------------------- 
 */
 
+.container-aboutus {
+  display: flex;
+  justify-content: center; /* Centers child elements horizontally */
+  align-items: center; /* Centers child elements vertically */
+  flex-direction: row; /* Ensures row layout, you can change this to column for stacking in mobile */
+  padding: 20px; /* Optional, to add spacing around */
+  max-width: 100%; /* Ensures the container does not overflow */
+  margin: 0 auto; /* Centers the container in the viewport */
+}
 
-.about-us {
+/* .about-us {
   position: relative;
   padding: 0px;
   margin-top: 80px;
   width: 90%;
-}
+} */
 
-.about-us:before {
+/* .about-us:before {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -933,10 +1048,11 @@ About Style
   width: 84%;
   height: 100%;
   background-color: rgb(241, 192, 47);
+  z-index: 1000;
   content: '';
   border-top-left-radius: 500px;
   border-bottom-left-radius: 500px;
-}
+} */
 
 .accordion {
   margin-top: -20px; /* Reduce negative margin if needed */
@@ -1004,6 +1120,21 @@ h2.accordion-header button {
   margin-left: 60px;
   margin-bottom: 0px;
 }
+.about-us .section-heading h2 {
+  color: black;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.about-us .section-heading p {
+  color: black;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin-bottom: 20px;
+}
+
 
 .about-us .section-heading .main-button {
   margin-top: 50px;
@@ -1145,7 +1276,7 @@ Facts Style
 --------------------------------------------- 
 */
 
-.fun-facts {
+/* .fun-facts {
   position: relative;
   padding: 30px 0px 30px 0px;
   overflow: hidden;
@@ -1185,7 +1316,7 @@ Facts Style
 }
 
 .fun-facts h2 {
-  color: #fff;
+  color: #121111;
   font-size: 48px;
   font-weight: 700;
 }
@@ -1196,10 +1327,70 @@ Facts Style
 }
 
 .fun-facts p {
-  color: #fff;
+  color: #0b0a0a;
   font-size: 15px;
   font-weight: 500;
   margin-top: 15px;
+} */
+
+
+/* ===== Fun Facts Section ===== */
+.fun-facts {
+  background: linear-gradient(135deg, #5147e0 0%, #dcd5ff 100%);
+  padding: 80px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.fun-facts .counter {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.fun-facts .counter:hover {
+  transform: translateY(-5px);
+}
+
+.fun-facts .count-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1708ed;
+  margin-bottom: 10px;
+}
+
+.fun-facts .count-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ===== Responsive Styling ===== */
+@media (max-width: 991px) {
+  .fun-facts .count-title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .fun-facts {
+    padding: 60px 20px;
+  }
+
+  .fun-facts .count-title {
+    font-size: 32px;
+  }
+
+  .fun-facts .count-text {
+    font-size: 16px;
+  }
+
+  .fun-facts .counter {
+    padding: 25px 15px;
+  }
 }
 
 
@@ -1209,19 +1400,19 @@ Team Style
 --------------------------------------------- 
 */
 /* Team Section */
-.team {
+/* .team {
   margin-top: 80px;
   padding-top: 40px;
 }
 
-/* Team Member Card */
+
 .team-member {
   position: relative;
   text-align: center;
-  margin-bottom: 150px; /* Space between rows */
+  margin-bottom: 150px; 
 }
 
-/* Team Member Image */
+
 .team-member img {
   max-width: 220px;
   border-radius: 50%;
@@ -1232,12 +1423,12 @@ Team Style
   transition: all 0.3s ease-in-out;
 }
 
-/* Hover Effect - Moves Image Up */
+
 .team-member:hover img {
   top: -130px;
 }
 
-/* Team Member Card Styling */
+
 .team-member .main-content {
   border-radius: 25px;
   padding: 120px 30px 30px 30px;
@@ -1247,7 +1438,7 @@ Team Style
   transition: all 0.3s ease-in-out;
 }
 
-/* Category (Job Title) */
+
 .team-member .main-content span.category {
   color: rgb(193, 179, 96);
   font-size: 15px;
@@ -1256,7 +1447,7 @@ Team Style
   margin-bottom: 5px;
 }
 
-/* Name Styling */
+
 .team-member .main-content h4 {
   font-size: 20px;
   font-weight: 500;
@@ -1265,7 +1456,7 @@ Team Style
   color: white;
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 992px) {
   .team {
     padding-top: 100px;
@@ -1313,7 +1504,7 @@ Team Style
     line-height: 35px;
     font-size: 16px;
   }
-}
+} */
 
 /* 
 ---------------------------------------------
@@ -1321,104 +1512,104 @@ Testimonials Style
 --------------------------------------------- 
 */
 
-.testimonials {
-  position: relative;
-  padding: 80px 0px;
-  margin-top: 150px;
-}
-
-.testimonials:before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  width: 65%;
-  height: 100%;
-  background-color: #f1f0fe;
-  content: '';
-  border-top-left-radius: 500px;
-  border-bottom-left-radius: 500px;
-}
-
-.testimonials .section-heading {
-  margin-bottom: 0px;
-  margin-left: 60px;
-  vertical-align: middle;
-}
-
-.testimonials .section-heading p {
-  margin-top: 50px;
-}
-
-.testimonials .item {
-  background-color: #7a6ad8;
-  border-radius: 25px;
-  padding: 80px;
-}
-
-.testimonials .item p {
-  font-size: 18px;
-  line-height: 40px;
-  color: #fff;
-  font-style: italic;
-  font-weight: 300;
-  margin-bottom: 40px;
-}
-
-.testimonials .item img {
-  border-radius: 50%;
-  max-width: 100px;
-  float: left;
-  margin-right: 25px;
-}
-
-.testimonials .item span {
-  display: inline-block;
+/* Scoped custom styles for testimonial slider */
+.testimonials.custom-slider {
   margin-top: 20px;
-  font-size: 15px;
-  color: #fff;
+  position: relative;
 }
 
-.testimonials .item h4 {
-  color: #fff;
-  font-size: 22px;
-  font-weight: 600;
-  margin-top: 8px;
+.testimonials.custom-slider .owl-carousel {
+  text-align: center;
 }
 
-.testimonials .owl-nav {
+.testimonials.custom-slider .owl-carousel .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonials.custom-slider .owl-carousel .item img {
+  width: auto;
+  height: 400px;
+  max-width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Override nav button positioning */
+.testimonials.custom-slider .owl-nav {
   position: absolute;
   top: 50%;
-  transform: translateY(-5px);
-  right: -25px;
-  text-align: right;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 10;
+  pointer-events: none;
 }
 
-.testimonials .owl-nav .owl-prev i,
-.testimonials .owl-nav .owl-next i {
+.testimonials.custom-slider .owl-nav button {
+  pointer-events: all;
+  background-color: #fff;
+  color: #7a6ad8;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
-  line-height: 50px;
   font-size: 24px;
-  display: inline-block;
-  color: #7a6ad8;
-  background-color: #fff;
-  border-radius: 50%;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.10);
-  opacity: 1;
-  transition: all .3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
 }
 
-.testimonials .owl-nav .owl-prev i {
-  position: absolute;
-  bottom: 65px;
+.testimonials.custom-slider .owl-nav button:hover {
+  background-color: #7a6ad8;
+  color: #fff;
 }
 
-.testimonials .owl-nav .owl-prev i:hover,
-.testimonials .owl-nav .owl-next i:hover {
-  opacity: 1;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+/* Font Awesome Arrow Fix (already in your project) */
+.fa-angle-left::before {
+  content: "\f104";
+}
+
+.fa-angle-right::before {
+  content: "\f105";
+}
+@media (max-width: 767px) {
+  .testimonials.custom-slider .owl-nav {
+    padding: 0 10px; /* tighter padding on small screens */
+  }
+
+  .testimonials.custom-slider .owl-nav button.owl-prev {
+    margin-left: 0;
+    left: 0;
+  }
+
+  .testimonials.custom-slider .owl-nav button.owl-next {
+    margin-right: 0;
+    right: 0;
+  }
+  .testimonials.custom-slider .owl-carousel .item {
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin-top: 20px;
+  }
+
+  .testimonials.custom-slider .owl-carousel .item img {
+    width: 75%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* keep consistent */
+  }
 }
 
 
@@ -1521,7 +1712,7 @@ Contact Style
 */
 
 .contact-us {
-  margin-top: 150px;
+  margin-top: 45px;
   position: relative;
   padding: 50px 0px;
 }
@@ -1547,7 +1738,7 @@ Contact Style
 }
 
 .contact-us  .section-heading p {
-  margin-top: 50px;
+  margin-top: 15px;
 }
 
 .contact-us .special-offer {
@@ -1623,6 +1814,7 @@ Contact Style
 
 .contact-us .contact-us-content {
   border-radius: 25px;
+  margin-top: 25px;
   padding: 80px;
   background-color: rgb(85,0,227);
   position: relative;
@@ -1864,7 +2056,7 @@ Responsive Style
   }
 
   .about-us {
-    margin-top: 100px;
+    margin-top: 10px;
   }
 
   .accordion {
@@ -1899,7 +2091,7 @@ Responsive Style
   }
 
   .courses {
-    margin-top: 100px;
+    margin-top: 10px;
   }
 
   .event_filter ul li {
@@ -1908,7 +2100,7 @@ Responsive Style
   }
 
   .fun-facts {
-    margin-top: 70px;
+    margin-top: 25px;
   }
 
   .fun-facts::before {
@@ -1949,7 +2141,7 @@ Responsive Style
   }
 
   .events {
-    margin-top: 80px;
+    margin-top: 5px;
   }
 
   .events .item {

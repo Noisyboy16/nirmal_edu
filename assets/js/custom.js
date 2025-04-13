@@ -2,8 +2,9 @@
 	"use strict";
 
 	$(document).ready(function () {
-
+		// -----------------------------------------
 		// Preloader Animation
+		// -----------------------------------------
 		$(window).on("load", function () {
 			$("#js-preloader").addClass("loaded");
 
@@ -19,7 +20,47 @@
 			});
 		});
 
-		// **Auto Sliding for Slider**
+		// -----------------------------------------
+		// 📌 NEW CODE: Counter Animation
+		// -----------------------------------------
+		function animateCounters() {
+			$('.count-number').each(function () {
+				var $this = $(this);
+				var countTo = $this.attr('data-to');
+				var speed = parseInt($this.attr('data-speed'), 10);
+
+				$({ countNum: 0 }).animate(
+					{ countNum: countTo },
+					{
+						duration: speed,
+						easing: 'swing',
+						step: function () {
+							$this.text(Math.floor(this.countNum));
+						},
+						complete: function () {
+							$this.text(this.countNum);
+						}
+					}
+				);
+			});
+		}
+
+		// Run counter only when the section is visible
+		let countersAnimated = false;
+		$(window).on('scroll', function () {
+			const offsetTop = $('.fun-facts').offset()?.top;
+			const scrollTop = $(window).scrollTop();
+			const windowHeight = $(window).height();
+
+			if (!countersAnimated && offsetTop && scrollTop + windowHeight > offsetTop + 100) {
+				animateCounters();
+				countersAnimated = true;
+			}
+		});
+
+		// -----------------------------------------
+		// Auto Sliding for Slider
+		// -----------------------------------------
 		function startAutoSlide() {
 			const slider = document.querySelector(".slider");
 			const slides = document.querySelectorAll(".slide");
@@ -31,14 +72,14 @@
 				slider.style.transform = `translateX(-${index * 100}%)`;
 			}
 
-			setInterval(slideNext, 3000); // **Auto-slide every 3 seconds**
+			setInterval(slideNext, 3000);
 		}
-		startAutoSlide(); // **Initialize the slider**
+		startAutoSlide();
 
-		// **Auto Sliding for Second Slider (After About Us Section)**
+		// Auto Sliding for Second Slider (After About Us Section)
 		function startSecondAutoSlide() {
-			const secondSlider = document.querySelector(".second-slider"); // Second Slider
-			const secondSlides = document.querySelectorAll(".second-slide"); // Slides of second slider
+			const secondSlider = document.querySelector(".second-slider");
+			const secondSlides = document.querySelectorAll(".second-slide");
 			let index = 0;
 			const totalSecondSlides = secondSlides.length;
 
@@ -47,9 +88,9 @@
 				secondSlider.style.transform = `translateX(-${index * 100}%)`;
 			}
 
-			setInterval(slideNext, 3000); // **Auto-slide every 3 seconds**
+			setInterval(slideNext, 3000);
 		}
-		startSecondAutoSlide(); // **Initialize the second slider**
+		startSecondAutoSlide();
 
 		// Sticky Header on Scroll
 		$(window).scroll(function () {
@@ -64,7 +105,7 @@
 			}
 		});
 
-		// Window Resize Handling (Refresh on Mobile/Desktop Breakpoint Change)
+		// Resize Refresh
 		let initialWidth = $(window).width();
 		$(window).on("resize", function () {
 			let newWidth = $(window).width();
@@ -98,7 +139,7 @@
 			}
 		}
 
-		// Owl Carousel for Banner & Testimonials
+		// Owl Carousel
 		$(".owl-banner, .owl-testimonials").owlCarousel({
 			center: true,
 			items: 1,
@@ -116,30 +157,27 @@
 		});
 
 		// Mobile Menu Toggle
-		$(".menu-trigger").on("click", function() {
-			$(this).toggleClass("active"); // Toggle the 'active' class
-			$(".header-area .nav").slideToggle(200); // Slide open/close the menu
-		  });
-		
-		  // Smooth scroll for anchor links and close the menu when a link is clicked on mobile
-		  $(".scroll-to-section a[href^='#']").on("click", function(e) {
+		$(".menu-trigger").on("click", function () {
+			$(this).toggleClass("active");
+			$(".header-area .nav").slideToggle(200);
+		});
+
+		// Smooth scroll
+		$(".scroll-to-section a[href^='#']").on("click", function (e) {
 			e.preventDefault();
 			var target = $(this.hash);
 			if (target.length) {
-			  // Close the menu on mobile when a link is clicked
-			  if ($(window).width() < 767) {
-				$(".menu-trigger").removeClass("active");
-				$(".header-area .nav").slideUp(200); // Close menu
-			  }
-			  $("html, body").animate({
-				scrollTop: target.offset().top - 80 // Adjust for header
-			  }, 700);
+				if ($(window).width() < 767) {
+					$(".menu-trigger").removeClass("active");
+					$(".header-area .nav").slideUp(200);
+				}
+				$("html, body").animate({
+					scrollTop: target.offset().top - 80
+				}, 700);
 			}
-		  });
-  
+		});
 
-
-		// Active Menu Item on Scroll
+		// Active Menu on Scroll
 		function onScroll() {
 			let scrollPos = $(document).scrollTop();
 			$(".nav a").each(function () {
@@ -154,13 +192,11 @@
 				}
 			});
 		}
-
 		$(document).on("scroll", onScroll);
 
-		// Mobile Dropdown Menu Handling
+		// Mobile Dropdowns
 		$(".main-nav ul.nav .has-sub > a").on("click", function (e) {
 			e.preventDefault();
-
 			let thisItemParent = $(this).parent("li");
 			let thisItemParentSiblings = thisItemParent.siblings(".has-sub");
 			let submenu = thisItemParent.find("> ul.sub-menu");
@@ -175,11 +211,9 @@
 			}
 		});
 
-		// Form Submission to Google Sheets
+		// Google Sheets Form Submit
 		$("#contact-form").on("submit", function (e) {
-			e.preventDefault(); // Prevent the default form submission
-
-			// Collecting form data
+			e.preventDefault();
 			const formData = {
 				name: $("#name").val(),
 				school: $("#school").val(),
@@ -189,7 +223,6 @@
 				message: $("#message").val(),
 			};
 
-			// Sending data to Google Sheets via Google Apps Script Web App
 			fetch("https://script.google.com/macros/s/AKfycbyaBzyyF1wpVot3ZPA616Dh1dUPFgGHBb5QlS6XbMg27yhaMNm5_dTFAHm-spVINpWLSQ/exec", {
 				method: "POST",
 				headers: {
@@ -208,5 +241,4 @@
 		});
 
 	});
-
 })(jQuery);
