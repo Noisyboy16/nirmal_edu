@@ -993,6 +993,11 @@ Achievments
   padding: 10px; /* Adds some internal padding */
   background-color: white;
 }
+@media (max-width: 767px) {
+  .main-container-achivements {
+    width: 100%;
+  }
+}
 
 /* Style the second-slider to be a flex container for horizontal slides */
 .second-slider {
@@ -1117,7 +1122,7 @@ h2.accordion-header button {
 }
 
 .about-us .section-heading {
-  margin-left: 60px;
+  /* margin-marg: 60px; */
   margin-bottom: 0px;
 }
 .about-us .section-heading h2 {
@@ -1137,7 +1142,7 @@ h2.accordion-header button {
 
 
 .about-us .section-heading .main-button {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 
@@ -2070,7 +2075,7 @@ Responsive Style
   }
 
   .about-us .section-heading {
-    margin-top: 120px;
+    margin-top: 70px;
   }
 
   .about-us::before,
