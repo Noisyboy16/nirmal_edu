@@ -560,7 +560,7 @@ Header Style
     font-weight: 400; /* Normal weight */
     font-size: 20px; /* Increased font size */
     color: #1e1e1e;
-    background-color: transparent;
+    background-color: rgba(101, 101, 227, 0.779);
     text-align: center;
     text-decoration: none;
     transition: background 0.3s, color 0.3s;
@@ -583,7 +583,7 @@ Header Style
     padding: 0 20px;
     height: 100px;
     box-shadow: none;
-    position: relative;  /* 🔴 This overrides the fixed position! */
+    position: relative;  
   }
   
 
@@ -1047,8 +1047,7 @@ Achievments
   margin: 20px auto; /* Center the container with space around it */
   overflow: hidden; /* Hide overflow content (images that go out of the container) */
   padding: 10px; /* Adds some internal padding */
-  background-color: white;
-}
+  background-color: white;}
 
 .second-slider-wrapper {
   position: relative;
@@ -1095,10 +1094,13 @@ Achievments
 
 /* Each second-slide should take up the full width of the container */
 .second-slide {
-  flex: 0 0 100%; /* Makes each slide take 100% width of the container */
-  display: flex;
-  justify-content: center; /* Center the image */
-  align-items: center; /* Center the image vertically */
+  flex: 0 0 100%;
+    /* Makes each slide take 100% width of the container */
+    display: flex;
+    justify-content: center;
+    /* Center the image */
+    align-items: center;
+    /* Center the image vertically */
 }
 
 /* Style images in the second slider */
@@ -1604,6 +1606,27 @@ Team Style
 Testimonials Style
 --------------------------------------------- 
 */
+
+.testimonial_head-container {
+  display: flex; /* Enables centering */
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  flex-direction: column; /* Ensures proper stacking */
+  width: 100%; /* Full width for centering */
+  margin: 20px auto; /* Adds space from other elements */
+  padding: 10px; /* Adds internal spacing */
+  text-align: center; /* Ensures text aligns properly */
+  background-color: gainsboro;
+}
+
+/* Guest Lecture Image */
+.testimonial_head-container img {
+  width: 50%; /* Makes the image smaller, adjust as needed */
+  max-width: 110px; /* Limits the image width to 400px */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 10px; /* Optional: Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
 
 /* Scoped custom styles for testimonial slider */
 .testimonials.custom-slider {
