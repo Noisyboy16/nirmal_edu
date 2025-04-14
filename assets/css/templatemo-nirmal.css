@@ -132,8 +132,8 @@ body {
 }
 
 .section {
-  padding-top: 30px;
-  margin-top: 120px;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 .section-heading {
@@ -598,6 +598,20 @@ Header Style
   .header-area.header-sticky .nav li.search-icon a {
     width: 100%;
   }
+  /* .header-area .main-nav .logo,
+  .background-header .main-nav .logo {
+    position: absolute;
+    left: 50%;
+    top: 15px;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 1000; 
+  }
+
+  .header-area .main-nav .logo h1 {
+    margin: 0;
+    padding: 0;
+  } */
 }
 
 
@@ -790,7 +804,7 @@ Banner Style
 
 /* 
 ---------------------------------------------
-Services Style
+courses Style
 --------------------------------------------- 
 */
 
@@ -903,7 +917,7 @@ guest lectures
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   background: white;
   padding: 20px;
@@ -939,7 +953,7 @@ guest lectures
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Center them */
     padding: 20px;
-    background: linear-gradient(135deg, #5147e0 0%, #dcd5ff 100%);;
+    background: linear-gradient(135deg, #5147e0 0%, #dcd5ff 100%);
   }
 
   .left-container-guest,
