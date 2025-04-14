@@ -1027,6 +1027,38 @@ Achievments
   padding: 10px; /* Adds some internal padding */
   background-color: white;
 }
+
+.second-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.second-slider-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 2rem;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 2;
+  color: #333;
+  transition: background 0.3s ease;
+}
+
+.second-slider-btn:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.second-slider-btn.prev {
+  position: absolute;
+  left: 10px;
+}
+
+.second-slider-btn.next {
+  position: absolute;
+  right: 10px;
+}
+
 @media (max-width: 767px) {
   .main-container-achivements {
     width: 100%;

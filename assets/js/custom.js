@@ -80,16 +80,41 @@
 		function startSecondAutoSlide() {
 			const secondSlider = document.querySelector(".second-slider");
 			const secondSlides = document.querySelectorAll(".second-slide");
+			const prevBtn = document.querySelector(".second-slider-btn.prev");
+			const nextBtn = document.querySelector(".second-slider-btn.next");
+		  
 			let index = 0;
-			const totalSecondSlides = secondSlides.length;
-
-			function slideNext() {
-				index = (index + 1) % totalSecondSlides;
-				secondSlider.style.transform = `translateX(-${index * 100}%)`;
+			const totalSlides = secondSlides.length;
+		  
+			function showSlide(i) {
+			  index = (i + totalSlides) % totalSlides; // Wrap around
+			  secondSlider.style.transform = `translateX(-${index * 100}%)`;
 			}
-
-			setInterval(slideNext, 3000);
-		}
+		  
+			function slideNext() {
+			  showSlide(index + 1);
+			}
+		  
+			function slidePrev() {
+			  showSlide(index - 1);
+			}
+		  
+			let autoSlideInterval = setInterval(slideNext, 3000);
+		  
+			// Add button click listeners
+			nextBtn?.addEventListener("click", () => {
+			  clearInterval(autoSlideInterval);
+			  slideNext();
+			  autoSlideInterval = setInterval(slideNext, 3000); // restart auto slide
+			});
+		  
+			prevBtn?.addEventListener("click", () => {
+			  clearInterval(autoSlideInterval);
+			  slidePrev();
+			  autoSlideInterval = setInterval(slideNext, 3000); // restart auto slide
+			});
+		  }
+		  
 		startSecondAutoSlide();
 
 		// Sticky Header on Scroll
