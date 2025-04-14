@@ -15,7 +15,7 @@
 				});
 			}
 
-			$("#preloader").fadeOut(600, function () {
+			$("#preloader").fadeOut(300, function () {
 				$(this).css("visibility", "hidden");
 			});
 		});

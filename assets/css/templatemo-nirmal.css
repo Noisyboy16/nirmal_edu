@@ -236,13 +236,13 @@ Pre-loader Style
   background: #7a6ad8;
   border-radius: 50%;
   transform: translateY(-50%);
-  animation: dot 2.8s infinite ease-in-out;
+  animation: dot 1s infinite ease-in-out;
 }
 
 .preloader-inner .dots {
   display: flex;
   margin-left: 31px;
-  animation: dots 2.8s infinite ease-in-out;
+  animation: dots 1s infinite ease-in-out;
 }
 
 .preloader-inner .dots span {
