@@ -107,6 +107,7 @@ p {
 img {
   width: 100%;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 /* 
@@ -284,16 +285,17 @@ Header Style
 }
 
 .header-area {
-  position: sticky;
-  background-color: white;
-  margin-top: 10px;
-  border-radius: 10px;
+  position: fixed;  /* changed from sticky */
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 9999;
+  background-color: lab(38.97% 58.19 -88.84);
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   transition: all 0.5s ease 0s;
 }
+
 
 .header-area .main-nav {
   display: flex;
@@ -354,7 +356,7 @@ Header Style
   height: 40px;
   line-height: 40px;
   text-transform: capitalize;
-  color: #1708ed;
+  color: #fff;
   transition: all 0.4s ease-in-out; /* Removed redundant vendor prefixes */
   border: none; /* Ensured no unnecessary border */
   letter-spacing: 0.25px;
@@ -579,10 +581,11 @@ Header Style
   .header-area {
     background-color: transparent;
     padding: 0 20px;
-    height: 100px; /* Increased header height */
+    height: 100px;
     box-shadow: none;
-    position: relative;
+    position: relative;  /* 🔴 This overrides the fixed position! */
   }
+  
 
   .header-area .main-nav .logo {
     position: absolute;
@@ -657,6 +660,7 @@ about us
   margin-top: 25px;
   padding: 0 15px; /* Optional: Responsive padding */
   box-sizing: border-box;
+  margin-top: 80px;
 }
 
 /* About Us Image */
@@ -668,7 +672,18 @@ about us
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
+@media (max-width: 768px) {
+  .about-us-container {
+    width: 100%; /* Full width to allow centering */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically if needed */
+    margin-top: 25px;
+    padding: 0 15px; /* Optional: Responsive padding */
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+}
 /* 
 ---------------------------------------------
 Banner Style
