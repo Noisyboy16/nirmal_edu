@@ -397,7 +397,7 @@ Header Style
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 15px;
   width: 32px;
   height: 40px;
@@ -590,7 +590,7 @@ Header Style
   .header-area .main-nav .logo {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 35%;
     transform: translate(-50%, -50%);
     margin: 0;
     font-size: 24px; /* Larger logo text */

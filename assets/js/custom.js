@@ -6,15 +6,19 @@
 		// Preloader Animation
 		// -----------------------------------------
 		$(window).on("load", function () {
+			// Add loaded class to preloader
 			$("#js-preloader").addClass("loaded");
-
-			if ($(".cover").length) {
-				$(".cover").parallax({
-					imageSrc: $(".cover").data("image"),
-					zIndex: "1",
+		
+			// Parallax effect for cover section
+			var $cover = $(".cover");
+			if ($cover.length && $.fn.parallax) {
+				$cover.parallax({
+					imageSrc: $cover.data("image"),
+					zIndex: 1,
 				});
 			}
-
+		
+			// Fade out the #preloader
 			$("#preloader").fadeOut(300, function () {
 				$(this).css("visibility", "hidden");
 			});
