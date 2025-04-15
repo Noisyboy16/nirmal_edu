@@ -29,7 +29,6 @@
 			});
 		});
 		
-
 		// -----------------------------------------
 		// 📌 NEW CODE: Counter Animation
 		// -----------------------------------------
@@ -123,7 +122,7 @@
 			  slidePrev();
 			  autoSlideInterval = setInterval(slideNext, 3000); // restart auto slide
 			});
-		  }
+		}
 		  
 		startSecondAutoSlide();
 
@@ -274,6 +273,5 @@
 					alert("There was an error submitting the form.");
 				});
 		});
-
-	});
-})(jQuery);
+	}); // End of $(document).ready
+})(jQuery); // End of (function($){...});
