@@ -2,28 +2,31 @@
 	"use strict";
 
 	$(document).ready(function () {
-		// -----------------------------------------
-		// Preloader Animation
-		// -----------------------------------------
 		$(window).on("load", function () {
-			// Add loaded class to preloader
-			$("#js-preloader").addClass("loaded");
-		
-			// Parallax effect for cover section
-			var $cover = $(".cover");
-			if ($cover.length && $.fn.parallax) {
-				$cover.parallax({
-					imageSrc: $cover.data("image"),
-					zIndex: 1,
-				});
-			}
-		
-			// Fade out the #preloader
-			$("#preloader").fadeOut(300, function () {
-				$(this).css("visibility", "hidden");
+		  // Add loaded class for CSS transitions
+		  $("#js-preloader").addClass("loaded");
+	  
+		  // Optional: hide the preloader completely after transition
+		  setTimeout(function () {
+			$("#js-preloader").css("display", "none");
+		  }, 500); // Wait for CSS transition (0.25s) to finish
+	  
+		  // Parallax effect (if any)
+		  var $cover = $(".cover");
+		  if ($cover.length && $.fn.parallax) {
+			$cover.parallax({
+			  imageSrc: $cover.data("image"),
+			  zIndex: 1,
 			});
+		  }
+	  
+		  // In case you're using #preloader elsewhere
+		  $("#preloader").fadeOut(300, function () {
+			$(this).css("visibility", "hidden");
+		  });
 		});
-
+	  });
+	  
 		// -----------------------------------------
 		// 📌 NEW CODE: Counter Animation
 		// -----------------------------------------
