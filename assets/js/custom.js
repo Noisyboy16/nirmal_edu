@@ -2,31 +2,34 @@
 	"use strict";
 
 	$(document).ready(function () {
+		// -----------------------------------------
+		// Preloader Animation
+		// -----------------------------------------
 		$(window).on("load", function () {
-		  // Add loaded class for CSS transitions
-		  $("#js-preloader").addClass("loaded");
-	  
-		  // Optional: hide the preloader completely after transition
-		  setTimeout(function () {
-			$("#js-preloader").css("display", "none");
-		  }, 500); // Wait for CSS transition (0.25s) to finish
-	  
-		  // Parallax effect (if any)
-		  var $cover = $(".cover");
-		  if ($cover.length && $.fn.parallax) {
-			$cover.parallax({
-			  imageSrc: $cover.data("image"),
-			  zIndex: 1,
+			// Add loaded class to preloader for CSS transition
+			$("#js-preloader").addClass("loaded");
+		
+			// Wait for CSS transition to finish, then hide the preloader
+			setTimeout(function () {
+				$("#js-preloader").css("display", "none");
+			}, 500); // Matches the CSS transition duration
+		
+			// Parallax effect for cover section
+			var $cover = $(".cover");
+			if ($cover.length && $.fn.parallax) {
+				$cover.parallax({
+					imageSrc: $cover.data("image"),
+					zIndex: 1,
+				});
+			}
+		
+			// Optional fadeOut of #preloader (if you're using this ID somewhere else)
+			$("#preloader").fadeOut(300, function () {
+				$(this).css("visibility", "hidden");
 			});
-		  }
-	  
-		  // In case you're using #preloader elsewhere
-		  $("#preloader").fadeOut(300, function () {
-			$(this).css("visibility", "hidden");
-		  });
 		});
-	  });
-	  
+		
+
 		// -----------------------------------------
 		// 📌 NEW CODE: Counter Animation
 		// -----------------------------------------
