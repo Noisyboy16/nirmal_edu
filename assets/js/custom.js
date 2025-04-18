@@ -8,12 +8,12 @@
 		$(window).on("load", function () {
 			// Add loaded class to preloader for CSS transition
 			$("#js-preloader").addClass("loaded");
-		
+
 			// Wait for CSS transition to finish, then hide the preloader
 			setTimeout(function () {
 				$("#js-preloader").css("display", "none");
 			}, 500); // Matches the CSS transition duration
-		
+
 			// Parallax effect for cover section
 			var $cover = $(".cover");
 			if ($cover.length && $.fn.parallax) {
@@ -22,13 +22,13 @@
 					zIndex: 1,
 				});
 			}
-		
+
 			// Optional fadeOut of #preloader (if you're using this ID somewhere else)
 			$("#preloader").fadeOut(300, function () {
 				$(this).css("visibility", "hidden");
 			});
 		});
-		
+
 		// -----------------------------------------
 		// 📌 NEW CODE: Counter Animation
 		// -----------------------------------------
@@ -91,39 +91,39 @@
 			const secondSlides = document.querySelectorAll(".second-slide");
 			const prevBtn = document.querySelector(".second-slider-btn.prev");
 			const nextBtn = document.querySelector(".second-slider-btn.next");
-		  
+
 			let index = 0;
 			const totalSlides = secondSlides.length;
-		  
+
 			function showSlide(i) {
-			  index = (i + totalSlides) % totalSlides; // Wrap around
-			  secondSlider.style.transform = `translateX(-${index * 100}%)`;
+				index = (i + totalSlides) % totalSlides; // Wrap around
+				secondSlider.style.transform = `translateX(-${index * 100}%)`;
 			}
-		  
+
 			function slideNext() {
-			  showSlide(index + 1);
+				showSlide(index + 1);
 			}
-		  
+
 			function slidePrev() {
-			  showSlide(index - 1);
+				showSlide(index - 1);
 			}
-		  
+
 			let autoSlideInterval = setInterval(slideNext, 3000);
-		  
+
 			// Add button click listeners
 			nextBtn?.addEventListener("click", () => {
-			  clearInterval(autoSlideInterval);
-			  slideNext();
-			  autoSlideInterval = setInterval(slideNext, 3000); // restart auto slide
+				clearInterval(autoSlideInterval);
+				slideNext();
+				autoSlideInterval = setInterval(slideNext, 3000); // restart auto slide
 			});
-		  
+
 			prevBtn?.addEventListener("click", () => {
-			  clearInterval(autoSlideInterval);
-			  slidePrev();
-			  autoSlideInterval = setInterval(slideNext, 3000); // restart auto slide
+				clearInterval(autoSlideInterval);
+				slidePrev();
+				autoSlideInterval = setInterval(slideNext, 3000); // restart auto slide
 			});
 		}
-		  
+
 		startSecondAutoSlide();
 
 		// Sticky Header on Scroll
@@ -264,14 +264,21 @@
 				},
 				body: JSON.stringify(formData),
 			})
-				.then((response) => response.json())
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error(`HTTP error! Status: ${response.status}`);
+					}
+					return response.json();
+				})
 				.then((data) => {
 					alert("Form submitted successfully!");
+					$("#contact-form")[0].reset(); // Clear the form
 				})
 				.catch((error) => {
 					console.error("Error:", error);
 					alert("There was an error submitting the form.");
 				});
 		});
+
 	}); // End of $(document).ready
 })(jQuery); // End of (function($){...});
