@@ -5,29 +5,29 @@
 		// -----------------------------------------
 		// Preloader Animation
 		// -----------------------------------------
-		$(window).on("load", function () {
-			// Add loaded class to preloader for CSS transition
-			$("#js-preloader").addClass("loaded");
+		// $(window).on("load", function () {
+		// 	// Add loaded class to preloader for CSS transition
+		// 	$("#js-preloader").addClass("loaded");
 
-			// Wait for CSS transition to finish, then hide the preloader
-			setTimeout(function () {
-				$("#js-preloader").css("display", "none");
-			}, 500); // Matches the CSS transition duration
+		// 	// Wait for CSS transition to finish, then hide the preloader
+		// 	setTimeout(function () {
+		// 		$("#js-preloader").css("display", "none");
+		// 	}, 500); // Matches the CSS transition duration
 
-			// Parallax effect for cover section
-			var $cover = $(".cover");
-			if ($cover.length && $.fn.parallax) {
-				$cover.parallax({
-					imageSrc: $cover.data("image"),
-					zIndex: 1,
-				});
-			}
+		// 	// Parallax effect for cover section
+		// 	var $cover = $(".cover");
+		// 	if ($cover.length && $.fn.parallax) {
+		// 		$cover.parallax({
+		// 			imageSrc: $cover.data("image"),
+		// 			zIndex: 1,
+		// 		});
+		// 	}
 
-			// Optional fadeOut of #preloader (if you're using this ID somewhere else)
-			$("#preloader").fadeOut(300, function () {
-				$(this).css("visibility", "hidden");
-			});
-		});
+		// 	// Optional fadeOut of #preloader (if you're using this ID somewhere else)
+		// 	$("#preloader").fadeOut(300, function () {
+		// 		$(this).css("visibility", "hidden");
+		// 	});
+		// });
 
 		// -----------------------------------------
 		// 📌 NEW CODE: Counter Animation
@@ -244,41 +244,5 @@
 				submenu.slideDown(250, "easeInOutQuad");
 			}
 		});
-
-		// Google Sheets Form Submit
-		$("#contact-form").on("submit", function (e) {
-			e.preventDefault();
-			const formData = {
-				name: $("#name").val(),
-				school: $("#school").val(),
-				standard: $("#standard").val(),
-				phone: $("#phone").val(),
-				email: $("#email").val(),
-				message: $("#message").val(),
-			};
-
-			fetch("https://script.google.com/macros/s/AKfycbyaBzyyF1wpVot3ZPA616Dh1dUPFgGHBb5QlS6XbMg27yhaMNm5_dTFAHm-spVINpWLSQ/exec", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			})
-				.then((response) => {
-					if (!response.ok) {
-						throw new Error(`HTTP error! Status: ${response.status}`);
-					}
-					return response.json();
-				})
-				.then((data) => {
-					alert("Form submitted successfully!");
-					$("#contact-form")[0].reset(); // Clear the form
-				})
-				.catch((error) => {
-					console.error("Error:", error);
-					alert("There was an error submitting the form.");
-				});
-		});
-
 	}); // End of $(document).ready
 })(jQuery); // End of (function($){...});

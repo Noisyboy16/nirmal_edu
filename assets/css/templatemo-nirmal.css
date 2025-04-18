@@ -184,7 +184,7 @@ body {
 Pre-loader Style
 --------------------------------------------- 
 */
-.js-preloader {
+/* .js-preloader {
   position: fixed;
   top: 0;
   left: 0;
@@ -251,7 +251,7 @@ Pre-loader Style
   margin-left: 16px;
   background: #7a6ad8;
   border-radius: 50%;
-}
+} */
 
 /* 
 ---------------------------------------------

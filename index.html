@@ -26,7 +26,7 @@
 <body>
 
   <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
+  <!-- <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
       <span class="dot"></span>
       <div class="dots">
@@ -35,7 +35,8 @@
         <span></span>
       </div>
     </div>
-  </div>
+  </div> -->
+
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
@@ -308,81 +309,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- 
-  <div class="team section" id="team">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="assets/images/member-01.jpg" alt="">
-              <span class="category">UX Teacher</span>
-              <h4>Sophia Rose</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="assets/images/member-02.jpg" alt="">
-              <span class="category">Graphic Teacher</span>
-              <h4>Cindy Walker</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="assets/images/member-03.jpg" alt="">
-              <span class="category">Full Stack Master</span>
-              <h4>David Hutson</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="assets/images/member-04.jpg" alt="">
-              <span class="category">Digital Animator</span>
-              <h4>Stella Blair</h4>
-            </div>
-          </div>
-        </div>
-
-        
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="assets/images/member-05.jpg" alt="">
-              <span class="category">Web Developer</span>
-              <h4>Michael Carter</h4>
-            </div>
-          </div>
-        </div>
-
-        
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="assets/images/member-06.jpg" alt="">
-              <span class="category">Marketing Expert</span>
-              <h4>Emma Johnson</h4>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div class="testimonials-heading">
-    <p>What they say about us></p>
-  </div> -->
-  
+  </div>  
 
   <div class="testimonial_head-container">
     <img src="assets/images/testimonial_head.JPG" loading="lazy" alt="guest leactures">
@@ -494,7 +421,33 @@
       </div>
     </div>
   </div>
-
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      const form = e.target;
+      const data = new URLSearchParams();
+  
+      for (const pair of new FormData(form)) {
+        data.append(pair[0], pair[1]);
+      }
+  
+      fetch('https://script.google.com/macros/s/AKfycbyaBzyyF1wpVot3ZPA616Dh1dUPFgGHBb5QlS6XbMg27yhaMNm5_dTFAHm-spVINpWLSQ/exec', {
+        method: 'POST',
+        body: data
+      })
+      .then(response => response.text())
+      .then(result => {
+        alert("Thank you! Your message has been submitted.");
+        form.reset();
+      })
+      .catch(error => {
+        alert("Oops! Something went wrong. Please try again.");
+        console.error("Error:", error);
+      });
+    });
+  </script>
+  
   <footer>
     <div class="container">
       <div class="col-lg-12">
