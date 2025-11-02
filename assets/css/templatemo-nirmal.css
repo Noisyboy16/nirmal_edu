@@ -1105,7 +1105,8 @@ Achievments
 }
 
 /* Style images in the second slider */
-.second-slide img {
+.second-slide img { 
+  border-radius: 10px;
   width: 60%; /* Make image take 60% of the slide width */
   max-width: 500px; /* Max width for the image */
   height: auto; /* Maintain aspect ratio */
