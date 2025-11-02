@@ -301,25 +301,25 @@
             <div class="row">
               <div class="col-lg-3 col-md-6">
                 <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="150" data-speed="1000"></h2>
+                  <h2 class="timer count-title count-number" data-to="6000" data-speed="1000"></h2>
                   <p class="count-text ">Happy Students</p>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-6">
+              <!-- <div class="col-lg-3 col-md-6">
                 <div class="counter">
                   <h2 class="timer count-title count-number" data-to="804" data-speed="1000"></h2>
                   <p class="count-text ">Course Hours</p>
                 </div>
-              </div>
+              </div> -->
               <div class="col-lg-3 col-md-6">
                 <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="50" data-speed="1000"></h2>
+                  <h2 class="timer count-title count-number" data-to="1100" data-speed="1000"></h2>
                   <p class="count-text ">Employed Students</p>
                 </div>
               </div>
               <div class="col-lg-3 col-md-6">
                 <div class="counter end">
-                  <h2 class="timer count-title count-number" data-to="15" data-speed="1000"></h2>
+                  <h2 class="timer count-title count-number" data-to="18" data-speed="1000"></h2>
                   <p class="count-text ">Years Experience</p>
                 </div>
               </div>
@@ -382,8 +382,8 @@
               attention and expert guidance.
               Whether you have questions about our classes, timings, or enrollment process — we’re just a message away.
             </p>
-            <p>📞 Phone: +91 98765 43210 </p>
-            <p> 📧 Email: contact@nirmalacademy.com</p>
+            <p>📞 Phone: +91 8879926605/9222177541 </p>
+            <p>📧 Email: nirmalacademy1787@gmail.com</p>
             <!-- <div class="special-offer">
               <span class="offer">off<br><em>50%</em></span>
               <h6>Valide: <em>24 April 2036</em></h6>
@@ -458,7 +458,8 @@
       submitButton.disabled = true;
       submitButton.innerText = 'Submitting...';
 
-      fetch('https://script.google.com/macros/s/AKfycbyaBzyyF1wpVot3ZPA616Dh1dUPFgGHBb5QlS6XbMg27yhaMNm5_dTFAHm-spVINpWLSQ/exec', {
+     // fetch('https://script.google.com/macros/s/AKfycbyaBzyyF1wpVot3ZPA616Dh1dUPFgGHBb5QlS6XbMg27yhaMNm5_dTFAHm-spVINpWLSQ/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbzZV5S5ONIxygQ40hg43wUwA6QJaeSVrsGErgCjAx6TgFwCdBAjhaK7D_CSwhF9LC4V/exec', {      
         method: 'POST',
         body: data
       })
@@ -478,6 +479,7 @@
         .catch(error => {
           // Show error message
           alert("Oops! Something went wrong. Please try again.");
+          console.e("getting error", error)
           console.error("Error:", error);
         })
         .finally(() => {
