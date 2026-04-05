@@ -1,0 +1,3057 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Panel — Nirmal Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --navy: #0b1f3a;
+        --navy2: #0f2847;
+        --gold: #c89b3c;
+        --gold-lt: #f0c96b;
+        --cream: #faf6ef;
+        --white: #ffffff;
+        --gray: #6b7585;
+        --light: #f0ebe1;
+        --border: rgba(11, 31, 58, 0.1);
+        --red: #ef4444;
+        --green: #10b981;
+        --blue: #3b82f6;
+        --amber: #f59e0b;
+        --sidebar: 260px;
+        --font: "DM Sans", sans-serif;
+        --font-d: "Playfair Display", serif;
+        --r: 10px;
+        --shadow: 0 2px 16px rgba(11, 31, 58, 0.08);
+        --shadow-md: 0 8px 32px rgba(11, 31, 58, 0.12);
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: var(--font);
+        background: #f4f6f9;
+        color: var(--navy);
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* ── SIDEBAR ──────────────────────────────────────────── */
+      .sidebar {
+        width: var(--sidebar);
+        flex-shrink: 0;
+        background: var(--navy);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow-y: auto;
+      }
+      .sidebar-logo {
+        padding: 28px 20px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .sidebar-logo-title {
+        font-family: var(--font-d);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.2;
+      }
+      .sidebar-logo-sub {
+        font-size: 0.7rem;
+        color: var(--gold);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 3px;
+      }
+      .sidebar-nav {
+        flex: 1;
+        padding: 16px 12px;
+      }
+      .nav-group-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+        padding: 12px 10px 6px;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.84rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-bottom: 2px;
+      }
+      .nav-item:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .nav-item.active {
+        background: rgba(200, 155, 60, 0.18);
+        color: var(--gold-lt);
+      }
+      .nav-item .ni {
+        font-size: 1rem;
+        width: 18px;
+        text-align: center;
+      }
+
+      .sidebar-footer {
+        padding: 16px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .sidebar-footer a {
+        color: var(--gold);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      /* ── MAIN ─────────────────────────────────────────────── */
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Top bar */
+      .topbar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 0 28px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+      .topbar-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .topbar-badge {
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 99px;
+        padding: 4px 12px;
+        font-size: 0.74rem;
+        font-weight: 600;
+        color: var(--gray);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: var(--r);
+        font-family: var(--font);
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: 0.2s;
+      }
+      .btn-gold {
+        background: var(--gold);
+        color: var(--navy);
+      }
+      .btn-gold:hover {
+        background: var(--gold-lt);
+      }
+      .btn-ghost {
+        background: none;
+        border: 1.5px solid var(--border);
+        color: var(--navy);
+      }
+      .btn-ghost:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .btn-red {
+        background: #fee2e2;
+        color: #b91c1c;
+        border: 1px solid #fca5a5;
+      }
+      .btn-red:hover {
+        background: #fecaca;
+      }
+      .btn-sm {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+      }
+
+      /* Content area */
+      .content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 28px;
+      }
+
+      /* ── TABS / PAGES ─────────────────────────────────────── */
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+
+      /* ── STATS ROW ────────────────────────────────────────── */
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+      .stat-box {
+        background: var(--white);
+        border-radius: var(--r);
+        padding: 20px 22px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+      .stat-box-num {
+        font-family: var(--font-d);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .stat-box-label {
+        font-size: 0.76rem;
+        color: var(--gray);
+        margin-top: 4px;
+        font-weight: 500;
+      }
+      .stat-box-accent {
+        display: inline-block;
+        width: 28px;
+        height: 3px;
+        border-radius: 2px;
+        margin-bottom: 10px;
+      }
+
+      /* ── CARD / PANEL ─────────────────────────────────────── */
+      .panel {
+        background: var(--white);
+        border-radius: var(--r);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .panel-header {
+        padding: 18px 22px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .panel-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .panel-body {
+        padding: 22px;
+      }
+
+      /* ── FORM ─────────────────────────────────────────────── */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+      label {
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--gray);
+      }
+      input,
+      select,
+      textarea {
+        font-family: var(--font);
+        font-size: 0.88rem;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 13px;
+        color: var(--navy);
+        background: var(--white);
+        outline: none;
+        transition: 0.2s;
+        width: 100%;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.1);
+      }
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+      .form-row {
+        margin-top: 16px;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      /* Type pill select */
+      .type-select {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .type-pill {
+        padding: 6px 14px;
+        border-radius: 99px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition: 0.2s;
+        user-select: none;
+      }
+      .type-pill.exam {
+        background: #fef3c7;
+        color: #92400e;
+        border-color: #fde68a;
+      }
+      .type-pill.holiday {
+        background: #d1fae5;
+        color: #065f46;
+        border-color: #6ee7b7;
+      }
+      .type-pill.result {
+        background: #dbeafe;
+        color: #1e40af;
+        border-color: #93c5fd;
+      }
+      .type-pill.event {
+        background: #fef9ee;
+        color: #7a5c1a;
+        border-color: var(--gold-lt);
+      }
+      .type-pill.urgent {
+        background: #fee2e2;
+        color: #991b1b;
+        border-color: #fca5a5;
+      }
+      .type-pill.selected {
+        box-shadow: 0 0 0 2px var(--navy);
+      }
+
+      /* ── TABLE ────────────────────────────────────────────── */
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.83rem;
+      }
+      th {
+        text-align: left;
+        padding: 10px 14px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gray);
+        border-bottom: 2px solid var(--border);
+        white-space: nowrap;
+      }
+      td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: middle;
+        color: var(--navy);
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr:hover td {
+        background: #f9fafb;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 99px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .pill.exam {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .pill.holiday {
+        background: #d1fae5;
+        color: #065f46;
+      }
+      .pill.result {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+      .pill.event {
+        background: #fef9ee;
+        color: #7a5c1a;
+      }
+      .pill.urgent {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .td-actions {
+        display: flex;
+        gap: 6px;
+      }
+      .empty-state {
+        text-align: center;
+        padding: 48px 20px;
+        color: var(--gray);
+        font-size: 0.88rem;
+      }
+      .empty-state .e-icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+      }
+
+      /* ── MODAL ────────────────────────────────────────────── */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: rgba(11, 31, 58, 0.5);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+      }
+      .modal-backdrop.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .modal {
+        background: var(--white);
+        border-radius: 16px;
+        width: min(640px, 95vw);
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 24px 64px rgba(11, 31, 58, 0.22);
+        transform: translateY(12px);
+        transition: transform 0.25s;
+      }
+      .modal-backdrop.open .modal {
+        transform: translateY(0);
+      }
+      .modal-header {
+        padding: 22px 26px 18px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modal-title {
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      .modal-close {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--cream);
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: var(--gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+      }
+      .modal-close:hover {
+        background: #fecaca;
+        color: var(--red);
+      }
+      .modal-body {
+        padding: 22px 26px;
+      }
+      .modal-footer {
+        padding: 16px 26px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      /* ── TOAST ────────────────────────────────────────────── */
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 9999;
+        background: var(--navy);
+        color: var(--white);
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 0.84rem;
+        font-weight: 500;
+        box-shadow: var(--shadow-md);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        opacity: 0;
+        transform: translateY(8px);
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+        pointer-events: none;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .toast .t-icon {
+        font-size: 1rem;
+      }
+
+      /* ── PREVIEW BADGE ────────────────────────────────────── */
+      .preview-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 7px 14px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--navy);
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+      .preview-link:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+
+      /* ── MEDIA INPUT ──────────────────────────────────────── */
+      .media-type-toggle {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .mtt-btn {
+        flex: 1;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: none;
+        font-family: var(--font);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        color: var(--gray);
+        transition: 0.2s;
+      }
+      .mtt-btn.active {
+        border-color: var(--gold);
+        background: rgba(200, 155, 60, 0.08);
+        color: var(--navy);
+      }
+
+      /* ── SECTION DIVIDER ──────────────────────────────────── */
+      .divider-line {
+        height: 1px;
+        background: var(--border);
+        margin: 24px 0;
+      }
+
+      /* ── RESPONSIVE ───────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .sidebar {
+          width: 52px;
+        }
+        .sidebar-logo-title,
+        .sidebar-logo-sub,
+        .nav-group-label,
+        .nav-item span:not(.ni),
+        .sidebar-footer {
+          display: none;
+        }
+        .nav-item {
+          justify-content: center;
+          padding: 12px 0;
+        }
+        .stats-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── LOGIN OVERLAY ──────────────────────────────────────── -->
+    <div
+      id="loginOverlay"
+      style="
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0;
+      "
+    >
+      <div
+        style="
+          background: var(--white);
+          border-radius: 16px;
+          padding: 40px 36px;
+          width: min(420px, 92vw);
+          box-shadow: 0 24px 64px rgba(11, 31, 58, 0.3);
+        "
+      >
+        <div style="text-align: center; margin-bottom: 28px">
+          <div
+            style="
+              font-family: var(--font-d);
+              font-size: 1.4rem;
+              font-weight: 700;
+              color: var(--navy);
+            "
+          >
+            Nirmal Academy
+          </div>
+          <div
+            style="
+              font-size: 0.75rem;
+              color: var(--gold);
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              margin-top: 4px;
+            "
+          >
+            Admin Panel
+          </div>
+        </div>
+        <div style="margin-bottom: 16px">
+          <label
+            style="
+              font-size: 0.75rem;
+              font-weight: 700;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: var(--gray);
+            "
+            >Email</label
+          >
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="admin@nirmalacademy.com"
+            style="
+              width: 100%;
+              margin-top: 6px;
+              font-family: var(--font);
+              font-size: 0.9rem;
+              border: 1.5px solid rgba(11, 31, 58, 0.15);
+              border-radius: 8px;
+              padding: 11px 13px;
+              outline: none;
+              color: var(--navy);
+            "
+            onkeydown="if (event.key === 'Enter') doLogin();"
+          />
+        </div>
+        <div style="margin-bottom: 20px">
+          <label
+            style="
+              font-size: 0.75rem;
+              font-weight: 700;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: var(--gray);
+            "
+            >Password</label
+          >
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="••••••••"
+            style="
+              width: 100%;
+              margin-top: 6px;
+              font-family: var(--font);
+              font-size: 0.9rem;
+              border: 1.5px solid rgba(11, 31, 58, 0.15);
+              border-radius: 8px;
+              padding: 11px 13px;
+              outline: none;
+              color: var(--navy);
+            "
+            onkeydown="if (event.key === 'Enter') doLogin();"
+          />
+        </div>
+        <div
+          id="loginError"
+          style="
+            display: none;
+            color: #dc2626;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            text-align: center;
+          "
+        ></div>
+        <button
+          onclick="doLogin()"
+          id="loginBtn"
+          style="
+            width: 100%;
+            background: var(--gold);
+            color: var(--navy);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+          "
+        >
+          Sign In
+        </button>
+      </div>
+    </div>
+
+    <!-- ── SIDEBAR ──────────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-title">Nirmal Academy</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group-label">Manage</div>
+        <div class="nav-item active" data-page="dashboard">
+          <span class="ni">📊</span><span>Dashboard</span>
+        </div>
+        <div class="nav-item" data-page="announcements">
+          <span class="ni">📢</span><span>Announcements</span>
+        </div>
+        <div class="nav-item" data-page="events">
+          <span class="ni">📅</span><span>Upcoming Events</span>
+        </div>
+        <div class="nav-item" data-page="banner">
+          <span class="ni">🎯</span><span>Offer Banner</span>
+        </div>
+        <div class="nav-group-label" style="margin-top: 8px">Quick Links</div>
+        <div class="nav-item" data-page="enquiries">
+          <span class="ni">📬</span><span>Enquiries</span>
+        </div>
+        <div class="nav-item" onclick="window.open('index.html', '_blank')">
+          <span class="ni">🌐</span><span>View Website</span>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <span
+          >v1.0 &nbsp;·&nbsp;
+          <a href="index.html" target="_blank">Live site ↗</a></span
+        >
+        <button
+          id="logoutBtn"
+          style="
+            margin-top: 10px;
+            width: 100%;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            border-radius: 6px;
+            padding: 7px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font);
+          "
+        >
+          🚪 Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- ── MAIN ─────────────────────────────────────────────────── -->
+    <div class="main">
+      <!-- Top bar -->
+      <div class="topbar">
+        <div class="topbar-title" id="topbarTitle">Dashboard</div>
+        <div class="topbar-right">
+          <span class="topbar-badge" id="topbarBadge">Overview</span>
+          <a href="index.html" target="_blank" class="preview-link"
+            >🌐 View Website ↗</a
+          >
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- ══════════════ DASHBOARD PAGE ══════════════ -->
+        <div class="page active" id="page-dashboard">
+          <div class="stats-row">
+            <div class="stat-box">
+              <div
+                class="stat-box-accent"
+                style="background: var(--gold)"
+              ></div>
+              <div class="stat-box-num" id="dash-ann-count">0</div>
+              <div class="stat-box-label">Announcements</div>
+            </div>
+            <div class="stat-box">
+              <div
+                class="stat-box-accent"
+                style="background: var(--blue)"
+              ></div>
+              <div class="stat-box-num" id="dash-evt-count">0</div>
+              <div class="stat-box-label">Upcoming Events</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-accent" style="background: var(--red)"></div>
+              <div class="stat-box-num" id="dash-urgent-count">0</div>
+              <div class="stat-box-label">Urgent Notices</div>
+            </div>
+            <div class="stat-box">
+              <div
+                class="stat-box-accent"
+                style="background: var(--green)"
+              ></div>
+              <div class="stat-box-num" id="dash-upcoming-count">0</div>
+              <div class="stat-box-label">Events This Month</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-accent" style="background: #8b5cf6"></div>
+              <div class="stat-box-num" id="dash-enq-count">0</div>
+              <div class="stat-box-label">Total Enquiries</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-accent" style="background: var(--red)"></div>
+              <div class="stat-box-num" id="dash-unread-count">0</div>
+              <div class="stat-box-label">Unread Enquiries</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+            <!-- Recent Announcements -->
+            <div class="panel">
+              <div class="panel-header">
+                <span class="panel-title">📢 Recent Announcements</span>
+                <button
+                  class="btn btn-gold btn-sm"
+                  onclick="showPage('announcements')"
+                >
+                  + Add New
+                </button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>Title</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dash-ann-table">
+                    <tr>
+                      <td colspan="3" class="empty-state">
+                        No announcements yet
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Recent Events -->
+            <div class="panel">
+              <div class="panel-header">
+                <span class="panel-title">📅 Upcoming Events</span>
+                <button
+                  class="btn btn-gold btn-sm"
+                  onclick="showPage('events')"
+                >
+                  + Schedule
+                </button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Tag</th>
+                      <th>Title</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dash-evt-table">
+                    <tr>
+                      <td colspan="3" class="empty-state">No events yet</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════ ANNOUNCEMENTS PAGE ══════════════ -->
+        <div class="page" id="page-announcements">
+          <!-- Add form -->
+          <div class="panel" style="margin-bottom: 20px">
+            <div class="panel-header">
+              <span class="panel-title" id="ann-form-title"
+                >➕ New Announcement</span
+              >
+            </div>
+            <div class="panel-body">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Type</label>
+                  <div class="type-select" id="ann-type-select">
+                    <span class="type-pill exam" data-type="exam">📝 Exam</span>
+                    <span class="type-pill holiday" data-type="holiday"
+                      >🌿 Holiday</span
+                    >
+                    <span class="type-pill result" data-type="result"
+                      >🏆 Result</span
+                    >
+                    <span class="type-pill event" data-type="event"
+                      >🎉 Event</span
+                    >
+                    <span class="type-pill urgent" data-type="urgent"
+                      >🚨 Urgent</span
+                    >
+                  </div>
+                </div>
+                <div class="form-group full">
+                  <label>Title / Heading *</label>
+                  <input
+                    type="text"
+                    id="ann-title"
+                    placeholder="e.g. CET 2025 Registration Deadline"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Date / Date Range *</label>
+                  <input
+                    type="text"
+                    id="ann-date"
+                    placeholder="e.g. Apr 10, 2025"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Short Description</label>
+                  <input
+                    type="text"
+                    id="ann-sub"
+                    placeholder="Optional detail shown below the title"
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <button class="btn btn-ghost" onclick="resetAnnForm()">
+                  Clear
+                </button>
+                <button class="btn btn-gold" onclick="saveAnnouncement()">
+                  💾 Save Announcement
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">All Announcements</span>
+              <span class="topbar-badge" id="ann-count-badge">0 items</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Sub-text</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="ann-table-body">
+                  <tr>
+                    <td colspan="6">
+                      <div class="empty-state">
+                        <div class="e-icon">📭</div>
+                        No announcements yet. Add one above.
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════ EVENTS PAGE ══════════════ -->
+        <div class="page" id="page-events">
+          <!-- Add form -->
+          <div class="panel" style="margin-bottom: 20px">
+            <div class="panel-header">
+              <span class="panel-title" id="evt-form-title"
+                >➕ Schedule New Event</span
+              >
+            </div>
+            <div class="panel-body">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Event Tag *</label>
+                  <input
+                    type="text"
+                    id="evt-tag"
+                    placeholder="e.g. 🎤 Guest Lecture  or  🏆 Competition"
+                  />
+                </div>
+                <div class="form-group full">
+                  <label>Event Title *</label>
+                  <input
+                    type="text"
+                    id="evt-title"
+                    placeholder="e.g. Career Pathways in Science & Technology"
+                  />
+                </div>
+                <div class="form-group full">
+                  <label>Description</label>
+                  <textarea
+                    id="evt-desc"
+                    placeholder="Brief description shown on the event card..."
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Event Date *</label>
+                  <input type="date" id="evt-date" />
+                </div>
+                <div class="form-group">
+                  <label>Day Label (shown on card badge)</label>
+                  <input
+                    type="text"
+                    id="evt-day-label"
+                    placeholder="e.g. 28  →  auto-fills from date"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Time</label>
+                  <input
+                    type="text"
+                    id="evt-time"
+                    placeholder="e.g. 10:00 AM"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Venue / Location</label>
+                  <input
+                    type="text"
+                    id="evt-venue"
+                    placeholder="e.g. Main Hall"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>CTA Button Text</label>
+                  <input
+                    type="text"
+                    id="evt-cta"
+                    placeholder="e.g. Register → (default)"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>CTA Link</label>
+                  <input type="text" id="evt-cta-link" placeholder="#contact" />
+                </div>
+
+                <div class="form-group full">
+                  <div class="divider-line"></div>
+                  <label>Media</label>
+                  <div class="media-type-toggle" style="flex-wrap: wrap">
+                    <button
+                      class="mtt-btn active"
+                      data-mt="none"
+                      onclick="setMediaType('none')"
+                    >
+                      ⬜ None
+                    </button>
+                    <!-- <button
+                      class="mtt-btn"
+                      data-mt="image"
+                      onclick="setMediaType('image')"
+                    >
+                      🖼 Image URL
+                    </button> -->
+                    <button
+                      class="mtt-btn"
+                      data-mt="image-file"
+                      onclick="setMediaType('image-file')"
+                    >
+                      📁 Image File
+                    </button>
+                    <!-- <button
+                      class="mtt-btn"
+                      data-mt="video"
+                      onclick="setMediaType('video')"
+                    >
+                      🎬 Video URL
+                    </button> -->
+                    <button
+                      class="mtt-btn"
+                      data-mt="video-file"
+                      onclick="setMediaType('video-file')"
+                    >
+                      📁 Video File
+                    </button>
+                    <!-- <button
+                      class="mtt-btn"
+                      data-mt="icon"
+                      onclick="setMediaType('icon')"
+                    >
+                      😀 Emoji/Icon
+                    </button> -->
+                  </div>
+
+                  <!-- Image URL -->
+                  <div id="media-input-image" style="display: none">
+                    <input
+                      type="text"
+                      id="evt-img"
+                      placeholder="assets/images/your-image.jpg  or  https://..."
+                    />
+                  </div>
+
+                  <!-- Image from Local File -->
+                  <div id="media-input-image-file" style="display: none">
+                    <div
+                      style="
+                        border: 2px dashed var(--border);
+                        border-radius: 10px;
+                        padding: 18px;
+                        text-align: center;
+                        background: var(--cream);
+                        cursor: pointer;
+                        transition: 0.2s;
+                      "
+                      id="evt-img-drop-zone"
+                      onclick="
+                        document.getElementById('evt-img-file-input').click()
+                      "
+                      ondragover="
+                        event.preventDefault();
+                        this.style.borderColor = 'var(--gold)';
+                      "
+                      ondragleave="this.style.borderColor = 'var(--border)'"
+                      ondrop="handleEvtImgDrop(event)"
+                    >
+                      <div style="font-size: 2rem; margin-bottom: 6px">🖼️</div>
+                      <div
+                        style="
+                          font-size: 0.82rem;
+                          font-weight: 600;
+                          color: var(--navy);
+                        "
+                      >
+                        Click to browse or drag & drop
+                      </div>
+                      <div
+                        style="
+                          font-size: 0.74rem;
+                          color: var(--gray);
+                          margin-top: 4px;
+                        "
+                      >
+                        JPG, PNG, GIF, WebP — max 5 MB
+                      </div>
+                      <input
+                        type="file"
+                        id="evt-img-file-input"
+                        accept="image/*"
+                        style="display: none"
+                        onchange="previewEvtImageFile(this)"
+                      />
+                    </div>
+                    <div
+                      id="evt-img-file-preview"
+                      style="
+                        display: none;
+                        margin-top: 10px;
+                        position: relative;
+                      "
+                    >
+                      <img
+                        id="evt-img-preview-img"
+                        src=""
+                        alt="Preview"
+                        style="
+                          max-width: 100%;
+                          max-height: 200px;
+                          border-radius: 8px;
+                          border: 1px solid var(--border);
+                          object-fit: contain;
+                          background: #f9fafb;
+                        "
+                      />
+                      <button
+                        onclick="clearEvtImageFile()"
+                        style="
+                          position: absolute;
+                          top: 6px;
+                          right: 6px;
+                          background: #ef4444;
+                          border: none;
+                          color: #fff;
+                          border-radius: 50%;
+                          width: 24px;
+                          height: 24px;
+                          cursor: pointer;
+                          font-size: 0.8rem;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          line-height: 1;
+                        "
+                      >
+                        ✕
+                      </button>
+                      <div
+                        id="evt-img-file-name"
+                        style="
+                          font-size: 0.74rem;
+                          color: var(--gray);
+                          margin-top: 6px;
+                        "
+                      ></div>
+                    </div>
+                    <input type="hidden" id="evt-img-b64" />
+                  </div>
+
+                  <!-- Video URL -->
+                  <div
+                    id="media-input-video"
+                    style="display: none; gap: 8px; flex-direction: column"
+                  >
+                    <input
+                      type="text"
+                      id="evt-vid"
+                      placeholder="Video file path or URL"
+                    />
+                    <input
+                      type="text"
+                      id="evt-vid-poster"
+                      placeholder="Poster/thumbnail image path (optional)"
+                    />
+                  </div>
+
+                  <!-- Video from Local File -->
+                  <div id="media-input-video-file" style="display: none">
+                    <div
+                      style="
+                        border: 2px dashed var(--border);
+                        border-radius: 10px;
+                        padding: 18px;
+                        text-align: center;
+                        background: var(--cream);
+                        cursor: pointer;
+                        transition: 0.2s;
+                      "
+                      id="evt-vid-drop-zone"
+                      onclick="
+                        document.getElementById('evt-vid-file-input').click()
+                      "
+                      ondragover="
+                        event.preventDefault();
+                        this.style.borderColor = 'var(--gold)';
+                      "
+                      ondragleave="this.style.borderColor = 'var(--border)'"
+                      ondrop="handleEvtVidDrop(event)"
+                    >
+                      <div style="font-size: 2rem; margin-bottom: 6px">🎬</div>
+                      <div
+                        style="
+                          font-size: 0.82rem;
+                          font-weight: 600;
+                          color: var(--navy);
+                        "
+                      >
+                        Click to browse or drag & drop
+                      </div>
+                      <div
+                        style="
+                          font-size: 0.74rem;
+                          color: var(--gray);
+                          margin-top: 4px;
+                        "
+                      >
+                        MP4, WebM, OGG — max 20 MB
+                      </div>
+                      <input
+                        type="file"
+                        id="evt-vid-file-input"
+                        accept="video/*"
+                        style="display: none"
+                        onchange="previewEvtVideoFile(this)"
+                      />
+                    </div>
+                    <div
+                      id="evt-vid-file-preview"
+                      style="
+                        display: none;
+                        margin-top: 10px;
+                        position: relative;
+                      "
+                    >
+                      <video
+                        id="evt-vid-preview-vid"
+                        controls
+                        style="
+                          max-width: 100%;
+                          max-height: 200px;
+                          border-radius: 8px;
+                          border: 1px solid var(--border);
+                          background: #000;
+                        "
+                      ></video>
+                      <button
+                        onclick="clearEvtVideoFile()"
+                        style="
+                          position: absolute;
+                          top: 6px;
+                          right: 6px;
+                          background: #ef4444;
+                          border: none;
+                          color: #fff;
+                          border-radius: 50%;
+                          width: 24px;
+                          height: 24px;
+                          cursor: pointer;
+                          font-size: 0.8rem;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          line-height: 1;
+                        "
+                      >
+                        ✕
+                      </button>
+                      <div
+                        id="evt-vid-file-name"
+                        style="
+                          font-size: 0.74rem;
+                          color: var(--gray);
+                          margin-top: 6px;
+                        "
+                      ></div>
+                    </div>
+                    <!-- Poster for local video -->
+                    <div style="margin-top: 10px">
+                      <label
+                        style="
+                          font-size: 0.72rem;
+                          font-weight: 700;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--gray);
+                        "
+                        >Poster / Thumbnail (optional)</label
+                      >
+                      <div
+                        style="
+                          display: flex;
+                          gap: 8px;
+                          margin-top: 6px;
+                          align-items: center;
+                        "
+                      >
+                        <input
+                          type="text"
+                          id="evt-vid-file-poster"
+                          placeholder="Paste poster image URL (optional)"
+                          style="flex: 1"
+                        />
+                        <button
+                          class="btn btn-ghost btn-sm"
+                          onclick="
+                            document
+                              .getElementById('evt-vid-poster-file-input')
+                              .click()
+                          "
+                        >
+                          📁 Browse
+                        </button>
+                        <input
+                          type="file"
+                          id="evt-vid-poster-file-input"
+                          accept="image/*"
+                          style="display: none"
+                          onchange="previewEvtVidPosterFile(this)"
+                        />
+                      </div>
+                      <div
+                        id="evt-vid-poster-preview"
+                        style="display: none; margin-top: 8px"
+                      >
+                        <img
+                          id="evt-vid-poster-img"
+                          src=""
+                          alt="Poster"
+                          style="
+                            max-height: 80px;
+                            border-radius: 6px;
+                            border: 1px solid var(--border);
+                          "
+                        />
+                        <button
+                          onclick="clearEvtVidPoster()"
+                          style="
+                            margin-left: 8px;
+                            background: none;
+                            border: none;
+                            color: var(--red);
+                            cursor: pointer;
+                            font-size: 0.8rem;
+                            vertical-align: middle;
+                          "
+                        >
+                          ✕ Remove
+                        </button>
+                      </div>
+                    </div>
+                    <input type="hidden" id="evt-vid-b64" />
+                    <input type="hidden" id="evt-vid-poster-b64" />
+                  </div>
+
+                  <!-- Emoji/Icon -->
+                  <div id="media-input-icon" style="display: none">
+                    <input
+                      type="text"
+                      id="evt-icon"
+                      placeholder="Emoji e.g. 📝"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <button class="btn btn-ghost" onclick="resetEvtForm()">
+                  Clear
+                </button>
+                <button class="btn btn-gold" onclick="saveEvent()">
+                  💾 Save Event
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">Scheduled Events</span>
+              <span class="topbar-badge" id="evt-count-badge">0 items</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Tag</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Venue</th>
+                    <th>Media</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="evt-table-body">
+                  <tr>
+                    <td colspan="8">
+                      <div class="empty-state">
+                        <div class="e-icon">📭</div>
+                        No events scheduled yet.
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════ BANNER PAGE ══════════════ -->
+        <div class="page" id="page-banner">
+          <!-- Banner Form -->
+          <div class="panel" style="margin-bottom: 20px">
+            <div class="panel-header">
+              <span class="panel-title">🎯 Offer Banner Settings</span>
+              <div style="display: flex; align-items: center; gap: 10px">
+                <span id="banner-status-badge" class="topbar-badge"
+                  >Loading...</span
+                >
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Enable Banner</label>
+                  <div style="display: flex; gap: 12px; margin-top: 4px">
+                    <label
+                      style="
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        text-transform: none;
+                        letter-spacing: 0;
+                        font-size: 0.88rem;
+                        font-weight: 500;
+                        cursor: pointer;
+                      "
+                    >
+                      <input
+                        type="radio"
+                        name="bannerActive"
+                        id="banner-on"
+                        value="true"
+                      />
+                      ✅ Show on website
+                    </label>
+                    <label
+                      style="
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        text-transform: none;
+                        letter-spacing: 0;
+                        font-size: 0.88rem;
+                        font-weight: 500;
+                        cursor: pointer;
+                      "
+                    >
+                      <input
+                        type="radio"
+                        name="bannerActive"
+                        id="banner-off"
+                        value="false"
+                        checked
+                      />
+                      ❌ Hide
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Badge Text (small top label)</label>
+                  <input
+                    type="text"
+                    id="banner-badge"
+                    placeholder="e.g. 🎉 Limited Time Offer"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Title *</label>
+                  <input
+                    type="text"
+                    id="banner-title"
+                    placeholder="e.g. Admissions Open 2025-26!"
+                  />
+                </div>
+                <div class="form-group full">
+                  <label>Message *</label>
+                  <textarea
+                    id="banner-message"
+                    placeholder="e.g. Register now and get 20% off on your first month. Limited seats available!"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Button Text</label>
+                  <input
+                    type="text"
+                    id="banner-btn-text"
+                    placeholder="e.g. Enquire Now"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Button Link</label>
+                  <input
+                    type="text"
+                    id="banner-btn-link"
+                    placeholder="e.g. #contact"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Highlight Color</label>
+                  <input
+                    type="color"
+                    id="banner-color"
+                    value="#C89B3C"
+                    style="height: 42px; padding: 4px"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Expiry Date (optional)</label>
+                  <input
+                    type="date"
+                    id="banner-expiry"
+                    placeholder="Leave empty for no expiry"
+                  />
+                </div>
+                <div class="form-group full">
+                  <label>Banner Image (optional)</label>
+                  <div class="media-type-toggle" style="margin-bottom: 8px">
+                    <button
+                      class="mtt-btn active"
+                      data-bmt="none"
+                      onclick="setBannerMedia('none')"
+                    >
+                      ⬜ No Image
+                    </button>
+                    <!-- <button
+                      class="mtt-btn"
+                      data-bmt="url"
+                      onclick="setBannerMedia('url')"
+                    >
+                      🔗 Image URL
+                    </button> -->
+                    <button
+                      class="mtt-btn"
+                      data-bmt="file"
+                      onclick="setBannerMedia('file')"
+                    >
+                      📁 Upload File
+                    </button>
+                  </div>
+                  <div id="banner-media-url" style="display: none">
+                    <input
+                      type="text"
+                      id="banner-img-url"
+                      placeholder="https://... or assets/images/..."
+                    />
+                  </div>
+                  <div id="banner-media-file" style="display: none">
+                    <input
+                      type="file"
+                      id="banner-img-file"
+                      accept="image/*"
+                      style="font-size: 0.85rem; padding: 8px"
+                      onchange="previewBannerFile(this)"
+                    />
+                    <input type="hidden" id="banner-img-b64" />
+                    <div
+                      id="banner-file-preview"
+                      style="margin-top: 8px; display: none"
+                    >
+                      <img
+                        id="banner-file-img"
+                        style="
+                          max-height: 120px;
+                          border-radius: 8px;
+                          border: 1px solid var(--border);
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div id="banner-media-none" style="display: block">
+                    <p
+                      style="
+                        font-size: 0.8rem;
+                        color: var(--gray);
+                        margin-top: 4px;
+                      "
+                    >
+                      No image — text only banner
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <button class="btn btn-ghost" onclick="resetBannerForm()">
+                  Reset
+                </button>
+                <button class="btn btn-gold" onclick="saveBanner()">
+                  💾 Save Banner
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">👁️ Live Preview</span>
+            </div>
+            <div
+              class="panel-body"
+              style="
+                background: #f4f6f9;
+                border-radius: 8px;
+                padding: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <div
+                id="banner-preview"
+                style="
+                  background: #fff;
+                  border-radius: 16px;
+                  padding: 36px 32px;
+                  width: min(480px, 100%);
+                  box-shadow: 0 24px 64px rgba(11, 31, 58, 0.18);
+                  text-align: center;
+                  position: relative;
+                "
+              >
+                <!-- Image preview area -->
+                <div
+                  id="prev-img-wrap"
+                  style="
+                    display: none;
+                    margin: -36px -32px 24px;
+                    overflow: hidden;
+                    border-radius: 16px 16px 0 0;
+                    max-height: 200px;
+                  "
+                >
+                  <img
+                    id="prev-img"
+                    src=""
+                    alt="Banner"
+                    style="
+                      width: 100%;
+                      height: 200px;
+                      object-fit: cover;
+                      display: block;
+                    "
+                  />
+                </div>
+                <div
+                  id="prev-badge"
+                  style="
+                    display: inline-block;
+                    background: rgba(200, 155, 60, 0.12);
+                    border: 1px solid rgba(200, 155, 60, 0.3);
+                    border-radius: 99px;
+                    padding: 5px 16px;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    color: #c89b3c;
+                    letter-spacing: 0.08em;
+                    margin-bottom: 16px;
+                  "
+                >
+                  🎉 Special Offer
+                </div>
+                <h3
+                  id="prev-title"
+                  style="
+                    font-family: var(--font-d);
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    color: var(--navy);
+                    margin-bottom: 12px;
+                  "
+                >
+                  Admissions Open 2025-26!
+                </h3>
+                <p
+                  id="prev-message"
+                  style="
+                    font-size: 0.9rem;
+                    color: var(--gray);
+                    line-height: 1.7;
+                    margin-bottom: 24px;
+                  "
+                >
+                  Register now and get exciting benefits. Limited seats
+                  available!
+                </p>
+                <a
+                  id="prev-btn"
+                  href="#"
+                  style="
+                    display: inline-block;
+                    background: #c89b3c;
+                    color: #0b1f3a;
+                    font-weight: 700;
+                    font-size: 0.88rem;
+                    padding: 12px 28px;
+                    border-radius: 8px;
+                    text-decoration: none;
+                  "
+                  >Enquire Now</a
+                >
+                <div
+                  style="
+                    position: absolute;
+                    top: 12px;
+                    right: 14px;
+                    width: 28px;
+                    height: 28px;
+                    background: #f4f6f9;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.8rem;
+                    color: #6b7585;
+                  "
+                >
+                  ✕
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════ ENQUIRIES PAGE ══════════════ -->
+        <div class="page" id="page-enquiries">
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">📬 All Enquiries</span>
+              <span class="topbar-badge" id="enq-count-badge">0 items</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>School</th>
+                    <th>Standard</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Received</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="enq-table-body">
+                  <tr>
+                    <td colspan="10">
+                      <div class="empty-state">
+                        <div class="e-icon">📭</div>
+                        No enquiries yet.
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /content -->
+    </div>
+    <!-- /main -->
+
+    <!-- ── CONFIRM MODAL ──────────────────────────────────────── -->
+    <div class="modal-backdrop" id="confirmModal">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">Confirm Delete</span>
+          <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          <p
+            style="font-size: 0.9rem; color: var(--gray); line-height: 1.7"
+            id="confirmMsg"
+          >
+            Are you sure you want to delete this item? This cannot be undone.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+          <button class="btn btn-red" id="confirmOkBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TOAST ──────────────────────────────────────────────── -->
+    <div class="toast" id="toast">
+      <span class="t-icon" id="toast-icon">✅</span>
+      <span id="toast-msg">Saved successfully</span>
+    </div>
+
+    <script type="module">
+      "use strict";
+
+      // ════════════════════════════════════════════════════════════
+      // FIREBASE CONFIG — replace with your project's config
+      // Get this from: Firebase Console → Project Settings → Your apps
+      // ════════════════════════════════════════════════════════════
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        doc,
+        setDoc,
+        onSnapshot,
+        query,
+        orderBy,
+        serverTimestamp,
+      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBB0ixAQ5-EyaMC7ZmOTPmzKmUacBqwoTk",
+        authDomain: "nirmal-academy-a14d5.firebaseapp.com",
+        projectId: "nirmal-academy-a14d5",
+        storageBucket: "nirmal-academy-a14d5.firebasestorage.app",
+        messagingSenderId: "830472511607",
+        appId: "1:830472511607:web:5ef2220bc8d9b6a458a672",
+        measurementId: "G-DXTK8HYJ66",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // ════════════════════════════════════════════════════════════
+      // AUTH — LOGIN / LOGOUT
+      // ════════════════════════════════════════════════════════════
+      window.doLogin = async function () {
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+        const btn = document.getElementById("loginBtn");
+        const errEl = document.getElementById("loginError");
+        errEl.style.display = "none";
+        btn.textContent = "Signing in…";
+        btn.disabled = true;
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+        } catch (e) {
+          errEl.textContent = "Invalid email or password.";
+          errEl.style.display = "block";
+          btn.textContent = "Sign In";
+          btn.disabled = false;
+        }
+      };
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          document.getElementById("loginOverlay").style.display = "none";
+          document.getElementById("topbarBadge").textContent = user.email;
+          initApp();
+        } else {
+          document.getElementById("loginOverlay").style.display = "flex";
+        }
+      });
+
+      // Logout button (added to sidebar footer)
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", () => signOut(auth));
+
+      // ════════════════════════════════════════════════════════════
+      // STATE
+      // ════════════════════════════════════════════════════════════
+      let announcements = [];
+      let events = [];
+      let enquiries = [];
+      let bannerData = {};
+      let editAnnId = null;
+      let editEvtId = null;
+      let selectedAnnType = "event";
+      let selectedMediaType = "none";
+      let confirmCallback = null;
+
+      // ════════════════════════════════════════════════════════════
+      // INIT — subscribe to Firestore real-time listeners
+      // ════════════════════════════════════════════════════════════
+      function initApp() {
+        // Announcements listener
+        const annQ = query(
+          collection(db, "announcements"),
+          orderBy("createdAt", "desc"),
+        );
+        onSnapshot(annQ, (snap) => {
+          announcements = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          renderAnnTable();
+          renderDashboard();
+        });
+
+        // Events listener
+        const evtQ = query(
+          collection(db, "events"),
+          orderBy("createdAt", "desc"),
+        );
+        onSnapshot(evtQ, (snap) => {
+          events = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          renderEvtTable();
+          renderDashboard();
+        });
+
+        // Banner listener
+        const bannerRef = doc(db, "settings", "banner");
+        onSnapshot(bannerRef, (snap) => {
+          if (snap.exists()) {
+            bannerData = snap.data();
+            loadBannerForm(bannerData);
+          }
+        });
+
+        // Enquiries listener
+        const enqQ = query(
+          collection(db, "enquiries"),
+          orderBy("createdAt", "desc"),
+        );
+        onSnapshot(enqQ, (snap) => {
+          enquiries = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          renderEnqTable();
+          renderDashboard();
+        });
+
+        renderDashboard();
+      }
+
+      // ════════════════════════════════════════════════════════════
+      // NAVIGATION
+      // ════════════════════════════════════════════════════════════
+      const PAGE_META = {
+        dashboard: { title: "Dashboard", badge: "" },
+        announcements: { title: "Announcements", badge: "Manage Notices" },
+        events: { title: "Upcoming Events", badge: "Schedule Events" },
+        enquiries: { title: "Enquiries", badge: "Student Enquiries" },
+        banner: { title: "Offer Banner", badge: "Popup Settings" },
+      };
+
+      window.showPage = function (id) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((n) => n.classList.remove("active"));
+        document.getElementById("page-" + id).classList.add("active");
+        document
+          .querySelector('[data-page="' + id + '"]')
+          .classList.add("active");
+        document.getElementById("topbarTitle").textContent =
+          PAGE_META[id].title;
+        if (PAGE_META[id].badge)
+          document.getElementById("topbarBadge").textContent =
+            PAGE_META[id].badge;
+      };
+
+      document.querySelectorAll("[data-page]").forEach((el) => {
+        el.addEventListener("click", () => showPage(el.dataset.page));
+      });
+
+      // ════════════════════════════════════════════════════════════
+      // ANNOUNCEMENT TYPE SELECTOR
+      // ════════════════════════════════════════════════════════════
+      document
+        .getElementById("ann-type-select")
+        .addEventListener("click", function (e) {
+          const pill = e.target.closest(".type-pill");
+          if (!pill) return;
+          document
+            .querySelectorAll("#ann-type-select .type-pill")
+            .forEach((p) => p.classList.remove("selected"));
+          pill.classList.add("selected");
+          selectedAnnType = pill.dataset.type;
+        });
+      document
+        .querySelector('#ann-type-select .type-pill[data-type="event"]')
+        .classList.add("selected");
+
+      // ════════════════════════════════════════════════════════════
+      // MEDIA TYPE SELECTOR
+      // ════════════════════════════════════════════════════════════
+      window.setMediaType = function (type) {
+        selectedMediaType = type;
+        document
+          .querySelectorAll(".mtt-btn")
+          .forEach((b) => b.classList.toggle("active", b.dataset.mt === type));
+        document.getElementById("media-input-image").style.display =
+          type === "image" ? "block" : "none";
+        document.getElementById("media-input-image-file").style.display =
+          type === "image-file" ? "block" : "none";
+        document.getElementById("media-input-video").style.display =
+          type === "video" ? "flex" : "none";
+        document.getElementById("media-input-video-file").style.display =
+          type === "video-file" ? "block" : "none";
+        document.getElementById("media-input-icon").style.display =
+          type === "icon" ? "block" : "none";
+      };
+
+      // ── LOCAL FILE HELPERS (Events) ───────────────────────────────
+      window.previewEvtImageFile = function (input) {
+        const file = input.files[0];
+        if (!file) return;
+        if (file.size > 5 * 1024 * 1024) {
+          toast("⚠️", "Image too large — max 5 MB");
+          input.value = "";
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const b64 = e.target.result;
+          document.getElementById("evt-img-b64").value = b64;
+          document.getElementById("evt-img-preview-img").src = b64;
+          document.getElementById("evt-img-file-name").textContent =
+            file.name + " (" + (file.size / 1024).toFixed(1) + " KB)";
+          document.getElementById("evt-img-file-preview").style.display =
+            "block";
+          document.getElementById("evt-img-drop-zone").style.display = "none";
+        };
+        reader.readAsDataURL(file);
+      };
+
+      window.clearEvtImageFile = function () {
+        document.getElementById("evt-img-b64").value = "";
+        document.getElementById("evt-img-file-input").value = "";
+        document.getElementById("evt-img-preview-img").src = "";
+        document.getElementById("evt-img-file-preview").style.display = "none";
+        document.getElementById("evt-img-drop-zone").style.display = "block";
+      };
+
+      window.handleEvtImgDrop = function (event) {
+        event.preventDefault();
+        document.getElementById("evt-img-drop-zone").style.borderColor =
+          "var(--border)";
+        const file = event.dataTransfer.files[0];
+        if (!file || !file.type.startsWith("image/")) {
+          toast("⚠️", "Please drop an image file");
+          return;
+        }
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        const input = document.getElementById("evt-img-file-input");
+        input.files = dt.files;
+        previewEvtImageFile(input);
+      };
+
+      window.previewEvtVideoFile = function (input) {
+        const file = input.files[0];
+        if (!file) return;
+        if (file.size > 20 * 1024 * 1024) {
+          toast("⚠️", "Video too large — max 20 MB");
+          input.value = "";
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const b64 = e.target.result;
+          document.getElementById("evt-vid-b64").value = b64;
+          const vid = document.getElementById("evt-vid-preview-vid");
+          vid.src = b64;
+          document.getElementById("evt-vid-file-name").textContent =
+            file.name + " (" + (file.size / 1024 / 1024).toFixed(2) + " MB)";
+          document.getElementById("evt-vid-file-preview").style.display =
+            "block";
+          document.getElementById("evt-vid-drop-zone").style.display = "none";
+        };
+        reader.readAsDataURL(file);
+      };
+
+      window.clearEvtVideoFile = function () {
+        document.getElementById("evt-vid-b64").value = "";
+        document.getElementById("evt-vid-file-input").value = "";
+        const vid = document.getElementById("evt-vid-preview-vid");
+        vid.src = "";
+        vid.load();
+        document.getElementById("evt-vid-file-preview").style.display = "none";
+        document.getElementById("evt-vid-drop-zone").style.display = "block";
+      };
+
+      window.handleEvtVidDrop = function (event) {
+        event.preventDefault();
+        document.getElementById("evt-vid-drop-zone").style.borderColor =
+          "var(--border)";
+        const file = event.dataTransfer.files[0];
+        if (!file || !file.type.startsWith("video/")) {
+          toast("⚠️", "Please drop a video file");
+          return;
+        }
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        const input = document.getElementById("evt-vid-file-input");
+        input.files = dt.files;
+        previewEvtVideoFile(input);
+      };
+
+      window.previewEvtVidPosterFile = function (input) {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const b64 = e.target.result;
+          document.getElementById("evt-vid-poster-b64").value = b64;
+          document.getElementById("evt-vid-poster-img").src = b64;
+          document.getElementById("evt-vid-poster-preview").style.display =
+            "block";
+        };
+        reader.readAsDataURL(file);
+      };
+
+      window.clearEvtVidPoster = function () {
+        document.getElementById("evt-vid-poster-b64").value = "";
+        document.getElementById("evt-vid-poster-file-input").value = "";
+        document.getElementById("evt-vid-poster-img").src = "";
+        document.getElementById("evt-vid-poster-preview").style.display =
+          "none";
+        document.getElementById("evt-vid-file-poster").value = "";
+      };
+
+      document
+        .getElementById("evt-date")
+        .addEventListener("change", function () {
+          if (!this.value) return;
+          const d = new Date(this.value);
+          document.getElementById("evt-day-label").value = d.getDate();
+        });
+
+      // ════════════════════════════════════════════════════════════
+      // SAVE ANNOUNCEMENT — Firestore
+      // ════════════════════════════════════════════════════════════
+      window.saveAnnouncement = async function () {
+        const title = document.getElementById("ann-title").value.trim();
+        const date = document.getElementById("ann-date").value.trim();
+        if (!title || !date) {
+          toast("⚠️", "Title and Date are required");
+          return;
+        }
+
+        const data = {
+          type: selectedAnnType,
+          title,
+          date,
+          sub: document.getElementById("ann-sub").value.trim(),
+          updatedAt: serverTimestamp(),
+        };
+
+        try {
+          if (editAnnId) {
+            await updateDoc(doc(db, "announcements", editAnnId), data);
+            editAnnId = null;
+            document.getElementById("ann-form-title").textContent =
+              "➕ New Announcement";
+          } else {
+            data.createdAt = serverTimestamp();
+            await addDoc(collection(db, "announcements"), data);
+          }
+          resetAnnForm();
+          toast("✅", "Announcement saved!");
+        } catch (e) {
+          toast("❌", "Error: " + e.message);
+        }
+      };
+
+      window.resetAnnForm = function () {
+        document.getElementById("ann-title").value = "";
+        document.getElementById("ann-date").value = "";
+        document.getElementById("ann-sub").value = "";
+        editAnnId = null;
+        selectedAnnType = "event";
+        document
+          .querySelectorAll("#ann-type-select .type-pill")
+          .forEach((p) => p.classList.remove("selected"));
+        document
+          .querySelector('#ann-type-select .type-pill[data-type="event"]')
+          .classList.add("selected");
+        document.getElementById("ann-form-title").textContent =
+          "➕ New Announcement";
+      };
+
+      window.editAnn = function (id) {
+        const item = announcements.find((a) => a.id === id);
+        if (!item) return;
+        editAnnId = id;
+        document.getElementById("ann-title").value = item.title;
+        document.getElementById("ann-date").value = item.date;
+        document.getElementById("ann-sub").value = item.sub || "";
+        selectedAnnType = item.type;
+        document
+          .querySelectorAll("#ann-type-select .type-pill")
+          .forEach((p) =>
+            p.classList.toggle("selected", p.dataset.type === item.type),
+          );
+        document.getElementById("ann-form-title").textContent =
+          "✏️ Edit Announcement";
+        document
+          .getElementById("ann-title")
+          .scrollIntoView({ behavior: "smooth" });
+      };
+
+      window.deleteAnn = function (id) {
+        const item = announcements.find((a) => a.id === id);
+        confirmAction(
+          `Delete announcement: "<strong>${item?.title}</strong>"?`,
+          async () => {
+            try {
+              await deleteDoc(doc(db, "announcements", id));
+              toast("🗑️", "Announcement deleted");
+            } catch (e) {
+              toast("❌", "Error: " + e.message);
+            }
+          },
+        );
+      };
+
+      // ════════════════════════════════════════════════════════════
+      // RENDER ANNOUNCEMENT TABLE
+      // ════════════════════════════════════════════════════════════
+      const TYPE_LABELS = {
+        exam: "📝 Exam",
+        holiday: "🌿 Holiday",
+        result: "🏆 Result",
+        event: "🎉 Event",
+        urgent: "🚨 Urgent",
+      };
+
+      function renderAnnTable() {
+        const tbody = document.getElementById("ann-table-body");
+        document.getElementById("ann-count-badge").textContent =
+          announcements.length + " items";
+
+        if (!announcements.length) {
+          tbody.innerHTML =
+            '<tr><td colspan="6"><div class="empty-state"><div class="e-icon">📭</div>No announcements yet. Add one above.</div></td></tr>';
+          return;
+        }
+        tbody.innerHTML = announcements
+          .map(
+            (a, i) => `
+    <tr>
+      <td style="color:var(--gray); font-size:.75rem;">${i + 1}</td>
+      <td><span class="pill ${a.type}">${TYPE_LABELS[a.type] || a.type}</span></td>
+      <td style="font-weight:500; max-width:260px;">${esc(a.title)}</td>
+      <td style="white-space:nowrap; color:var(--gray); font-size:.8rem;">${esc(a.date)}</td>
+      <td style="color:var(--gray); font-size:.8rem; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${esc(a.sub || "—")}</td>
+      <td>
+        <div class="td-actions">
+          <button class="btn btn-ghost btn-sm" onclick="editAnn('${a.id}')">✏️ Edit</button>
+          <button class="btn btn-red   btn-sm" onclick="deleteAnn('${a.id}')">🗑️</button>
+        </div>
+      </td>
+    </tr>
+  `,
+          )
+          .join("");
+      }
+
+      // ════════════════════════════════════════════════════════════
+      // SAVE EVENT — Firestore
+      // ════════════════════════════════════════════════════════════
+      window.saveEvent = async function () {
+        const title = document.getElementById("evt-title").value.trim();
+        const date = document.getElementById("evt-date").value.trim();
+        const tag = document.getElementById("evt-tag").value.trim();
+        if (!title || !date || !tag) {
+          toast("⚠️", "Tag, Title and Date are required");
+          return;
+        }
+
+        const d = date ? new Date(date) : null;
+        const MONTHS = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+
+        const data = {
+          tag,
+          title,
+          desc: document.getElementById("evt-desc").value.trim(),
+          date,
+          dayLabel:
+            document.getElementById("evt-day-label").value.trim() ||
+            (d ? d.getDate().toString() : ""),
+          monLabel: d ? MONTHS[d.getMonth()] : "",
+          time: document.getElementById("evt-time").value.trim(),
+          venue: document.getElementById("evt-venue").value.trim(),
+          cta: document.getElementById("evt-cta").value.trim() || "Register →",
+          ctaLink:
+            document.getElementById("evt-cta-link").value.trim() || "#contact",
+          mediaType: selectedMediaType,
+          imgSrc: document.getElementById("evt-img").value.trim(),
+          imgB64: document.getElementById("evt-img-b64").value,
+          vidSrc: document.getElementById("evt-vid").value.trim(),
+          vidPoster: document.getElementById("evt-vid-poster").value.trim(),
+          vidB64: document.getElementById("evt-vid-b64").value,
+          vidPosterB64:
+            document.getElementById("evt-vid-poster-b64").value ||
+            document.getElementById("evt-vid-file-poster").value.trim(),
+          icon: document.getElementById("evt-icon").value.trim() || "📌",
+          updatedAt: serverTimestamp(),
+        };
+
+        // Validation for local file types
+        if (selectedMediaType === "image-file" && !data.imgB64) {
+          toast("⚠️", "Please select an image file");
+          return;
+        }
+        if (selectedMediaType === "video-file" && !data.vidB64) {
+          toast("⚠️", "Please select a video file");
+          return;
+        }
+
+        try {
+          if (editEvtId) {
+            await updateDoc(doc(db, "events", editEvtId), data);
+            editEvtId = null;
+            document.getElementById("evt-form-title").textContent =
+              "➕ Schedule New Event";
+          } else {
+            data.createdAt = serverTimestamp();
+            await addDoc(collection(db, "events"), data);
+          }
+          resetEvtForm();
+          toast("✅", "Event saved!");
+        } catch (e) {
+          toast("❌", "Error: " + e.message);
+        }
+      };
+
+      window.resetEvtForm = function () {
+        [
+          "evt-tag",
+          "evt-title",
+          "evt-desc",
+          "evt-date",
+          "evt-day-label",
+          "evt-time",
+          "evt-venue",
+          "evt-cta",
+          "evt-cta-link",
+          "evt-img",
+          "evt-vid",
+          "evt-vid-poster",
+          "evt-icon",
+          "evt-img-b64",
+          "evt-vid-b64",
+          "evt-vid-poster-b64",
+          "evt-vid-file-poster",
+        ].forEach((id) => {
+          document.getElementById(id).value = "";
+        });
+        // Reset file input previews
+        clearEvtImageFile();
+        clearEvtVideoFile();
+        clearEvtVidPoster();
+        setMediaType("none");
+        editEvtId = null;
+        document.getElementById("evt-form-title").textContent =
+          "➕ Schedule New Event";
+      };
+
+      window.editEvt = function (id) {
+        const item = events.find((e) => e.id === id);
+        if (!item) return;
+        editEvtId = id;
+        document.getElementById("evt-tag").value = item.tag;
+        document.getElementById("evt-title").value = item.title;
+        document.getElementById("evt-desc").value = item.desc || "";
+        document.getElementById("evt-date").value = item.date;
+        document.getElementById("evt-day-label").value = item.dayLabel || "";
+        document.getElementById("evt-time").value = item.time || "";
+        document.getElementById("evt-venue").value = item.venue || "";
+        document.getElementById("evt-cta").value = item.cta || "";
+        document.getElementById("evt-cta-link").value = item.ctaLink || "";
+        document.getElementById("evt-img").value = item.imgSrc || "";
+        document.getElementById("evt-vid").value = item.vidSrc || "";
+        document.getElementById("evt-vid-poster").value = item.vidPoster || "";
+        document.getElementById("evt-icon").value = item.icon || "";
+        setMediaType(item.mediaType || "none");
+
+        // Restore local file previews if saved as base64
+        if (item.mediaType === "image-file" && item.imgB64) {
+          document.getElementById("evt-img-b64").value = item.imgB64;
+          document.getElementById("evt-img-preview-img").src = item.imgB64;
+          document.getElementById("evt-img-file-name").textContent =
+            "(saved image)";
+          document.getElementById("evt-img-file-preview").style.display =
+            "block";
+          document.getElementById("evt-img-drop-zone").style.display = "none";
+        }
+        if (item.mediaType === "video-file" && item.vidB64) {
+          document.getElementById("evt-vid-b64").value = item.vidB64;
+          const vid = document.getElementById("evt-vid-preview-vid");
+          vid.src = item.vidB64;
+          document.getElementById("evt-vid-file-name").textContent =
+            "(saved video)";
+          document.getElementById("evt-vid-file-preview").style.display =
+            "block";
+          document.getElementById("evt-vid-drop-zone").style.display = "none";
+        }
+        if (item.vidPosterB64) {
+          document.getElementById("evt-vid-poster-b64").value =
+            item.vidPosterB64;
+          document.getElementById("evt-vid-poster-img").src = item.vidPosterB64;
+          document.getElementById("evt-vid-poster-preview").style.display =
+            "block";
+        }
+
+        document.getElementById("evt-form-title").textContent = "✏️ Edit Event";
+        document
+          .getElementById("evt-tag")
+          .scrollIntoView({ behavior: "smooth" });
+      };
+
+      window.deleteEvt = function (id) {
+        const item = events.find((e) => e.id === id);
+        confirmAction(
+          `Delete event: "<strong>${item?.title}</strong>"?`,
+          async () => {
+            try {
+              await deleteDoc(doc(db, "events", id));
+              toast("🗑️", "Event deleted");
+            } catch (e) {
+              toast("❌", "Error: " + e.message);
+            }
+          },
+        );
+      };
+
+      // ════════════════════════════════════════════════════════════
+      // RENDER EVENT TABLE
+      // ════════════════════════════════════════════════════════════
+      function renderEvtTable() {
+        const tbody = document.getElementById("evt-table-body");
+        document.getElementById("evt-count-badge").textContent =
+          events.length + " items";
+
+        if (!events.length) {
+          tbody.innerHTML =
+            '<tr><td colspan="8"><div class="empty-state"><div class="e-icon">📭</div>No events scheduled yet.</div></td></tr>';
+          return;
+        }
+
+        const MEDIA_ICON = {
+          image: "🖼 URL",
+          "image-file": "📁🖼",
+          video: "🎬 URL",
+          "video-file": "📁🎬",
+          icon: "😀",
+          none: "—",
+        };
+
+        tbody.innerHTML = events
+          .map(
+            (e, i) => `
+    <tr>
+      <td style="color:var(--gray); font-size:.75rem;">${i + 1}</td>
+      <td style="font-size:.82rem;">${esc(e.tag)}</td>
+      <td style="font-weight:500; max-width:200px;">${esc(e.title)}</td>
+      <td style="white-space:nowrap; color:var(--gray); font-size:.8rem;">${fmtDate(e.date)}</td>
+      <td style="color:var(--gray); font-size:.8rem;">${esc(e.time || "—")}</td>
+      <td style="color:var(--gray); font-size:.8rem;">${esc(e.venue || "—")}</td>
+      <td style="font-size:.82rem;">${MEDIA_ICON[e.mediaType] || "—"}</td>
+      <td>
+        <div class="td-actions">
+          <button class="btn btn-ghost btn-sm" onclick="editEvt('${e.id}')">✏️ Edit</button>
+          <button class="btn btn-red   btn-sm" onclick="deleteEvt('${e.id}')">🗑️</button>
+        </div>
+      </td>
+    </tr>
+  `,
+          )
+          .join("");
+      }
+
+      // ════════════════════════════════════════════════════════════
+      // ENQUIRIES
+      // ════════════════════════════════════════════════════════════
+      function renderEnqTable() {
+        const tbody = document.getElementById("enq-table-body");
+        if (!tbody) return;
+        document.getElementById("enq-count-badge").textContent =
+          enquiries.length + " items";
+
+        if (!enquiries.length) {
+          tbody.innerHTML =
+            '<tr><td colspan="10"><div class="empty-state"><div class="e-icon">📭</div>No enquiries yet.</div></td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = enquiries
+          .map((e, i) => {
+            const isUnread = e.status === "unread";
+            const date = e.createdAt?.toDate
+              ? e.createdAt
+                  .toDate()
+                  .toLocaleDateString("en-IN", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+              : "—";
+            return `
+    <tr style="${isUnread ? "background:#fffbeb; font-weight:600;" : ""}">
+      <td style="color:var(--gray); font-size:.75rem;">${i + 1}</td>
+      <td>
+        ${
+          isUnread
+            ? '<span class="pill" style="background:#fef3c7;color:#92400e;">🔴 Unread</span>'
+            : '<span class="pill" style="background:#d1fae5;color:#065f46;">✅ Read</span>'
+        }
+      </td>
+      <td style="font-weight:500;">${esc(e.name || "—")}</td>
+      <td style="color:var(--gray); font-size:.82rem;">${esc(e.school || "—")}</td>
+      <td style="color:var(--gray); font-size:.82rem; text-align:center;">${esc(e.standard || "—")}</td>
+      <td><a href="tel:${esc(e.phone)}" style="color:var(--gold); font-size:.82rem;">${esc(e.phone || "—")}</a></td>
+      <td><a href="mailto:${esc(e.email)}" style="color:var(--blue); font-size:.82rem;">${esc(e.email || "—")}</a></td>
+      <td style="color:var(--gray); font-size:.78rem; max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${esc(e.address || "—")}</td>
+      <td style="color:var(--gray); font-size:.76rem; white-space:nowrap;">${date}</td>
+      <td>
+        <div class="td-actions">
+          ${
+            isUnread
+              ? `<button class="btn btn-ghost btn-sm" onclick="markEnqRead('${e.id}')">✅ Mark Read</button>`
+              : `<button class="btn btn-ghost btn-sm" onclick="markEnqUnread('${e.id}')">🔄 Unread</button>`
+          }
+          <button class="btn btn-red btn-sm" onclick="deleteEnq('${e.id}')">🗑️</button>
+        </div>
+      </td>
+    </tr>`;
+          })
+          .join("");
+      }
+
+      window.markEnqRead = async function (id) {
+        try {
+          await updateDoc(doc(db, "enquiries", id), { status: "read" });
+          toast("✅", "Marked as read");
+        } catch (e) {
+          toast("❌", "Error: " + e.message);
+        }
+      };
+
+      window.markEnqUnread = async function (id) {
+        try {
+          await updateDoc(doc(db, "enquiries", id), { status: "unread" });
+          toast("🔔", "Marked as unread");
+        } catch (e) {
+          toast("❌", "Error: " + e.message);
+        }
+      };
+
+      window.deleteEnq = function (id) {
+        const item = enquiries.find((e) => e.id === id);
+        confirmAction(
+          `Delete enquiry from "<strong>${item?.name}</strong>"?`,
+          async () => {
+            try {
+              await deleteDoc(doc(db, "enquiries", id));
+              toast("🗑️", "Enquiry deleted");
+            } catch (e) {
+              toast("❌", "Error: " + e.message);
+            }
+          },
+        );
+      };
+
+      // ════════════════════════════════════════════════════════════
+      // DASHBOARD
+      // ════════════════════════════════════════════════════════════
+      function renderDashboard() {
+        document.getElementById("dash-ann-count").textContent =
+          announcements.length;
+        document.getElementById("dash-evt-count").textContent = events.length;
+        document.getElementById("dash-urgent-count").textContent =
+          announcements.filter((a) => a.type === "urgent").length;
+        document.getElementById("dash-enq-count").textContent =
+          enquiries.length;
+        document.getElementById("dash-unread-count").textContent =
+          enquiries.filter((e) => e.status === "unread").length;
+
+        const now = new Date();
+        const thisMonth = events.filter((e) => {
+          if (!e.date) return false;
+          const d = new Date(e.date);
+          return (
+            d.getFullYear() === now.getFullYear() &&
+            d.getMonth() === now.getMonth()
+          );
+        });
+        document.getElementById("dash-upcoming-count").textContent =
+          thisMonth.length;
+
+        const at = document.getElementById("dash-ann-table");
+        if (!announcements.length) {
+          at.innerHTML =
+            '<tr><td colspan="3" style="padding:12px 14px; color:var(--gray); font-size:.82rem;">No announcements yet</td></tr>';
+        } else {
+          at.innerHTML = announcements
+            .slice(0, 5)
+            .map(
+              (a) => `
+      <tr>
+        <td><span class="pill ${a.type}" style="font-size:.65rem;">${TYPE_LABELS[a.type]}</span></td>
+        <td style="font-size:.82rem; font-weight:500; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${esc(a.title)}</td>
+        <td style="font-size:.76rem; color:var(--gray); white-space:nowrap;">${esc(a.date)}</td>
+      </tr>
+    `,
+            )
+            .join("");
+        }
+
+        const et = document.getElementById("dash-evt-table");
+        if (!events.length) {
+          et.innerHTML =
+            '<tr><td colspan="3" style="padding:12px 14px; color:var(--gray); font-size:.82rem;">No events yet</td></tr>';
+        } else {
+          et.innerHTML = events
+            .slice(0, 5)
+            .map(
+              (e) => `
+      <tr>
+        <td style="font-size:.82rem;">${esc(e.tag)}</td>
+        <td style="font-size:.82rem; font-weight:500; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${esc(e.title)}</td>
+        <td style="font-size:.76rem; color:var(--gray); white-space:nowrap;">${fmtDate(e.date)}</td>
+      </tr>
+    `,
+            )
+            .join("");
+        }
+      }
+
+      // ════════════════════════════════════════════════════════════
+      // BANNER
+      // ════════════════════════════════════════════════════════════
+      let bannerMediaType = "none";
+
+      window.setBannerMedia = function (type) {
+        bannerMediaType = type;
+        document
+          .querySelectorAll("[data-bmt]")
+          .forEach((b) => b.classList.toggle("active", b.dataset.bmt === type));
+        document.getElementById("banner-media-url").style.display =
+          type === "url" ? "block" : "none";
+        document.getElementById("banner-media-file").style.display =
+          type === "file" ? "block" : "none";
+        document.getElementById("banner-media-none").style.display =
+          type === "none" ? "block" : "none";
+        if (type === "none") {
+          document.getElementById("prev-img-wrap").style.display = "none";
+        }
+      };
+
+      window.previewBannerFile = function (input) {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const b64 = e.target.result;
+          document.getElementById("banner-img-b64").value = b64;
+          const img = document.getElementById("banner-file-img");
+          img.src = b64;
+          document.getElementById("banner-file-preview").style.display =
+            "block";
+          // Show in preview
+          document.getElementById("prev-img").src = b64;
+          document.getElementById("prev-img-wrap").style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      };
+
+      function loadBannerForm(data) {
+        document.getElementById("banner-badge").value = data.badge || "";
+        document.getElementById("banner-title").value = data.title || "";
+        document.getElementById("banner-message").value = data.message || "";
+        document.getElementById("banner-btn-text").value = data.btnText || "";
+        document.getElementById("banner-btn-link").value = data.btnLink || "";
+        document.getElementById("banner-color").value = data.color || "#C89B3C";
+        document.getElementById("banner-expiry").value = data.expiry || "";
+        document.getElementById(
+          data.active ? "banner-on" : "banner-off",
+        ).checked = true;
+
+        const badge = document.getElementById("banner-status-badge");
+        badge.textContent = data.active ? "🟢 Live on website" : "⚫ Hidden";
+        badge.style.background = data.active ? "#d1fae5" : "#f3f4f6";
+        badge.style.color = data.active ? "#065f46" : "#6B7585";
+
+        // Restore image
+        if (data.imgUrl) {
+          setBannerMedia("url");
+          document.getElementById("banner-img-url").value = data.imgUrl;
+          document.getElementById("prev-img").src = data.imgUrl;
+          document.getElementById("prev-img-wrap").style.display = "block";
+        } else if (data.imgB64) {
+          setBannerMedia("file");
+          document.getElementById("banner-img-b64").value = data.imgB64;
+          document.getElementById("banner-file-img").src = data.imgB64;
+          document.getElementById("banner-file-preview").style.display =
+            "block";
+          document.getElementById("prev-img").src = data.imgB64;
+          document.getElementById("prev-img-wrap").style.display = "block";
+        } else {
+          setBannerMedia("none");
+        }
+
+        updatePreview(data);
+      }
+
+      function updatePreview(data) {
+        const color = data.color || "#C89B3C";
+        const el = (id) => document.getElementById(id);
+        if (data.badge) {
+          el("prev-badge").textContent = data.badge;
+          el("prev-badge").style.color = color;
+          el("prev-badge").style.borderColor = color;
+        }
+        if (data.title) {
+          el("prev-title").textContent = data.title;
+        }
+        if (data.message) {
+          el("prev-message").textContent = data.message;
+        }
+        if (data.btnText) {
+          el("prev-btn").textContent = data.btnText;
+          el("prev-btn").style.background = color;
+        }
+        if (data.btnLink) {
+          el("prev-btn").href = data.btnLink;
+        }
+        const imgSrc = data.imgUrl || data.imgB64 || "";
+        if (imgSrc) {
+          el("prev-img").src = imgSrc;
+          el("prev-img-wrap").style.display = "block";
+        }
+      }
+
+      // Live preview update on input
+      [
+        "banner-badge",
+        "banner-title",
+        "banner-message",
+        "banner-btn-text",
+        "banner-btn-link",
+        "banner-color",
+      ].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el)
+          el.addEventListener("input", () => {
+            updatePreview({
+              badge: document.getElementById("banner-badge").value,
+              title: document.getElementById("banner-title").value,
+              message: document.getElementById("banner-message").value,
+              btnText: document.getElementById("banner-btn-text").value,
+              btnLink: document.getElementById("banner-btn-link").value,
+              color: document.getElementById("banner-color").value,
+            });
+          });
+      });
+
+      window.saveBanner = async function () {
+        const title = document.getElementById("banner-title").value.trim();
+        const message = document.getElementById("banner-message").value.trim();
+        if (!title || !message) {
+          toast("⚠️", "Title and Message are required");
+          return;
+        }
+
+        // Build image data
+        let imgUrl = "",
+          imgB64 = "";
+        if (bannerMediaType === "url") {
+          imgUrl = document.getElementById("banner-img-url").value.trim();
+        } else if (bannerMediaType === "file") {
+          imgB64 = document.getElementById("banner-img-b64").value;
+          if (!imgB64) {
+            toast("⚠️", "Please select an image file");
+            return;
+          }
+        }
+
+        const data = {
+          active: document.getElementById("banner-on").checked,
+          badge: document.getElementById("banner-badge").value.trim(),
+          title,
+          message,
+          btnText:
+            document.getElementById("banner-btn-text").value.trim() ||
+            "Enquire Now",
+          btnLink:
+            document.getElementById("banner-btn-link").value.trim() ||
+            "#contact",
+          color: document.getElementById("banner-color").value,
+          expiry: document.getElementById("banner-expiry").value || "",
+          mediaType: bannerMediaType,
+          imgUrl,
+          imgB64,
+          updatedAt: serverTimestamp(),
+        };
+
+        try {
+          await setDoc(doc(db, "settings", "banner"), data);
+          toast("✅", "Banner saved!");
+        } catch (e) {
+          toast("❌", "Error: " + e.message);
+        }
+      };
+
+      window.resetBannerForm = function () {
+        [
+          "banner-badge",
+          "banner-title",
+          "banner-message",
+          "banner-btn-text",
+          "banner-btn-link",
+          "banner-expiry",
+          "banner-img-url",
+          "banner-img-b64",
+        ].forEach((id) => {
+          document.getElementById(id).value = "";
+        });
+        document.getElementById("banner-color").value = "#C89B3C";
+        document.getElementById("banner-off").checked = true;
+        setBannerMedia("none");
+        document.getElementById("banner-file-preview").style.display = "none";
+        document.getElementById("prev-img-wrap").style.display = "none";
+      };
+
+      // ════════════════════════════════════════════════════════════
+      // CONFIRM MODAL
+      // ════════════════════════════════════════════════════════════
+      window.confirmAction = function (msg, cb) {
+        document.getElementById("confirmMsg").innerHTML = msg;
+        confirmCallback = cb;
+        document.getElementById("confirmModal").classList.add("open");
+      };
+      window.closeModal = function () {
+        document.getElementById("confirmModal").classList.remove("open");
+        confirmCallback = null;
+      };
+      document.getElementById("confirmOkBtn").addEventListener("click", () => {
+        if (confirmCallback) confirmCallback();
+        closeModal();
+      });
+      document.getElementById("confirmModal").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) closeModal();
+      });
+
+      // ════════════════════════════════════════════════════════════
+      // TOAST
+      // ════════════════════════════════════════════════════════════
+      let toastTimer;
+      window.toast = function (icon, msg) {
+        const el = document.getElementById("toast");
+        document.getElementById("toast-icon").textContent = icon;
+        document.getElementById("toast-msg").textContent = msg;
+        el.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove("show"), 3000);
+      };
+
+      // ════════════════════════════════════════════════════════════
+      // HELPERS
+      // ════════════════════════════════════════════════════════════
+      function esc(str) {
+        if (!str) return "";
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+      function fmtDate(str) {
+        if (!str) return "—";
+        try {
+          const d = new Date(str);
+          return d.toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          });
+        } catch (e) {
+          return str;
+        }
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    </script>
+  </body>
+</html>
