@@ -1,608 +1,3363 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Nirmal Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── RESET & TOKENS ───────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-<head>
+      :root {
+        --navy: #0b1f3a;
+        --gold: #c89b3c;
+        --gold-lt: #f0c96b;
+        --cream: #faf6ef;
+        --white: #ffffff;
+        --gray: #6b7585;
+        --light: #f0ebe1;
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "DM Sans", sans-serif;
 
-  <title>Nirmal Academy</title>
-  <link href="assets/images/logo.jpg" rel="icon">
+        --r-sm: 8px;
+        --r-md: 16px;
+        --r-lg: 28px;
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        --shadow-sm: 0 2px 12px rgba(11, 31, 58, 0.08);
+        --shadow-md: 0 8px 40px rgba(11, 31, 58, 0.14);
+        --shadow-lg: 0 24px 72px rgba(11, 31, 58, 0.18);
 
+        --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-  <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/templatemo-nirmal.css">
-  <link rel="stylesheet" href="assets/css/owl.css">
-  <link rel="stylesheet" href="assets/css/animate.css">
-  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-</head>
+      html {
+        scroll-behavior: smooth;
+      }
 
-<body>
+      body {
+        font-family: var(--font-body);
+        background: var(--cream);
+        color: var(--navy);
+        overflow-x: hidden;
+      }
 
-  <!-- ***** Preloader Start ***** -->
-  <!-- <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div> -->
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--cream);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 99px;
+      }
 
-  <!-- ***** Preloader End ***** -->
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .section-label {
+        font-family: var(--font-body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.18;
+      }
+      .section-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .divider {
+        width: 52px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+        border-radius: 2px;
+        margin: 12px 0 20px;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
 
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <a href="index.html" class="logo">
-              <img src="assets/images/logo.jpg" loading="lazy" alt="Logo" width="70" height="60">
-            </a>
+      /* ── NAV ──────────────────────────────────────────────────── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background: rgba(11, 31, 58, 0.92);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(200, 155, 60, 0.2);
+        transition: var(--transition);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .nav-logo img {
+        width: 46px;
+        height: 40px;
+        border-radius: 6px;
+        object-fit: cover;
+      }
+      .nav-logo-text {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--white);
+      }
+      .nav-logo-text span {
+        color: var(--gold);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2px;
+        list-style: none;
+      }
+      .nav-links a {
+        display: block;
+        padding: 8px 16px;
+        font-size: 0.84rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.75);
+        border-radius: var(--r-sm);
+        transition: var(--transition);
+      }
+      .nav-links a:hover {
+        color: var(--gold-lt);
+        background: rgba(200, 155, 60, 0.12);
+      }
+      .nav-cta {
+        background: var(--gold) !important;
+        color: var(--navy) !important;
+        font-weight: 600 !important;
+        padding: 8px 20px !important;
+      }
+      .nav-cta:hover {
+        background: var(--gold-lt) !important;
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 8px;
+        border: none;
+        background: none;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--white);
+        border-radius: 2px;
+        transition: var(--transition);
+      }
 
-            <!-- Menu -->
-            <ul class="nav">
-              <li class="scroll-to-section"><a href="#home">Home</a></li>
-              <li class="scroll-to-section"><a href="#Achievements">Achievements</a></li>
-              <li class="scroll-to-section"><a href="#courses">Courses</a></li>
-              <li class="scroll-to-section"><a href="#events">Events</a></li>
-              <li class="scroll-to-section"><a href="#contact">Contact us</a></li>
-            </ul>
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 68px;
+          left: 0;
+          right: 0;
+          background: rgba(11, 31, 58, 0.97);
+          flex-direction: column;
+          padding: 16px 24px;
+          border-top: 1px solid rgba(200, 155, 60, 0.2);
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-links a {
+          padding: 12px 8px;
+          font-size: 0.92rem;
+        }
+      }
 
-            <!-- Menu Trigger -->
-            <a class="menu-trigger">
-              <span>Menu</span>
-            </a>
-          </nav>
+      /* ── HERO ─────────────────────────────────────────────────── */
+      #home {
+        min-height: 100vh;
+        background: var(--navy);
+        display: grid;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-bg-pattern {
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(
+            circle at 20% 50%,
+            rgba(200, 155, 60, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(200, 155, 60, 0.08) 0%,
+            transparent 40%
+          );
+        pointer-events: none;
+      }
+      .hero-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+      }
+      .hero-content {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        padding-top: 68px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+        width: 100%;
+      }
+      .hero-text {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(200, 155, 60, 0.15);
+        border: 1px solid rgba(200, 155, 60, 0.3);
+        border-radius: 99px;
+        padding: 6px 16px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--gold-lt);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+      .hero-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.4);
+        }
+      }
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.1;
+        margin-bottom: 24px;
+      }
+      .hero-title em {
+        font-style: italic;
+        color: var(--gold);
+        display: block;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 500px;
+        margin-bottom: 40px;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 14px 28px;
+        border-radius: var(--r-sm);
+        transition: var(--transition);
+      }
+      .btn-primary:hover {
+        background: var(--gold-lt);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(200, 155, 60, 0.35);
+      }
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 14px 28px;
+        border-radius: var(--r-sm);
+        transition: var(--transition);
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold-lt);
+      }
+      .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 48px;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .hero-stat-num {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+      .hero-stat-label {
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+      .hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-img-wrap {
+        position: relative;
+        width: 100%;
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .hero-img-wrap img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+      .hero-float-card {
+        position: absolute;
+        top: 0px;
+        right: -50px;
+        background: var(--white);
+        border-radius: var(--r-md);
+        padding: 14px 18px;
+        box-shadow: var(--shadow-md);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        animation: float 4s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .float-icon {
+        font-size: 1.5rem;
+      }
+      .float-text .t1 {
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: var(--navy);
+      }
+      .float-text .t2 {
+        font-size: 0.72rem;
+        color: var(--gray);
+        margin-top: 2px;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .hero-visual {
+          display: none;
+        }
+        .hero-stats {
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+      }
+
+      /* ── MARQUEE ──────────────────────────────────────────────── */
+      .marquee-strip {
+        background: var(--gold);
+        padding: 14px 0;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .marquee-track {
+        display: inline-flex;
+        animation: marquee 28s linear infinite;
+      }
+      .marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0 32px;
+      }
+      .marquee-item::after {
+        content: "◆";
+        opacity: 0.4;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ══════════════════════════════════════════════════════════
+       OUR STORY — editorial full-bleed, dark, cinematic
+    ══════════════════════════════════════════════════════════ */
+      #about {
+        background: var(--navy);
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #about::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 50% at 80% 20%,
+            rgba(200, 155, 60, 0.07),
+            transparent
+          ),
+          radial-gradient(
+            ellipse 40% 60% at 10% 80%,
+            rgba(200, 155, 60, 0.05),
+            transparent
+          );
+        pointer-events: none;
+      }
+
+      .story-intro {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 32px;
+        padding: 80px 0 52px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        flex-wrap: wrap;
+      }
+      .story-intro-left {
+        flex: 1;
+        min-width: 280px;
+      }
+      .story-intro-left .section-label {
+        color: var(--gold);
+      }
+      .story-intro-left .section-title {
+        color: var(--white);
+        margin-top: 8px;
+      }
+      .story-intro-left .section-title em {
+        color: var(--gold);
+      }
+      .story-intro-right {
+        max-width: 380px;
+        font-size: 0.9rem;
+        line-height: 1.85;
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      .story-entries {
+        position: relative;
+        z-index: 1;
+      }
+
+      .story-entry {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 520px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transition: background 0.4s;
+      }
+      .story-entry:hover {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .story-entry:nth-child(even) {
+        direction: rtl;
+      }
+      .story-entry:nth-child(even) > * {
+        direction: ltr;
+      }
+
+      .story-photo-pane {
+        position: relative;
+        overflow: hidden;
+      }
+      .story-photo-pane img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: top center;
+        display: block;
+        filter: grayscale(20%) brightness(0.88);
+        transition:
+          filter 0.5s,
+          transform 0.6s;
+      }
+      .story-entry:hover .story-photo-pane img {
+        filter: grayscale(0%) brightness(1);
+        transform: scale(1.03);
+      }
+
+      .story-photo-pane::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), transparent);
+      }
+
+      .story-text-pane {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 52px 56px;
+        position: relative;
+      }
+
+      .story-role {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+      .story-name {
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.1;
+        margin-bottom: 20px;
+      }
+
+      .story-rule {
+        width: 40px;
+        height: 2px;
+        background: var(--gold);
+        border-radius: 2px;
+        margin-bottom: 20px;
+        transition: width 0.4s;
+      }
+      .story-entry:hover .story-rule {
+        width: 72px;
+      }
+
+      .story-quote {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.6;
+        margin-bottom: 18px;
+      }
+      .story-quote::before {
+        content: "\201C";
+        color: var(--gold);
+        font-size: 1.4rem;
+        line-height: 0;
+        vertical-align: -0.2em;
+        margin-right: 4px;
+      }
+      .story-quote::after {
+        content: "\201D";
+        color: var(--gold);
+        font-size: 1.4rem;
+        line-height: 0;
+        vertical-align: -0.2em;
+        margin-left: 4px;
+      }
+
+      .story-bio {
+        font-size: 0.875rem;
+        line-height: 1.85;
+        color: rgba(255, 255, 255, 0.42);
+        transition: color 0.3s;
+      }
+      .story-entry:hover .story-bio {
+        color: rgba(255, 255, 255, 0.62);
+      }
+
+      .story-footer {
+        position: relative;
+        z-index: 1;
+        padding: 48px 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .story-footer p {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 0.06em;
+      }
+      .story-footer strong {
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      @media (max-width: 900px) {
+        .story-entry {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .story-entry:nth-child(even) {
+          direction: ltr;
+        }
+        .story-photo-pane {
+          height: auto;
+        }
+        .story-text-pane {
+          padding: 36px 28px;
+        }
+        .story-intro {
+          padding: 60px 0 40px;
+        }
+      }
+      @media (max-width: 560px) {
+        .story-photo-pane {
+          height: auto;
+        }
+        .story-text-pane {
+          padding: 28px 20px;
+        }
+        .story-name {
+          font-size: 1.5rem;
+        }
+      }
+
+      /* ── ACHIEVEMENTS ─────────────────────────────────────────── */
+      #achievements {
+        background: var(--cream);
+        padding: 20px 0;
+      }
+      .achievements-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* ── STATS ────────────────────────────────────────────────── */
+      #stats {
+        background: var(--navy);
+        padding: 20px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      #stats::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 30% 50%,
+          rgba(200, 155, 60, 0.1),
+          transparent 60%
+        );
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+      }
+      .stat-card {
+        background: rgba(11, 31, 58, 0.6);
+        backdrop-filter: blur(10px);
+        padding: 30px 40px;
+        text-align: center;
+        position: relative;
+      }
+      .stat-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 2px;
+        background: var(--gold);
+        border-radius: 2px;
+      }
+      .stat-num {
+        font-family: var(--font-display);
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .stat-suffix {
+        font-size: 2rem;
+      }
+      .stat-label {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 8px;
+      }
+
+      @media (max-width: 600px) {
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── COURSES ──────────────────────────────────────────────── */
+      #courses {
+        background: var(--white);
+        padding: 20px 0;
+      }
+      .courses-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .courses-img {
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+      }
+      .courses-img img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+      .course-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 28px;
+      }
+      .course-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+        border-radius: var(--r-md);
+        border: 1px solid rgba(11, 31, 58, 0.08);
+        transition: var(--transition);
+      }
+      .course-card:hover {
+        border-color: var(--gold);
+        box-shadow: var(--shadow-sm);
+        transform: translateX(4px);
+      }
+      .course-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--r-sm);
+        background: rgba(200, 155, 60, 0.12);
+        color: var(--gold);
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .course-name {
+        font-weight: 600;
+        font-size: 0.92rem;
+        color: var(--navy);
+      }
+      .course-desc {
+        font-size: 0.82rem;
+        color: var(--gray);
+        margin-top: 3px;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 900px) {
+        .courses-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .courses-img img {
+          height: auto;
+        }
+      }
+
+      /* ── WHY US ───────────────────────────────────────────────── */
+      #why {
+        background: var(--cream);
+        padding: 20px 0;
+      }
+      .why-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .accordion-list {
+        max-width: 680px;
+        margin: 0 auto;
+      }
+      .acc-item {
+        border-radius: var(--r-md);
+        background: var(--white);
+        border: 1px solid rgba(11, 31, 58, 0.08);
+        margin-bottom: 12px;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+      .acc-item.open {
+        border-color: var(--gold);
+        box-shadow: var(--shadow-sm);
+      }
+      .acc-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .acc-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--navy);
+      }
+      .acc-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(200, 155, 60, 0.1);
+        color: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        transition: transform 0.3s;
+        flex-shrink: 0;
+      }
+      .acc-item.open .acc-icon {
+        transform: rotate(180deg);
+        background: var(--gold);
+        color: var(--white);
+      }
+      .acc-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      .acc-body-inner {
+        padding: 0 24px 20px;
+        font-size: 0.9rem;
+        line-height: 1.75;
+        color: var(--gray);
+      }
+      .acc-item.open .acc-body {
+        max-height: 300px;
+      }
+
+      /* ── TESTIMONIALS ─────────────────────────────────────────── */
+      #testimonials {
+        background: var(--navy);
+        padding: 20px 0;
+        overflow: hidden;
+      }
+      .testimonials-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* ══════════════════════════════════════════════════════════
+       ANNOUNCEMENTS & UPCOMING EVENTS
+    ══════════════════════════════════════════════════════════ */
+      #announcements {
+        background: var(--cream);
+        padding: 20px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      #announcements::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--gold),
+          var(--gold-lt),
+          var(--gold)
+        );
+      }
+
+      .ann-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.45fr;
+        gap: 56px;
+        align-items: start;
+      }
+
+      .ann-left {
+        position: sticky;
+        top: 88px;
+      }
+
+      .ann-live-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #fee2e2;
+        border: 1px solid #fca5a5;
+        border-radius: 99px;
+        padding: 5px 14px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #b91c1c;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .ann-live-badge::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #ef4444;
+        animation: pulse 1.5s infinite;
+      }
+
+      .ann-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .ann-item {
+        display: flex;
+        gap: 16px;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(11, 31, 58, 0.07);
+        cursor: default;
+        transition: var(--transition);
+      }
+      .ann-item:first-child {
+        padding-top: 0;
+      }
+      .ann-item:last-child {
+        border-bottom: none;
+      }
+      .ann-item:hover {
+        padding-left: 6px;
+      }
+
+      .ann-pill {
+        flex-shrink: 0;
+        margin-top: 3px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        position: relative;
+      }
+      .ann-pill::after {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        opacity: 0.2;
+      }
+      .ann-pill.exam {
+        background: #f59e0b;
+      }
+      .ann-pill.exam::after {
+        background: #f59e0b;
+      }
+      .ann-pill.holiday {
+        background: #10b981;
+      }
+      .ann-pill.holiday::after {
+        background: #10b981;
+      }
+      .ann-pill.result {
+        background: #3b82f6;
+      }
+      .ann-pill.result::after {
+        background: #3b82f6;
+      }
+      .ann-pill.event {
+        background: var(--gold);
+      }
+      .ann-pill.event::after {
+        background: var(--gold);
+      }
+      .ann-pill.urgent {
+        background: #ef4444;
+      }
+      .ann-pill.urgent::after {
+        background: #ef4444;
+      }
+
+      .ann-content {
+        flex: 1;
+        min-width: 0;
+      }
+      .ann-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+      .ann-type {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .ann-type.exam {
+        color: #d97706;
+      }
+      .ann-type.holiday {
+        color: #059669;
+      }
+      .ann-type.result {
+        color: #2563eb;
+      }
+      .ann-type.event {
+        color: var(--gold);
+      }
+      .ann-type.urgent {
+        color: #dc2626;
+      }
+
+      .ann-date {
+        font-size: 0.7rem;
+        color: var(--gray);
+        margin-left: auto;
+        white-space: nowrap;
+      }
+      .ann-text {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: var(--navy);
+        line-height: 1.5;
+      }
+      .ann-subtext {
+        font-size: 0.78rem;
+        color: var(--gray);
+        margin-top: 3px;
+        line-height: 1.4;
+      }
+
+      .ann-view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 20px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--gold);
+        letter-spacing: 0.04em;
+        transition: gap 0.2s;
+      }
+      .ann-view-all:hover {
+        gap: 10px;
+      }
+
+      .ann-right {
+      }
+
+      .upcoming-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .event-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .event-card-new {
+        background: var(--white);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        border: 1px solid rgba(11, 31, 58, 0.07);
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        transition: var(--transition);
+        box-shadow: var(--shadow-sm);
+      }
+      .event-card-new:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(200, 155, 60, 0.25);
+      }
+
+      .ec-media {
+        position: relative;
+        overflow: hidden;
+        background: var(--light);
+        min-height: 160px;
+      }
+      .ec-media img,
+      .ec-media video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .event-card-new:hover .ec-media img,
+      .event-card-new:hover .ec-media video {
+        transform: scale(1.05);
+      }
+      .ec-play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(11, 31, 58, 0.35);
+      }
+      .ec-play-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        color: var(--navy);
+        transition: transform 0.2s;
+      }
+      .event-card-new:hover .ec-play-btn {
+        transform: scale(1.12);
+      }
+
+      .ec-date-badge {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: var(--navy);
+        color: var(--white);
+        border-radius: var(--r-sm);
+        padding: 6px 10px;
+        text-align: center;
+        line-height: 1;
+      }
+      .ec-date-badge .day {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-weight: 900;
+        display: block;
+      }
+      .ec-date-badge .mon {
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gold);
+        display: block;
+        margin-top: 2px;
+      }
+
+      .ec-media.text-only {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+      }
+
+      .ec-body {
+        padding: 20px 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .ec-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 8px;
+      }
+      .ec-title {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.3;
+        margin-bottom: 8px;
+      }
+      .ec-desc {
+        font-size: 0.8rem;
+        line-height: 1.65;
+        color: var(--gray);
+        flex: 1;
+      }
+      .ec-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(11, 31, 58, 0.07);
+      }
+      .ec-meta {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 0.75rem;
+        color: var(--gray);
+      }
+      .ec-meta span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .ec-cta {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 0.04em;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: gap 0.2s;
+      }
+      .ec-cta:hover {
+        gap: 8px;
+      }
+
+      @media (max-width: 1024px) {
+        .ann-layout {
+          grid-template-columns: 1fr;
+          gap: 52px;
+        }
+        .ann-left {
+          position: static;
+        }
+      }
+      @media (max-width: 600px) {
+        .event-card-new {
+          grid-template-columns: 1fr;
+        }
+        .ec-media {
+          min-height: 180px;
+        }
+      }
+
+      /* ── EVENTS ───────────────────────────────────────────────── */
+      #events {
+        background: var(--white);
+        padding: 20px 0;
+      }
+      .events-header {
+        margin-bottom: 52px;
+      }
+
+      /* ── STUDENT ACH ──────────────────────────────────────────── */
+      #student-ach {
+        background: var(--cream);
+        padding: 20px 0;
+      }
+      .student-profile {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .student-imgs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .student-imgs img {
+        border-radius: var(--r-md);
+        aspect-ratio: 3/4;
+        width: 100%;
+        object-fit: cover;
+        box-shadow: var(--shadow-sm);
+      }
+      .student-imgs img:first-child {
+        margin-top: 32px;
+      }
+      .student-quote {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-style: italic;
+        color: var(--navy);
+        line-height: 1.5;
+        margin: 16px 0 24px;
+      }
+      .student-name {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--navy);
+      }
+      .student-role {
+        font-size: 0.82rem;
+        color: var(--gold);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+      .student-feedback {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        line-height: 1.8;
+        color: var(--gray);
+      }
+
+      @media (max-width: 900px) {
+        .student-profile {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+
+      /* ── CONTACT ──────────────────────────────────────────────── */
+      #contact {
+        background: var(--navy);
+        padding: 20px 0;
+        position: relative;
+      }
+      #contact::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 70% 30%,
+          rgba(200, 155, 60, 0.08),
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .contact-info p {
+        font-size: 0.94rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.55);
+        margin: 16px 0 32px;
+      }
+      .contact-detail {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+      .contact-icon {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        border-radius: var(--r-sm);
+        background: rgba(200, 155, 60, 0.15);
+        border: 1px solid rgba(200, 155, 60, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+      .contact-detail a {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.9rem;
+      }
+      .contact-detail a:hover {
+        color: var(--gold);
+      }
+      .contact-form {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--r-lg);
+        padding: 40px;
+      }
+      .form-row {
+        margin-bottom: 16px;
+      }
+      .form-row label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .form-row input,
+      .form-row textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--r-sm);
+        padding: 13px 16px;
+        font-family: var(--font-body);
+        font-size: 0.92rem;
+        color: var(--white);
+        outline: none;
+        transition: var(--transition);
+      }
+      .form-row input::placeholder,
+      .form-row textarea::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .form-row input:focus,
+      .form-row textarea:focus {
+        border-color: var(--gold);
+        background: rgba(200, 155, 60, 0.06);
+      }
+      .form-row textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .submit-btn {
+        width: 100%;
+        background: var(--gold);
+        color: var(--navy);
+        font-family: var(--font-body);
+        font-size: 0.92rem;
+        font-weight: 700;
+        padding: 15px;
+        border: none;
+        border-radius: var(--r-sm);
+        cursor: pointer;
+        transition: var(--transition);
+        margin-top: 8px;
+      }
+      .submit-btn:hover {
+        background: var(--gold-lt);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(200, 155, 60, 0.3);
+      }
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .form-success {
+        text-align: center;
+        padding: 20px;
+        color: #4ade80;
+        font-weight: 600;
+        display: none;
+      }
+
+      @media (max-width: 900px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .contact-form {
+          padding: 28px;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── FOOTER ───────────────────────────────────────────────── */
+      footer {
+        background: #060f1c;
+        padding: 28px 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      footer p {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 0.04em;
+      }
+
+      /* ── SCROLL REVEAL ────────────────────────────────────────── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── OFFER BANNER POPUP ─────────────────────────────────────── -->
+    <div
+      id="offerBanner"
+      style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 99998;
+        background: rgba(11, 31, 58, 0.6);
+        backdrop-filter: blur(6px);
+        align-items: center;
+        justify-content: center;
+        animation: fadeInBg 0.3s ease;
+      "
+    >
+      <div
+        style="
+          background: #fff;
+          border-radius: 20px;
+          width: min(500px, 92vw);
+          box-shadow: 0 32px 80px rgba(11, 31, 58, 0.25);
+          overflow: hidden;
+          position: relative;
+          animation: slideUp 0.35s ease;
+        "
+      >
+        <!-- Top accent bar -->
+        <div
+          id="banner-accent-bar"
+          style="height: 5px; background: var(--gold)"
+        ></div>
+
+        <!-- Banner image -->
+        <div
+          id="banner-popup-img-wrap"
+          style="display: none; overflow: hidden; max-height: 220px"
+        >
+          <img
+            id="banner-popup-img"
+            src=""
+            alt="Offer"
+            style="
+              width: 100%;
+              height: 220px;
+              object-fit: cover;
+              display: block;
+            "
+          />
+        </div>
+
+        <!-- Close button -->
+        <button
+          onclick="closeBanner()"
+          style="
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(11, 31, 58, 0.06);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #6b7585;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            z-index: 2;
+          "
+          onmouseover="
+            this.style.background = '#fee2e2';
+            this.style.color = '#dc2626';
+          "
+          onmouseout="
+            this.style.background = 'rgba(11,31,58,.06)';
+            this.style.color = '#6B7585';
+          "
+        >
+          ✕
+        </button>
+
+        <!-- Content -->
+        <div style="padding: 36px 36px 32px; text-align: center">
+          <div
+            id="banner-popup-badge"
+            style="
+              display: inline-block;
+              background: rgba(200, 155, 60, 0.12);
+              border: 1px solid rgba(200, 155, 60, 0.3);
+              border-radius: 99px;
+              padding: 6px 18px;
+              font-size: 0.75rem;
+              font-weight: 700;
+              color: var(--gold);
+              letter-spacing: 0.1em;
+              margin-bottom: 18px;
+            "
+          >
+            🎉 Special Offer
+          </div>
+
+          <h2
+            id="banner-popup-title"
+            style="
+              font-family: var(--font-display);
+              font-size: clamp(1.3rem, 3vw, 1.7rem);
+              font-weight: 700;
+              color: #0b1f3a;
+              line-height: 1.2;
+              margin-bottom: 14px;
+            "
+          >
+            Admissions Open!
+          </h2>
+
+          <p
+            id="banner-popup-message"
+            style="
+              font-size: 0.92rem;
+              color: #6b7585;
+              line-height: 1.75;
+              margin-bottom: 28px;
+              max-width: 360px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            Register now for the upcoming batch.
+          </p>
+
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              id="banner-popup-btn"
+              href="#contact"
+              onclick="closeBanner()"
+              style="
+                display: inline-block;
+                background: var(--gold);
+                color: #0b1f3a;
+                font-weight: 700;
+                font-size: 0.9rem;
+                padding: 13px 32px;
+                border-radius: 10px;
+                text-decoration: none;
+                transition: 0.2s;
+              "
+              >Enquire Now</a
+            >
+            <button
+              onclick="closeBanner()"
+              style="
+                background: none;
+                border: 1.5px solid rgba(11, 31, 58, 0.15);
+                border-radius: 10px;
+                padding: 13px 24px;
+                font-size: 0.88rem;
+                color: #6b7585;
+                cursor: pointer;
+                font-family: var(--font-body);
+                transition: 0.2s;
+              "
+            >
+              Maybe Later
+            </button>
+          </div>
+
+          <!-- Expiry countdown if set -->
+          <div
+            id="banner-expiry-line"
+            style="
+              display: none;
+              margin-top: 16px;
+              font-size: 0.76rem;
+              color: #ef4444;
+              font-weight: 600;
+            "
+          >
+            ⏰ Offer expires: <span id="banner-expiry-text"></span>
+          </div>
         </div>
       </div>
     </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
 
-  <!-- About Us Image -->
-  <section class="home" id="home">
-    <div class="about-us-container">
-      <img src="assets/images/about_us.jpg" loading="lazy" alt="About Us">
-    </div>
-  </section>
+    <style>
+      @keyframes fadeInBg {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    </style>
 
-  <div class="main-container">
-    <div class="slider">
-      <!-- Slide 1 -->
-      <div class="slide">
-        <div class="content-container">
-          <div class="left">
-            <img src="assets/images/banner_img_2.JPG" loading="lazy" alt="Image 2">
-          </div>
-          <div class="right">
-            <img src="assets/images/quotes1.png" loading="lazy" alt="Opening Quote" class="quote-icon quote-left">
-            <p>At Nirmal Academy, we firmly believe that education is the key to unlocking the infinite
-              potential within every child. Our dedicated team of highly qualified and passionate educators
-              strives to create an inclusive and stimulating learning environment that fosters curiosity, critical
-              thinking, and creativity. Through innovative teaching methodologies, hands-on experiences, and
-              a versatile and holistic curriculum, we aim to develop well-rounded individuals who are prepared
-              to face the challenges of the 21st century.
+    <!-- ── NAV ────────────────────────────────────────────────────── -->
+    <nav>
+      <div class="container nav-inner">
+        <a href="#home" class="nav-logo">
+          <img
+            src="assets/images/logo.jpg"
+            alt="Nirmal Academy"
+            loading="lazy"
+          />
+          <span class="nav-logo-text">Nirmal <span>Academy</span></span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#announcements">Announcements</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ── HERO ───────────────────────────────────────────────────── -->
+    <section id="home">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-bg-grid"></div>
+      <div class="container hero-content">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <div class="hero-badge">Established Since 2007</div>
+            <h1 class="hero-title">
+              Empowering Young Minds
+              <em>Since 2007</em>
+            </h1>
+            <p class="hero-subtitle">
+              At Nirmal Academy, we believe education is the key to unlocking
+              infinite potential. Our dedicated educators create an inclusive,
+              stimulating environment that fosters curiosity, critical thinking,
+              and creativity.
             </p>
-            <img src="assets/images/quotes2.png" loading="lazy" alt="Closing Quote" class="quote-icon quote-right">
-            <!-- <div class="bottom-right">
-              <p>Principal</p>
-            </div> -->
+            <div class="hero-actions">
+              <a href="#courses" class="btn-primary">Explore Courses →</a>
+              <a href="#contact" class="btn-outline">Enroll Now</a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <div class="hero-stat-num">6K+</div>
+                <div class="hero-stat-label">Happy Students</div>
+              </div>
+              <div>
+                <div class="hero-stat-num">1.1K+</div>
+                <div class="hero-stat-label">Employed Alumni</div>
+              </div>
+              <div>
+                <div class="hero-stat-num">18+</div>
+                <div class="hero-stat-label">Years Experience</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-img-wrap">
+              <img
+                src="assets/images/logo.jpg"
+                alt="Nirmal Academy"
+                loading="lazy"
+              />
+            </div>
+            <div class="hero-float-card">
+              <div class="float-icon">🏆</div>
+              <div class="float-text">
+                <div class="t1">Top Ranked Academy</div>
+                <div class="t2">Panvel, Maharashtra</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <!-- Slide 2 -->
-      <div class="slide">
-        <div class="content-container">
-          <div class="left">
-            <img src="assets/images/banner_img_1.JPG" loading="lazy" alt="Image 1">
+    </section>
+
+    <!-- ── MARQUEE ─────────────────────────────────────────────────── -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span class="marquee-item">JEE Preparation</span>
+        <span class="marquee-item">NEET Coaching</span>
+        <span class="marquee-item">CET Excellence</span>
+        <span class="marquee-item">NTSE Training</span>
+        <span class="marquee-item">Science Olympiad</span>
+        <span class="marquee-item">CBSE · ICSE · State Board</span>
+        <span class="marquee-item">Grades 6 – 12</span>
+        <span class="marquee-item">Navodaya Exam</span>
+        <span class="marquee-item">JEE Preparation</span>
+        <span class="marquee-item">NEET Coaching</span>
+        <span class="marquee-item">CET Excellence</span>
+        <span class="marquee-item">NTSE Training</span>
+        <span class="marquee-item">Science Olympiad</span>
+        <span class="marquee-item">CBSE · ICSE · State Board</span>
+        <span class="marquee-item">Grades 6 – 12</span>
+        <span class="marquee-item">Navodaya Exam</span>
+      </div>
+    </div>
+
+    <!-- ── OUR STORY ────────────────────────────────────────────── -->
+    <section id="about">
+      <div class="container">
+        <div class="story-intro reveal">
+          <div class="story-intro-left">
+            <p class="section-label">Our Story</p>
+            <h2 class="section-title">
+              The People Behind<br /><em>Nirmal Academy</em>
+            </h2>
           </div>
-          <div class="right">
-            <img src="assets/images/quotes1.png" loading="lazy" alt="Opening Quote" class="quote-icon quote-left">
-            <p>Dear Parents, Students, and Well-wishers, I am delighted to welcome you to Nirmal Academy,
-              an institution that has been committed to providing quality education and nurturing young minds
-              since its establishment in 2007. As the Director, it fills me with immense pride to witness the
-              remarkable growth and achievements of our beloved institute over the years.
+          <p class="story-intro-right">
+            Since 2007, a team of passionate educators and visionary leaders
+            have shaped Nirmal Academy into a trusted home for thousands of
+            students. Each person below carries a piece of that mission.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-entries">
+        <!-- Entry 01 -->
+        <div class="story-entry reveal">
+          <div class="story-photo-pane">
+            <img
+              src="assets/images/banner_img_2.JPG"
+              alt="Managing Director"
+              loading="lazy"
+            />
+          </div>
+          <div class="story-text-pane">
+            <div class="story-role">Managing Director &amp; Founder</div>
+            <h3 class="story-name">Dr. Ramashanker Chourasia</h3>
+            <div class="story-rule"></div>
+            <p class="story-quote">
+              Quality education is every child's birthright.
             </p>
-            <img src="assets/images/quotes2.png" loading="lazy" alt="Closing Quote" class="quote-icon quote-right">
-            <!-- <div class="bottom-right">
-              <p>Managing Director</p>
-            </div> -->
+            <p class="story-bio">
+              Founded Nirmal Academy in 2007 with 15 students and a mission to
+              democratise quality education in Panvel. Over 18 years the
+              institution has grown into a premier coaching centre serving
+              students from grades 6 to 12 across State Board, CBSE, and ICSE —
+              celebrating thousands of success stories along the way.
+            </p>
+          </div>
+        </div>
+
+        <!-- Entry 02 -->
+        <div class="story-entry reveal">
+          <div class="story-photo-pane">
+            <img
+              src="assets/images/banner_img_1.JPG"
+              alt="Principal"
+              loading="lazy"
+            />
+          </div>
+          <div class="story-text-pane">
+            <div class="story-role">Principal &amp; Academic Head</div>
+            <h3 class="story-name">Mrs. Kusum Chourasia</h3>
+            <div class="story-rule"></div>
+            <p class="story-quote">
+              Every student has infinite potential waiting to be unlocked.
+            </p>
+            <p class="story-bio">
+              Oversees curriculum design, faculty development, and student
+              welfare. Brings over a decade of experience in science education
+              with a particular focus on conceptual learning and exam strategy
+              for JEE, NEET, and CET aspirants. Personally mentors top
+              performers each year.
+            </p>
           </div>
         </div>
       </div>
 
-      <div class="slide">
-        <div class="content-container">
-          <div class="left">
-            <img src="assets/images/mantra.jpg" loading="lazy" alt="Image 1">
-          </div>
-          <div class="right">
-            <img src="assets/images/quotes1.png" loading="lazy" alt="Opening Quote" class="quote-icon quote-left">
-            <p>At Nirmal Academy, we believe academic success is achieved through teamwork between teachers, students, and parents:</p>
-            <p>Teachers (40%) – Providing engaging lessons, regular practice, and parent communication.</p>              
-            <p>Students (30%) – Committing to attendance and daily practice.</p>               
-            <p>Parents (30%) – Encouraging, motivating, and ensuring consistent practice.</p>
-            <img src="assets/images/quotes2.png" loading="lazy" alt="Closing Quote" class="quote-icon quote-right">
-            <!-- <div class="bottom-right">
-              <p>Managing Director</p>
-            </div> -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 3 -->
-      <!-- <div class="slide">
-        <div class="image-container">
-          <img src="assets/images/mantra.jpg" loading="lazy" alt="mantra">
-        </div>
-      </div> -->
-
-    </div>
-  </div>
-
-  <!-- achievement start here -->
-  <section class="section Achievements" id="Achievements">
-    <div class="achievements-container">
-      <img src="assets/images/achievments.jpg" loading="lazy" alt="guest leactures">
-    </div>
-    <!-- Main Container for Achievements -->
-    <div class="main-container-achivements">
-      <div class="second-slider-wrapper">
-        <button class="second-slider-btn prev"><i class="fa fa-angle-left"></i></button>
-
-        <div class="second-slider">
-          <div class="second-slide">
-            <img src="assets/images/achivements8.jpeg" loading="lazy" alt="Slide 8">
-          </div>
-          <div class="second-slide">
-            <img src="assets/images/achivements7.jpeg" loading="lazy" alt="Slide 1">
-          </div>
-          <div class="second-slide">
-            <img src="assets/images/achivements6.jpeg" loading="lazy" alt="Slide 2">
-          </div>
-          <div class="second-slide">
-            <img src="assets/images/achivements5.jpeg" loading="lazy" alt="Slide 3">
-          </div>
-          <div class="second-slide">
-            <img src="assets/images/achivements4.jpeg" loading="lazy" alt="Slide 4">
-          </div>
-          <div class="second-slide">
-            <img src="assets/images/achivements3.jpeg" loading="lazy" alt="Slide 5">
-          </div>
-          <div class="second-slide">
-            <img src="assets/images/achivements2.jpeg" loading="lazy" alt="Slide 6">
-          </div>
-          <div class="second-slide">
-            <img src="assets/images/achivements1.jpeg" loading="lazy" alt="Slide 7">
-          </div>
-        </div>
-        <button class="second-slider-btn next"><i class="fa fa-angle-right"></i></button>
-      </div>
-    </div>
-  </section>
-
-  <div class="section about-us">
-    <div class="container-aboutus">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-1">
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
-                  Where shall we begin?
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  We began our journey in 2007 with just 15 students, driven by a vision to empower
-                  young minds with quality education. Today, we continue to expand, welcoming students
-                  from grades 6 to 12.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  How do we work together?
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  At Nirmal Academy, education is a collaborative effort. We foster strong partnerships
-                  with parents, encourage open communication, and ensure holistic
-                  development through interactive learning, co-curricular activities, and mentorship.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Why Nirmal Academy is the best?
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  We provide a well-rounded education with a focus on academic excellence,
-                  character development, and innovation. Our expert faculty, personalized mentoring, and
-                  student-centric approach make us a premier institution for aspiring learners.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  Do we get the best support?
-                </button>
-              </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Yes! We ensure continuous learning, even in challenging times, by adapting
-                  innovative teaching methods. Our nurturing environment, strong faculty, and commitment
-                  to excellence guarantee the best support for every student’s success.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-5 align-self-center">
-          <div class="section-heading">
-            <h2>What make us the best academy?</h2>
-            <p>At Nirmal Academy, we don’t just teach—we mentor, inspire, and shape futures.Our commitment to academic
-              excellence, holistic development,and personalized learning sets us apart from the rest.</p>
-            <div class="main-button">
-              <a href="#">Discover More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <section class="section courses" id="courses">
-    <div class="course-container">
-      <div class="left-container">
-        <img src="assets/images/prepare.JPG" loading="lazy" alt="We prepare you for">
-      </div>
-      <div class="right-container">
-        <h2>Unlock Your True Potential with Expert Guidance!</h2>
-        <p>At Nirmal Academy, we provide comprehensive preparation for students from 6th to 10th (State Board, CBSE,
-          ICSE) and 11th-12th (State Board, CBSE - Science Stream). Our structured approach ensures success in MTSE,
-          NTSE, Government Scholarships, Science & Maths Olympiads, and Navodaya Exams.
-          For aspiring engineers and doctors, we offer focused coaching for JEE, NEET, and CET, helping you build a
-          strong foundation and master exam strategies. Our expert faculty, personalized mentoring, and result-driven
-          methodology pave the way for your academic excellence.</p>
-        <p>Join us for full exam preparation in an enlightening way to success!</p>
-      </div>
-    </div>
-  </section>
-
-
-  <div class="section fun-facts">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="wrapper">
-            <div class="row">
-              <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="6000" data-speed="1000"></h2>
-                  <p class="count-text ">Happy Students</p>
-                </div>
-              </div>
-              <!-- <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="804" data-speed="1000"></h2>
-                  <p class="count-text ">Course Hours</p>
-                </div>
-              </div> -->
-              <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="1100" data-speed="1000"></h2>
-                  <p class="count-text ">Employed Students</p>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="counter end">
-                  <h2 class="timer count-title count-number" data-to="18" data-speed="1000"></h2>
-                  <p class="count-text ">Years Experience</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="testimonial_head-container">
-    <img src="assets/images/testimonial_head.JPG" loading="lazy" alt="guest leactures">
-  </div>
-
-  <div class="section testimonials custom-slider">
-    <div class="container">
-      <div class="owl-carousel owl-testimonials">
-        <div class="item"><img src="assets/images/testinomial2.jpeg" loading="lazy" alt="Slide 1"></div>
-        <div class="item"><img src="assets/images/testinomial8.jpeg" loading="lazy" alt="Slide 2"></div>
-        <div class="item"><img src="assets/images/testinomial1.jpeg" loading="lazy" alt="Slide 3"></div>
-        <div class="item"><img src="assets/images/testinomial3.jpeg" loading="lazy" alt="Slide 4"></div>
-        <div class="item"><img src="assets/images/testinomial4.jpeg" loading="lazy" alt="Slide 5"></div>
-        <div class="item"><img src="assets/images/testinomial5.jpeg" loading="lazy" alt="Slide 6"></div>
-        <div class="item"><img src="assets/images/testinomial6.jpeg" loading="lazy" alt="Slide 7"></div>
-        <div class="item"><img src="assets/images/testinomial7.jpeg" loading="lazy" alt="Slide 8"></div>
-        <div class="item"><img src="assets/images/testinomial9.jpeg" loading="lazy" alt="Slide 9"></div>
-        <div class="item"><img src="assets/images/testinomial10.jpeg" loading="lazy" alt="Slide 10"></div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="section events" id="events">
-    <!-- guest lectures template logo -->
-    <div class="guest-lecture-container">
-      <img src="assets/images/guest_lecture_template.jpg" loading="lazy" alt="guest leactures">
-    </div>
-
-    <div class="main-container-guest">
-      <!-- Left Container -->
-      <div class="left-container-guest">
-        <img src="assets/images/guest_2.jpg" loading="lazy" alt="guest_image">
-      </div>
-
-      <!-- Right Container -->
-      <div class="right-container-guest">
-        <img src="assets/images/guest_1.jpg" loading="lazy" alt="guest_image">
-      </div>
-    </div>
-  </div>
-
-  <!-- Our achievements -->
-
-<section class="achievements">
-
-  <div class="section-heading text-center">
-    <h2>Our <em>Achievements</em></h2>
-  </div>
-
-  <!-- Parent Container -->
-  <div class="achievement-wrapper">
-
-    <!-- Row 1 -->
-    <div class="achievement-row">
-      
-      <div class="achievement-image">
-        <img src="assets/images/achivement1.jpeg" alt="">
-      </div>
-
-      <div class="achievement-text">
-        <p>
-          Nirmal Academy takes immense pride in recognizing the outstanding achievements of its faculty and contributors. The institution has been actively involved in academic excellence and research-oriented development, encouraging educators to participate in impactful initiatives. Such recognitions reflect the dedication, hard work, and commitment towards enhancing the quality of education.
-        </p>
-      </div>
-
-    </div>
-
-    <!-- Row 2 -->
-    <div class="achievement-row reverse">
-      
-      <div class="achievement-image">
-        <img src="assets/images/achivement2.jpeg" alt="">
-      </div>
-
-      <div class="achievement-text">
-        <p>
-          The academy continues to celebrate milestones that contribute to holistic growth and development. Through participation in seminars, workshops, and academic presentations, the faculty consistently showcases their expertise and knowledge. These achievements strengthen the institution’s vision of delivering quality education while fostering innovation and leadership.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- Student Achievements -->
-<section class="student-achievements">
-
-  <div class="section-heading text-center">
-    <h2>Student <em>Achievements</em></h2>
-  </div>
-
-  <div class="student-wrapper">
-
-    <!-- Top Row (2 Images) -->
-    <div class="student-row top">
-      <div class="student-box">
-        <img src="assets/images/students/Ronald Cruz 1.jpeg" alt="">
-      </div>
-
-      <div class="student-box">
-        <img src="assets/images/students/Ronald Cruz 2.jpeg" alt="">
-      </div>
-    </div>
-
-    <!-- Bottom Section -->
-    <div class="student-row bottom">
-
-      <div class="student-content">
-
-        <!-- Name + Designation -->
-        <div class="student-info">
-          <h4>Ronald Cruz</h4>
-          <span>Commercial Pilot</span>
-        </div>
-
-        <!-- Feedback -->
-        <div class="student-feedback">
+      <div class="container">
+        <div class="story-footer">
           <p>
-            My experience at Nirmal Academy has been truly enriching. The faculty provides excellent guidance and ensures conceptual clarity in every subject. The supportive environment and practical teaching methods helped me gain confidence and achieve my goals.
+            Established <strong>2007</strong> &nbsp;·&nbsp; Panvel, Maharashtra
+            &nbsp;·&nbsp; <strong>6,000+</strong> students shaped &nbsp;·&nbsp;
+            <strong>18+</strong> years of excellence
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACHIEVEMENTS GALLERY ────────────────────────────────────── -->
+    <section id="achievements">
+      <div class="container">
+        <div class="achievements-header reveal">
+          <p class="section-label">Our Milestones</p>
+          <h2 class="section-title">Student <em>Achievements</em></h2>
+          <div class="divider" style="margin: 12px auto 0"></div>
+        </div>
+        <div id="gallery-achievements" class="reveal"></div>
+      </div>
+    </section>
+
+    <!-- ── STATS ───────────────────────────────────────────────────── -->
+    <section id="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <div class="stat-num">
+              <span class="count" data-target="6000">0</span
+              ><span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Happy Students</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-1">
+            <div class="stat-num">
+              <span class="count" data-target="1100">0</span
+              ><span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Employed Alumni</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="stat-num">
+              <span class="count" data-target="18">0</span
+              ><span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Years of Excellence</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COURSES ─────────────────────────────────────────────────── -->
+    <section id="courses">
+      <div class="container">
+        <div class="courses-layout">
+          <div class="courses-img reveal">
+            <img
+              src="assets/images/prepare.JPG"
+              alt="Courses at Nirmal Academy"
+              loading="lazy"
+            />
+          </div>
+          <div class="reveal reveal-delay-1">
+            <p class="section-label">What We Offer</p>
+            <h2 class="section-title">Unlock Your True <em>Potential</em></h2>
+            <div class="divider"></div>
+            <p
+              style="
+                color: var(--gray);
+                font-size: 0.94rem;
+                line-height: 1.8;
+                margin-bottom: 8px;
+              "
+            >
+              Comprehensive preparation for students from 6th to 12th grade.
+              Expert faculty, personalized mentoring, and result-driven
+              methodology that paves the way for academic excellence.
+            </p>
+            <div class="course-list">
+              <div class="course-card">
+                <div class="course-icon">📘</div>
+                <div>
+                  <div class="course-name">Grades 6–10 (All Boards)</div>
+                  <div class="course-desc">
+                    State Board · CBSE · ICSE — MTSE, NTSE, Scholarships &amp;
+                    Olympiads
+                  </div>
+                </div>
+              </div>
+              <div class="course-card">
+                <div class="course-icon">⚗️</div>
+                <div>
+                  <div class="course-name">Grades 11–12 Science Stream</div>
+                  <div class="course-desc">
+                    State Board · CBSE — Strong conceptual foundation for higher
+                    studies
+                  </div>
+                </div>
+              </div>
+              <div class="course-card">
+                <div class="course-icon">🔬</div>
+                <div>
+                  <div class="course-name">JEE · NEET · CET Coaching</div>
+                  <div class="course-desc">
+                    Focused engineering &amp; medical entrance preparation with
+                    expert guidance
+                  </div>
+                </div>
+              </div>
+              <div class="course-card">
+                <div class="course-icon">🏅</div>
+                <div>
+                  <div class="course-name">Navodaya &amp; Olympiad Exams</div>
+                  <div class="course-desc">
+                    Specialized coaching for government competitive exams and
+                    science olympiads
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHY NIRMAL ──────────────────────────────────────────────── -->
+    <section id="why">
+      <div class="container">
+        <div class="why-header reveal">
+          <p class="section-label">Why Choose Us</p>
+          <h2 class="section-title">
+            What Makes Us The <em>Best Academy?</em>
+          </h2>
+          <div class="divider" style="margin: 12px auto"></div>
+        </div>
+        <div class="accordion-list">
+          <div class="acc-item reveal" data-acc>
+            <div class="acc-header">
+              <span class="acc-title">Where shall we begin?</span
+              ><span class="acc-icon">&#9660;</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-body-inner">
+                We began our journey in 2007 with just 15 students, driven by a
+                vision to empower young minds with quality education. Today, we
+                continue to expand, welcoming students from grades 6 to 12.
+              </div>
+            </div>
+          </div>
+          <div class="acc-item reveal reveal-delay-1" data-acc>
+            <div class="acc-header">
+              <span class="acc-title">How do we work together?</span
+              ><span class="acc-icon">&#9660;</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-body-inner">
+                At Nirmal Academy, education is a collaborative effort. We
+                foster strong partnerships with parents, encourage open
+                communication, and ensure holistic development through
+                interactive learning, co-curricular activities, and mentorship.
+              </div>
+            </div>
+          </div>
+          <div class="acc-item reveal reveal-delay-2" data-acc>
+            <div class="acc-header">
+              <span class="acc-title">Why is Nirmal Academy the best?</span
+              ><span class="acc-icon">&#9660;</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-body-inner">
+                We provide a well-rounded education with a focus on academic
+                excellence, character development, and innovation. Our expert
+                faculty, personalized mentoring, and student-centric approach
+                make us a premier institution.
+              </div>
+            </div>
+          </div>
+          <div class="acc-item reveal reveal-delay-3" data-acc>
+            <div class="acc-header">
+              <span class="acc-title">Do students get the best support?</span
+              ><span class="acc-icon">&#9660;</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-body-inner">
+                Yes! We ensure continuous learning, even in challenging times,
+                by adapting innovative teaching methods. Our nurturing
+                environment, strong faculty, and commitment to excellence
+                guarantee the best support for every student's success.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TESTIMONIALS ────────────────────────────────────────────── -->
+    <section id="testimonials">
+      <div class="container">
+        <div class="testimonials-header reveal">
+          <p class="section-label" style="color: var(--gold)">
+            Student Stories
+          </p>
+          <h2 class="section-title" style="color: #fff">
+            Results That <em>Speak</em>
+          </h2>
+          <div class="divider" style="margin: 12px auto"></div>
+        </div>
+        <div id="gallery-testimonials" class="reveal"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+     ANNOUNCEMENTS & UPCOMING EVENTS
+═══════════════════════════════════════════════════════════ -->
+    <section id="announcements">
+      <div class="container">
+        <div
+          class="reveal"
+          style="
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 52px;
+            flex-wrap: wrap;
+          "
+        >
+          <div>
+            <p class="section-label">What's New</p>
+            <h2 class="section-title">
+              Announcements &amp; <em>Upcoming Events</em>
+            </h2>
+            <div class="divider"></div>
+          </div>
+          <p
+            style="
+              max-width: 360px;
+              color: var(--gray);
+              font-size: 0.88rem;
+              line-height: 1.75;
+            "
+          >
+            Stay updated with the latest notices, exam schedules, results, and
+            events happening at Nirmal Academy.
           </p>
         </div>
 
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-<!-- Student Achievements -->
-
-
-  <div class="contact-us section" id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6  align-self-center">
-          <div class="section-heading">
-            <h6>Contact Us</h6>
-            <h2>Feel free to contact us anytime</h2>
-            <p>At Nirmal Academy, we’re committed to helping students achieve academic excellence through personalized
-              attention and expert guidance.
-              Whether you have questions about our classes, timings, or enrollment process — we’re just a message away.
-            </p>
-            <p>📞 Phone: +91 8879926605/9222177541 </p>
-            <p>📧 Email: nirmalacademy1787@gmail.com</p>
-            <!-- <div class="special-offer">
-              <span class="offer">off<br><em>50%</em></span>
-              <h6>Valide: <em>24 April 2036</em></h6>
-              <h4>Special Offer <em>50%</em> OFF!</h4>
-              <a href="#"><i class="fa fa-angle-right"></i></a>
-            </div> -->
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="contact-us-content">
-            <form id="contact-form" action="" method="post">
-              <div class="row">
-                <div class="col-lg-12">
-                  <fieldset>
-                    <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <input type="text" name="school" id="school" placeholder="School/College Name..." autocomplete="on"
-                      required>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <input type="number" name="standard" id="standard" placeholder="Standard" autocomplete="on"
-                      required>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <input type="text" name="phone" id="phone" placeholder="Contact No." autocomplete="on" required>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..."
-                      required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <textarea name="message" id="message" placeholder="Address"></textarea>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <button type="submit" id="form-submit" class="orange-button">Submit</button>
-                  </fieldset>
-                </div>
+        <div class="ann-layout">
+          <!-- ── LEFT: Announcements — renders from admin if data exists, else shows static fallback -->
+          <div class="ann-left reveal">
+            <div class="ann-live-badge">Live Updates</div>
+            <div class="ann-list" id="ann-list-render">
+              <div
+                style="
+                  padding: 24px 0;
+                  color: var(--gray);
+                  font-size: 0.88rem;
+                  text-align: center;
+                "
+              >
+                Loading announcements...
               </div>
-            </form>
+            </div>
+            <a href="#contact" class="ann-view-all">View all &amp; enquire →</a>
+          </div>
+
+          <!-- ── RIGHT: Events — renders from admin if data exists, else shows static fallback -->
+          <div class="ann-right reveal reveal-delay-1">
+            <div class="upcoming-label">
+              <div>
+                <p class="section-label" style="margin-bottom: 4px">
+                  Mark Your Calendar
+                </p>
+                <h3
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    color: var(--navy);
+                  "
+                >
+                  Upcoming
+                  <em style="color: var(--gold); font-style: italic">Events</em>
+                </h3>
+              </div>
+            </div>
+            <div class="event-cards" id="evt-cards-render">
+              <div
+                style="
+                  padding: 40px 0;
+                  color: var(--gray);
+                  font-size: 0.88rem;
+                  text-align: center;
+                "
+              >
+                Loading events...
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', function (e) {
-      e.preventDefault();
+    </section>
 
-      const form = e.target;
-      const data = new URLSearchParams();
+    <!-- ── EVENTS ─────────────────────────────────────────────────── -->
+    <section id="events">
+      <div class="container">
+        <div class="events-header reveal">
+          <p class="section-label">Latest Events</p>
+          <h2 class="section-title">Guest <em>Lectures</em></h2>
+          <div class="divider"></div>
+        </div>
+        <div id="gallery-events" class="reveal"></div>
+      </div>
+    </section>
 
-      // Gather form data
-      for (const pair of new FormData(form)) {
-        data.append(pair[0], pair[1]);
+    <!-- ── FACULTY ACHIEVEMENTS ────────────────────────────────────── -->
+    <section style="background: var(--cream); padding: 20px 0" id="faculty-ach">
+      <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 52px">
+          <p class="section-label">Recognitions</p>
+          <h2 class="section-title">Personal <em>Achievements</em></h2>
+          <div class="divider" style="margin: 12px auto"></div>
+        </div>
+        <div id="gallery-faculty" class="reveal"></div>
+      </div>
+    </section>
+
+    <!-- ── STUDENT SUCCESS ─────────────────────────────────────────── -->
+    <section id="student-ach">
+      <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 52px">
+          <p class="section-label">Alumni Spotlight</p>
+          <h2 class="section-title">Student <em>Success Stories</em></h2>
+          <div class="divider" style="margin: 12px auto"></div>
+        </div>
+        <div class="student-profile">
+          <div class="student-imgs reveal">
+            <img
+              src="assets/images/students/Ronald Cruz 1.jpeg"
+              alt="Ronald Cruz"
+              loading="lazy"
+            />
+            <img
+              src="assets/images/students/Ronald Cruz 2.jpeg"
+              alt="Ronald Cruz"
+              loading="lazy"
+            />
+          </div>
+          <div class="reveal reveal-delay-1">
+            <p class="section-label">Featured Alumni</p>
+            <blockquote class="student-quote">
+              "Nirmal Academy shaped the foundation of everything I've
+              achieved."
+            </blockquote>
+            <div class="student-name">Ronald Cruz</div>
+            <div class="student-role">Commercial Pilot</div>
+            <p class="student-feedback">
+              My experience at Nirmal Academy has been truly enriching. The
+              faculty provides excellent guidance and ensures conceptual clarity
+              in every subject. The supportive environment and practical
+              teaching methods helped me gain confidence and achieve my goals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ─────────────────────────────────────────────────── -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <p class="section-label" style="color: var(--gold)">Get In Touch</p>
+            <h2 class="section-title" style="color: #fff">
+              Feel Free to<br /><em>Contact Us</em>
+            </h2>
+            <div class="divider"></div>
+            <p>
+              At Nirmal Academy, we're committed to helping students achieve
+              academic excellence through personalized attention and expert
+              guidance. Whether you have questions about classes, timings, or
+              enrollment — we're just a message away.
+            </p>
+            <div class="contact-detail">
+              <div class="contact-icon">📞</div>
+              <div>
+                <a href="tel:+918879926605">+91 8879926605</a><br />
+                <a href="tel:+919222177541">+91 9222177541</a>
+              </div>
+            </div>
+             <div class="contact-detail">
+              <div class="contact-icon">📧</div>
+              <a href="mailto:nirmalacademy1787@gmail.com"
+                >nirmalacademy1787@gmail.com</a
+              >
+            </div>
+            <!-- Insert insta link -->
+            <div class="contact-detail">
+              <div class="contact-icon">📷</div>
+              <a
+                href="https://www.instagram.com/nirmalacademy1984"
+                target="_blank"
+                >nirmalacademy1984</a
+              >
+            </div>
+            <!-- Insert LinkedIn link -->
+            <div class="contact-detail">
+              <div class="contact-icon">💼</div>
+              <a
+                href="https://www.linkedin.com/in/ramashankar-chourasia-73199527a"
+                target="_blank"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+          <div class="reveal reveal-delay-1">
+            <div class="contact-form">
+              <form id="contactForm">
+                <div class="form-grid">
+                  <div class="form-row">
+                    <label>Your Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Full name"
+                      required
+                    />
+                  </div>
+                  <div class="form-row">
+                    <label>School / College</label>
+                    <input
+                      type="text"
+                      name="school"
+                      placeholder="Institution name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="form-row">
+                    <label>Standard</label>
+                    <input
+                      type="number"
+                      name="standard"
+                      placeholder="e.g. 10"
+                      required
+                    />
+                  </div>
+                  <div class="form-row">
+                    <label>Contact No.</label>
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="+91 XXXXX XXXXX"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <label>Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+                <div class="form-row">
+                  <label>Address</label>
+                  <textarea
+                    name="message"
+                    placeholder="Your address..."
+                  ></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">
+                  Submit Enquiry
+                </button>
+                <div class="form-success" id="formSuccess">
+                  ✓ Thank you! Your message has been submitted.
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+    <footer>
+      <div class="container">
+        <p>Copyright &copy; 2025 Nirmal Academy. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script>
+      // NAV
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      hamburger.addEventListener("click", () =>
+        navLinks.classList.toggle("open"),
+      );
+      navLinks
+        .querySelectorAll("a")
+        .forEach((a) =>
+          a.addEventListener("click", () => navLinks.classList.remove("open")),
+        );
+
+      // ═══════════════════════════════════════════════════════════════
+      // GALLERY SYSTEM — data-driven, reusable, lightbox + swipe
+      // ═══════════════════════════════════════════════════════════════
+
+      const GALLERY_DATA = {
+        achievements: [
+          {
+            type: "image",
+            src: "assets/images/achivements1.jpeg",
+            caption: "Achievement 2024",
+          },
+          {
+            type: "image",
+            src: "assets/images/achivements2.jpeg",
+            caption: "Science Olympiad Winners",
+          },
+          {
+            type: "image",
+            src: "assets/images/achivements3.jpeg",
+            caption: "NTSE Toppers",
+          },
+          {
+            type: "image",
+            src: "assets/images/achivements4.jpeg",
+            caption: "Board Exam Excellence",
+          },
+          {
+            type: "image",
+            src: "assets/images/achivements5.jpeg",
+            caption: "Scholarship Recipients",
+          },
+          {
+            type: "image",
+            src: "assets/images/achivements6.jpeg",
+            caption: "Merit Holders",
+          },
+          {
+            type: "image",
+            src: "assets/images/achivements7.jpeg",
+            caption: "JEE Qualifiers",
+          },
+          {
+            type: "image",
+            src: "assets/images/achivements8.jpeg",
+            caption: "NEET Achievers",
+          },
+        ],
+        testimonials: [
+          {
+            type: "image",
+            src: "assets/images/testinomial1.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial2.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial3.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial4.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "video",
+            src: "assets/videos/feedback_vd1.mp4",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial5.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial6.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial7.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial8.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial9.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial10.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "video",
+            src: "assets/videos/feedback_vd2.mp4",
+            caption: "Student Feedback",
+          },
+        ],
+        events: [
+          {
+            type: "image",
+            src: "assets/images/guest_1.jpg",
+            caption: "Guest Lecture — Career Guidance",
+          },
+          {
+            type: "image",
+            src: "assets/images/guest_2.jpg",
+            caption: "Expert Speaker Series",
+          },
+        ],
+        faculty: [
+          {
+            type: "image",
+            src: "assets/images/achivement1.jpeg",
+            caption: "Faculty Recognition",
+          },
+          {
+            type: "image",
+            src: "assets/images/achivement2.jpeg",
+            caption: "Research & Development Award",
+          },
+        ],
+      };
+
+      (function injectGalleryCSS() {
+        const style = document.createElement("style");
+        style.textContent = `
+    .gl-wrap { position:relative; }
+    .gl-track-outer { overflow:hidden; border-radius:16px; }
+    .gl-track {
+      display:flex; gap:16px;
+      transition:transform .42s cubic-bezier(.4,0,.2,1);
+      will-change:transform;
+    }
+    .gl-card {
+      flex-shrink:0;
+      width: calc((100% - (var(--gl-pp, 4) - 1) * 16px) / var(--gl-pp, 4));
+      border-radius:12px; overflow:hidden;
+      cursor:pointer; position:relative;
+      background:rgba(11,31,58,.08);
+      transition:transform .3s, box-shadow .3s;
+    }
+    .gl-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(11,31,58,.18); }
+    .gl-card img, .gl-card video {
+      width:100%; height:100%;
+      display:block;
+      object-fit:contain; object-position:center;
+      background:#f0ebe1;
+      pointer-events:none;
+    }
+    .gl-dark .gl-card img, .gl-dark .gl-card video { background:rgba(255,255,255,.05); }
+    .gl-card-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgb(210 207 207 / 55%) 0%,transparent 50%);
+      opacity:0; transition:opacity .3s;
+      display:flex; align-items:flex-end; padding:14px;
+    }
+    .gl-card:hover .gl-card-overlay { opacity:1; }
+    .gl-card-caption { color:#fff; font-size:.78rem; font-weight:500; letter-spacing:.04em; line-height:1.3; }
+    .gl-zoom-icon {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%) scale(.7);
+      width:44px; height:44px; border-radius:50%;
+      background:rgba(200,155,60,.9);
+      display:flex; align-items:center; justify-content:center;
+      color:#0B1F3A; font-size:1rem; font-weight:700;
+      opacity:0; transition:opacity .3s, transform .3s;
+    }
+    .gl-card:hover .gl-zoom-icon { opacity:1; transform:translate(-50%,-50%) scale(1); }
+    .gl-controls { display:flex; align-items:center; justify-content:center; gap:16px; margin-top:24px; flex-wrap:wrap; }
+    .gl-btn {
+      width:48px; height:48px; border-radius:50%;
+      border:1.5px solid rgba(11,31,58,.18); background:#fff;
+      cursor:pointer; font-size:1.1rem; color:#0B1F3A;
+      display:flex; align-items:center; justify-content:center;
+      transition:.3s; box-shadow:0 2px 12px rgba(11,31,58,.08); flex-shrink:0;
+    }
+    .gl-btn:hover:not(:disabled) { background:#0B1F3A; color:#fff; border-color:#0B1F3A; }
+    .gl-btn:disabled { opacity:.3; cursor:default; }
+    .gl-dots { display:flex; gap:6px; align-items:center; }
+    .gl-dot { width:7px; height:7px; border-radius:50%; background:rgba(11,31,58,.2); border:none; cursor:pointer; transition:.3s; padding:0; }
+    .gl-dot.active { background:#C89B3C; transform:scale(1.3); }
+    .gl-counter { font-size:.8rem; font-weight:600; color:#6B7585; letter-spacing:.06em; min-width:52px; text-align:center; }
+    .lb-backdrop {
+      position:fixed; inset:0; z-index:9999;
+      background:rgba(6,15,28,.96);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .lb-backdrop.open { opacity:1; pointer-events:all; }
+    .lb-inner { position:relative; max-width:92vw; max-height:92vh; display:flex; flex-direction:column; align-items:center; gap:14px; }
+    .lb-media { max-width:90vw; max-height:80vh; border-radius:12px; display:block; object-fit:contain; }
+    .lb-caption { color:rgba(255,255,255,.65); font-size:.84rem; letter-spacing:.04em; }
+    .lb-counter { color:rgba(255,255,255,.35); font-size:.76rem; }
+    .lb-close { position:absolute; top:-44px; right:0; background:none; border:none; color:rgba(255,255,255,.7); font-size:1.6rem; cursor:pointer; line-height:1; transition:.2s; }
+    .lb-close:hover { color:#C89B3C; }
+    .lb-nav-btn {
+      position:fixed; top:50%; transform:translateY(-50%);
+      width:52px; height:52px; border-radius:50%;
+      background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+      color:#fff; font-size:1.2rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:.25s; backdrop-filter:blur(8px);
+    }
+    .lb-nav-btn:hover { background:rgba(200,155,60,.8); border-color:transparent; color:#0B1F3A; }
+    .lb-nav-btn.lb-prev { left:20px; }
+    .lb-nav-btn.lb-next { right:20px; }
+    @media(max-width:600px){ .lb-nav-btn.lb-prev { left:8px; } .lb-nav-btn.lb-next { right:8px; } }
+    .gl-dark .gl-btn { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.15); color:#fff; }
+    .gl-dark .gl-btn:hover:not(:disabled) { background:#C89B3C; border-color:#C89B3C; color:#0B1F3A; }
+    .gl-dark .gl-dot { background:rgba(255,255,255,.2); }
+    .gl-dark .gl-dot.active { background:#C89B3C; }
+    .gl-dark .gl-counter { color:rgba(255,255,255,.4); }
+  `;
+        document.head.appendChild(style);
+      })();
+
+      class Gallery {
+        constructor(mountId, items, opts = {}) {
+          this.el = document.getElementById(mountId);
+          if (!this.el || !items.length) return;
+          this.items = items;
+          this.perPage = opts.perPage || this._defaultPerPage();
+          this.dark = opts.dark || false;
+          this.autoplay = opts.autoplay || 0;
+          this.index = 0;
+          this.lbIndex = 0;
+          this._build();
+          this._bindEvents();
+          this._updateState();
+          if (this.autoplay) this._startAuto();
+        }
+        _defaultPerPage() {
+          return window.innerWidth < 480
+            ? 1
+            : window.innerWidth < 768
+              ? 2
+              : window.innerWidth < 1024
+                ? 3
+                : 4;
+        }
+        _build() {
+          this.el.innerHTML = "";
+          this.el.classList.toggle("gl-dark", this.dark);
+          this.el.classList.add("gl-wrap");
+          const outer = document.createElement("div");
+          outer.className = "gl-track-outer";
+          this.track = document.createElement("div");
+          this.track.className = "gl-track";
+          this.track.style.setProperty("--gl-pp", this.perPage);
+          this.track.innerHTML = this.items
+            .map(
+              (item, i) => `
+      <div class="gl-card" data-index="${i}">
+        ${
+          item.type === "video"
+            ? `<video src="${item.src}" muted playsinline preload="metadata" poster="${item.poster || ""}"></video>`
+            : `<img src="${item.src}" alt="${item.caption || ""}" loading="lazy">`
+        }
+        <div class="gl-card-overlay"><span class="gl-card-caption">${item.caption || ""}</span></div>
+        <div class="gl-zoom-icon">⤢</div>
+      </div>`,
+            )
+            .join("");
+          outer.appendChild(this.track);
+          this.el.appendChild(outer);
+          const controls = document.createElement("div");
+          controls.className = "gl-controls";
+          controls.innerHTML = `
+      <button class="gl-btn gl-prev" aria-label="Previous">&#8592;</button>
+      <div class="gl-dots"></div>
+      <span class="gl-counter"></span>
+      <button class="gl-btn gl-next" aria-label="Next">&#8594;</button>`;
+          this.el.appendChild(controls);
+          this.btnPrev = controls.querySelector(".gl-prev");
+          this.btnNext = controls.querySelector(".gl-next");
+          this.dotsWrap = controls.querySelector(".gl-dots");
+          this.counter = controls.querySelector(".gl-counter");
+          const pageCount = Math.ceil(this.items.length / this.perPage);
+          this.dotsWrap.innerHTML = Array.from(
+            { length: pageCount },
+            (_, p) =>
+              `<button class="gl-dot" data-page="${p}" aria-label="Go to page ${p + 1}"></button>`,
+          ).join("");
+          this._buildLightbox();
+        }
+        _buildLightbox() {
+          this.lb = document.createElement("div");
+          this.lb.className = "lb-backdrop";
+          this.lb.innerHTML = `
+      <button class="lb-nav-btn lb-prev" aria-label="Previous">&#8592;</button>
+      <div class="lb-inner">
+        <button class="lb-close" aria-label="Close">&#10005;</button>
+        <div class="lb-media-wrap"></div>
+        <div class="lb-caption"></div>
+        <div class="lb-counter"></div>
+      </div>
+      <button class="lb-nav-btn lb-next" aria-label="Next">&#8594;</button>`;
+          document.body.appendChild(this.lb);
+          this.lbWrap = this.lb.querySelector(".lb-media-wrap");
+          this.lbCaption = this.lb.querySelector(".lb-caption");
+          this.lbCounter = this.lb.querySelector(".lb-counter");
+          this.lb
+            .querySelector(".lb-close")
+            .addEventListener("click", () => this._closeLB());
+          this.lb
+            .querySelector(".lb-prev")
+            .addEventListener("click", () => this._lbGo(this.lbIndex - 1));
+          this.lb
+            .querySelector(".lb-next")
+            .addEventListener("click", () => this._lbGo(this.lbIndex + 1));
+          this.lb.addEventListener("click", (e) => {
+            if (e.target === this.lb) this._closeLB();
+          });
+        }
+        _openLB(i) {
+          this.lbIndex = i;
+          this._renderLB();
+          this.lb.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+        _closeLB() {
+          this.lb.classList.remove("open");
+          document.body.style.overflow = "";
+          const v = this.lbWrap.querySelector("video");
+          if (v) v.pause();
+        }
+        _lbGo(i) {
+          this.lbIndex = (i + this.items.length) % this.items.length;
+          this._renderLB();
+        }
+        _renderLB() {
+          const item = this.items[this.lbIndex];
+          const v = this.lbWrap.querySelector("video");
+          if (v) v.pause();
+          this.lbWrap.innerHTML =
+            item.type === "video"
+              ? `<video class="lb-media" src="${item.src}" controls autoplay></video>`
+              : `<img class="lb-media" src="${item.src}" alt="${item.caption || ""}">`;
+          this.lbCaption.textContent = item.caption || "";
+          this.lbCounter.textContent = `${this.lbIndex + 1} / ${this.items.length}`;
+        }
+        _slideTo(i) {
+          const max = Math.max(0, this.items.length - this.perPage);
+          this.index = Math.max(0, Math.min(i, max));
+          this.track.style.setProperty("--gl-pp", this.perPage);
+          const outerW = this.track.parentElement.offsetWidth;
+          const gap = 16;
+          const cardW = (outerW - gap * (this.perPage - 1)) / this.perPage;
+          this.track.style.transform = `translateX(-${this.index * (cardW + gap)}px)`;
+          this._updateState();
+        }
+        _updateState() {
+          const pageCount = Math.ceil(this.items.length / this.perPage);
+          const activePage = Math.floor(this.index / this.perPage);
+          this.dotsWrap
+            .querySelectorAll(".gl-dot")
+            .forEach((d, p) => d.classList.toggle("active", p === activePage));
+          const end = Math.min(this.index + this.perPage, this.items.length);
+          this.counter.textContent = `${this.index + 1}–${end} / ${this.items.length}`;
+          this.btnPrev.disabled = this.index === 0;
+          this.btnNext.disabled =
+            this.index >= this.items.length - this.perPage;
+        }
+        _bindEvents() {
+          this.btnPrev.addEventListener("click", () =>
+            this._slideTo(this.index - this.perPage),
+          );
+          this.btnNext.addEventListener("click", () =>
+            this._slideTo(this.index + this.perPage),
+          );
+          this.dotsWrap.addEventListener("click", (e) => {
+            if (e.target.dataset.page !== undefined)
+              this._slideTo(+e.target.dataset.page * this.perPage);
+          });
+          this.track.addEventListener("click", (e) => {
+            const card = e.target.closest(".gl-card");
+            if (card) this._openLB(+card.dataset.index);
+          });
+          document.addEventListener("keydown", (e) => {
+            if (!this.lb.classList.contains("open")) return;
+            if (e.key === "ArrowRight") this._lbGo(this.lbIndex + 1);
+            if (e.key === "ArrowLeft") this._lbGo(this.lbIndex - 1);
+            if (e.key === "Escape") this._closeLB();
+          });
+          let tx = 0;
+          this.track.parentElement.addEventListener(
+            "touchstart",
+            (e) => {
+              tx = e.touches[0].clientX;
+            },
+            { passive: true },
+          );
+          this.track.parentElement.addEventListener(
+            "touchend",
+            (e) => {
+              const dx = e.changedTouches[0].clientX - tx;
+              if (Math.abs(dx) > 50)
+                dx < 0
+                  ? this._slideTo(this.index + this.perPage)
+                  : this._slideTo(this.index - this.perPage);
+            },
+            { passive: true },
+          );
+          let ltx = 0;
+          this.lb.addEventListener(
+            "touchstart",
+            (e) => {
+              ltx = e.touches[0].clientX;
+            },
+            { passive: true },
+          );
+          this.lb.addEventListener(
+            "touchend",
+            (e) => {
+              const dx = e.changedTouches[0].clientX - ltx;
+              if (Math.abs(dx) > 40)
+                dx < 0
+                  ? this._lbGo(this.lbIndex + 1)
+                  : this._lbGo(this.lbIndex - 1);
+            },
+            { passive: true },
+          );
+          let resizeTimer;
+          window.addEventListener("resize", () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+              const newPP = this._defaultPerPage();
+              if (newPP !== this.perPage) {
+                this.perPage = newPP;
+                this._rebuild();
+              } else {
+                this._slideTo(this.index);
+              }
+            }, 200);
+          });
+        }
+        _rebuild() {
+          const saved = this.index;
+          this.lb.remove();
+          this._build();
+          this._bindEvents();
+          this._slideTo(saved);
+        }
+        _startAuto() {
+          this._autoTimer = setInterval(() => {
+            const next = this.index + this.perPage;
+            this._slideTo(next >= this.items.length ? 0 : next);
+          }, this.autoplay);
+          this.el.addEventListener("mouseenter", () =>
+            clearInterval(this._autoTimer),
+          );
+          this.el.addEventListener("mouseleave", () => this._startAuto());
+        }
       }
 
-      // Disable the submit button to prevent multiple submissions
-      const submitButton = document.getElementById('form-submit');
-      submitButton.disabled = true;
-      submitButton.innerText = 'Submitting...';
+      new Gallery("gallery-achievements", GALLERY_DATA.achievements, {
+        perPage: 4,
+      });
+      new Gallery("gallery-testimonials", GALLERY_DATA.testimonials, {
+        dark: true,
+        perPage: 3,
+        autoplay: 4000,
+      });
+      new Gallery("gallery-events", GALLERY_DATA.events, { perPage: 2 });
+      new Gallery("gallery-faculty", GALLERY_DATA.faculty, { perPage: 2 });
 
-     // fetch('https://script.google.com/macros/s/AKfycbyaBzyyF1wpVot3ZPA616Dh1dUPFgGHBb5QlS6XbMg27yhaMNm5_dTFAHm-spVINpWLSQ/exec', {
-      fetch('https://script.google.com/macros/s/AKfycbzZV5S5ONIxygQ40hg43wUwA6QJaeSVrsGErgCjAx6TgFwCdBAjhaK7D_CSwhF9LC4V/exec', {      
-        method: 'POST',
-        body: data
-      })
-        .then(response => {
-          // Check for a successful response
-          if (response.ok) {
-            return response.text();
-          } else {
-            throw new Error('Submission failed.');
-          }
-        })
-        .then(result => {
-          // Show success message
-          alert("Thank you! Your message has been submitted.");
-          form.reset();
-        })
-        .catch(error => {
-          // Show error message
-          alert("Oops! Something went wrong. Please try again.");
-          console.e("getting error", error)
-          console.error("Error:", error);
-        })
-        .finally(() => {
-          // Re-enable the submit button after the process is complete
-          submitButton.disabled = false;
-          submitButton.innerText = 'Submit';
+      // ACCORDION
+      document.querySelectorAll("[data-acc]").forEach((item) => {
+        item.querySelector(".acc-header").addEventListener("click", () => {
+          const isOpen = item.classList.contains("open");
+          document
+            .querySelectorAll("[data-acc].open")
+            .forEach((i) => i.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
         });
-    });
-  </script>
+      });
 
-  <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2025. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+      // COUNTER
+      function animateCount(el, target, duration) {
+        duration = duration || 1800;
+        let start = 0;
+        const step = function (timestamp) {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          el.textContent = Math.floor(progress * target).toLocaleString();
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target.toLocaleString();
+        };
+        requestAnimationFrame(step);
+      }
+      const counters = document.querySelectorAll(".count");
+      const statsObs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              animateCount(e.target, +e.target.dataset.target);
+              statsObs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+      counters.forEach(function (c) {
+        statsObs.observe(c);
+      });
 
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/counter.js"></script>
-  <script src="assets/js/custom.js"></script>
+      // SCROLL REVEAL
+      const revealObs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              revealObs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        revealObs.observe(el);
+      });
 
-</body>
+      // CONTACT FORM
+      // Contact form handled by Firebase module below
 
+      // STATIC VIDEO PLAY BUTTONS
+      document.querySelectorAll(".ec-play").forEach(function (overlay) {
+        overlay.addEventListener("click", function () {
+          const video = overlay.parentElement.querySelector("video");
+          if (!video) return;
+          overlay.style.display = "none";
+          video.controls = true;
+          video.play();
+        });
+      });
+    </script>
+
+    <!-- ── FIREBASE: Real-time Firestore for announcements & events ── -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        query,
+        orderBy,
+        onSnapshot,
+        addDoc,
+        serverTimestamp,
+        doc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBB0ixAQ5-EyaMC7ZmOTPmzKmUacBqwoTk",
+        authDomain: "nirmal-academy-a14d5.firebaseapp.com",
+        projectId: "nirmal-academy-a14d5",
+        storageBucket: "nirmal-academy-a14d5.firebasestorage.app",
+        messagingSenderId: "830472511607",
+        appId: "1:830472511607:web:5ef2220bc8d9b6a458a672",
+        measurementId: "G-DXTK8HYJ66",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      const TYPE_LABEL = {
+        exam: "Exam",
+        holiday: "Holiday",
+        result: "Result",
+        event: "Event",
+        urgent: "Important",
+      };
+
+      // ── Offer Banner ──────────────────────────────────────────
+      window.closeBanner = function () {
+        document.getElementById("offerBanner").style.display = "none";
+      };
+
+      (async function loadBanner() {
+        try {
+          const snap = await getDoc(doc(db, "settings", "banner"));
+          if (!snap.exists()) return;
+          const data = snap.data();
+
+          // Don't show if disabled
+          if (!data.active) return;
+
+          // Don't show if expired
+          if (data.expiry) {
+            const expDate = new Date(data.expiry);
+            expDate.setHours(23, 59, 59);
+            if (new Date() > expDate) return;
+          }
+
+          // Populate banner
+          const color = data.color || "#C89B3C";
+          document.getElementById("banner-accent-bar").style.background = color;
+
+          if (data.badge) {
+            const b = document.getElementById("banner-popup-badge");
+            b.textContent = data.badge;
+            b.style.color = color;
+            b.style.borderColor = color;
+            b.style.background = color + "1a";
+          }
+          if (data.title)
+            document.getElementById("banner-popup-title").textContent =
+              data.title;
+          if (data.message)
+            document.getElementById("banner-popup-message").textContent =
+              data.message;
+          if (data.btnText) {
+            const btn = document.getElementById("banner-popup-btn");
+            btn.textContent = data.btnText;
+            btn.style.background = color;
+          }
+          if (data.btnLink)
+            document.getElementById("banner-popup-btn").href = data.btnLink;
+
+          // Show image if set
+          const imgSrc = data.imgUrl || data.imgB64 || "";
+          if (imgSrc) {
+            const imgWrap = document.getElementById("banner-popup-img-wrap");
+            const imgEl = document.getElementById("banner-popup-img");
+            imgEl.src = imgSrc;
+            imgWrap.style.display = "block";
+          }
+
+          // Show expiry if set
+          if (data.expiry) {
+            document.getElementById("banner-expiry-line").style.display =
+              "block";
+            document.getElementById("banner-expiry-text").textContent =
+              new Date(data.expiry).toLocaleDateString("en-IN", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              });
+          }
+
+          // Show banner
+          const banner = document.getElementById("offerBanner");
+          banner.style.display = "flex";
+
+          // Close on backdrop click
+          banner.addEventListener("click", function (e) {
+            if (e.target === banner) closeBanner();
+          });
+
+          // Close on Escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closeBanner();
+          });
+        } catch (err) {
+          console.log("Banner not configured yet:", err);
+        }
+      })();
+
+      function esc(str) {
+        if (!str) return "";
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      // ── Announcements: real-time listener ────────────────────
+      const annEl = document.getElementById("ann-list-render");
+      if (annEl) {
+        const annQ = query(
+          collection(db, "announcements"),
+          orderBy("createdAt", "desc"),
+        );
+        onSnapshot(annQ, (snap) => {
+          const anns = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          if (!anns.length) {
+            annEl.innerHTML =
+              '<div style="padding:24px 0; color:var(--gray); font-size:.88rem; text-align:center;">No announcements at the moment. Check back soon!</div>';
+            return;
+          }
+          annEl.innerHTML = anns
+            .map(
+              (a) =>
+                '<div class="ann-item">' +
+                '<div class="ann-pill ' +
+                a.type +
+                '"></div>' +
+                '<div class="ann-content">' +
+                '<div class="ann-meta">' +
+                '<span class="ann-type ' +
+                a.type +
+                '">' +
+                (TYPE_LABEL[a.type] || a.type) +
+                "</span>" +
+                '<span class="ann-date">' +
+                esc(a.date) +
+                "</span>" +
+                "</div>" +
+                '<div class="ann-text">' +
+                esc(a.title) +
+                "</div>" +
+                (a.sub
+                  ? '<div class="ann-subtext">' + esc(a.sub) + "</div>"
+                  : "") +
+                "</div>" +
+                "</div>",
+            )
+            .join("");
+        });
+      }
+
+      // ── Events: real-time listener ────────────────────────────
+      const evtEl = document.getElementById("evt-cards-render");
+      if (evtEl) {
+        const evtQ = query(
+          collection(db, "events"),
+          orderBy("createdAt", "desc"),
+        );
+        onSnapshot(evtQ, (snap) => {
+          const evts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          if (!evts.length) {
+            evtEl.innerHTML =
+              '<div style="padding:40px 0; color:var(--gray); font-size:.88rem; text-align:center;">No upcoming events at the moment. Check back soon!</div>';
+            return;
+          }
+
+          evtEl.innerHTML = evts
+            .map((e) => {
+              let mediaPart = "";
+              if (e.mediaType === "image" && e.imgSrc) {
+                mediaPart =
+                  '<img src="' +
+                  esc(e.imgSrc) +
+                  '" alt="' +
+                  esc(e.title) +
+                  '" loading="lazy">';
+              } else if (e.mediaType === "video" && e.vidSrc) {
+                mediaPart =
+                  '<video src="' +
+                  esc(e.vidSrc) +
+                  '"' +
+                  (e.vidPoster ? ' poster="' + esc(e.vidPoster) + '"' : "") +
+                  ' muted playsinline preload="none"></video>' +
+                  '<div class="ec-play"><div class="ec-play-btn">\u25B6</div></div>';
+              } else if (e.mediaType === "icon") {
+                mediaPart =
+                  '<span style="font-size:2.5rem;">' +
+                  esc(e.icon || "\uD83D\uDCCC") +
+                  "</span>";
+              }
+
+              const dateBadge =
+                e.dayLabel || e.monLabel
+                  ? '<div class="ec-date-badge">' +
+                    '<span class="day">' +
+                    esc(e.dayLabel) +
+                    "</span>" +
+                    '<span class="mon">' +
+                    esc(e.monLabel) +
+                    "</span>" +
+                    "</div>"
+                  : "";
+
+              const isTextOnly = !e.mediaType || e.mediaType === "none";
+              const mediaClass = isTextOnly
+                ? ' text-only" style="background:linear-gradient(135deg,#0B1F3A,#1a3860)'
+                : "";
+
+              return (
+                '<div class="event-card-new">' +
+                '<div class="ec-media' +
+                mediaClass +
+                '">' +
+                mediaPart +
+                dateBadge +
+                "</div>" +
+                '<div class="ec-body">' +
+                '<div class="ec-tag">' +
+                esc(e.tag) +
+                "</div>" +
+                '<div class="ec-title">' +
+                esc(e.title) +
+                "</div>" +
+                '<p class="ec-desc">' +
+                esc(e.desc || "") +
+                "</p>" +
+                '<div class="ec-footer">' +
+                '<div class="ec-meta">' +
+                (e.time
+                  ? "<span>\uD83D\uDD59 " + esc(e.time) + "</span>"
+                  : "") +
+                (e.venue
+                  ? "<span>\uD83D\uDCCD " + esc(e.venue) + "</span>"
+                  : "") +
+                "</div>" +
+                '<a href="' +
+                esc(e.ctaLink || "#contact") +
+                '" class="ec-cta">' +
+                esc(e.cta || "Register \u2192") +
+                "</a>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
+              );
+            })
+            .join("");
+
+          // Re-bind video play buttons on dynamically rendered cards
+          evtEl.querySelectorAll(".ec-play").forEach((overlay) => {
+            overlay.addEventListener("click", () => {
+              const video = overlay.parentElement.querySelector("video");
+              if (!video) return;
+              overlay.style.display = "none";
+              video.controls = true;
+              video.play();
+            });
+          });
+        });
+      }
+
+      // ── Enquiry form submission → Firestore ─────────────────
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const btn = document.getElementById("submitBtn");
+          const success = document.getElementById("formSuccess");
+          btn.disabled = true;
+          btn.textContent = "Submitting…";
+          const fd = new FormData(this);
+          addDoc(collection(db, "enquiries"), {
+            name: fd.get("name") || "",
+            school: fd.get("school") || "",
+            standard: fd.get("standard") || "",
+            phone: fd.get("phone") || "",
+            email: fd.get("email") || "",
+            address: fd.get("message") || "",
+            status: "unread",
+            createdAt: serverTimestamp(),
+          })
+            .then(function () {
+              contactForm.reset();
+              success.style.display = "block";
+            })
+            .catch(function (err) {
+              alert("Oops! Something went wrong. Please try again.");
+              console.error(err);
+            })
+            .finally(function () {
+              btn.disabled = false;
+              btn.textContent = "Submit Enquiry";
+            });
+        });
+      }
+    </script>
+  </body>
 </html>
