@@ -1605,6 +1605,29 @@
           grid-template-columns: 1fr;
         }
       }
+        .tl-item:nth-child(odd) .tl-card,
+        .tl-item:nth-child(even) .tl-card {
+          order: 2;
+          padding: 0 0 32px;
+          text-align: left;
+          flex: 1;
+        }
+        .tl-item:nth-child(odd) .tl-box::after,
+        .tl-item:nth-child(even) .tl-box::after { display: none; }
+        .tl-item:nth-child(odd) .tl-empty,
+        .tl-item:nth-child(even) .tl-empty { display: none; }
+        .tl-mid {
+          order: 1;
+          padding-top: 14px;
+          align-items: center;
+        }
+        .tl-connector {
+          flex: 1;
+          min-height: 32px;
+        }
+        .tl-node { width: 40px; height: 40px; font-size: 1rem; }
+        .tl-year { font-size: 2rem; }
+  
 
       /* ── FOOTER ───────────────────────────────────────────────── */
       footer {
@@ -1979,12 +2002,12 @@
       </div>
 
       <div class="story-entries">
-        <!-- Entry 01 -->
+        <!-- Entry 01 — Director teaser card -->
         <div class="story-entry reveal">
           <div class="story-photo-pane">
             <img
               src="assets/images/banner_img_2.JPG"
-              alt="Managing Director"
+              alt="Dr. Ramashanker Chourasia — Managing Director"
               loading="lazy"
             />
           </div>
@@ -1996,12 +2019,22 @@
               Quality education is every child's birthright.
             </p>
             <p class="story-bio">
-              Founded Nirmal Academy in 2007 with 15 students and a mission to
-              democratise quality education in Panvel. Over 18 years the
-              institution has grown into a premier coaching centre serving
-              students from grades 6 to 12 across State Board, CBSE, and ICSE —
-              celebrating thousands of success stories along the way.
+              PhD in Education &middot; MSc Microbiology &middot; MA Education &middot; B.Ed.
+              Over 19 years of visionary leadership that transformed a single
+              room in Panvel into an institution shaping 6,000+ students.
+              His research-driven, student-first philosophy defines everything
+              Nirmal Academy stands for.
             </p>
+            <a href="aboutDirector.html" style="
+              display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+              background:var(--gold);color:var(--navy);
+              font-family:var(--font-body);font-size:.84rem;font-weight:700;
+              padding:11px 22px;border-radius:8px;text-decoration:none;
+              transition:.3s cubic-bezier(.4,0,.2,1);"
+              onmouseover="this.style.background='#f0c96b';this.style.transform='translateY(-2px)';"
+              onmouseout="this.style.background='#c89b3c';this.style.transform='translateY(0)';">
+              Read His Full Story &nbsp;&rarr;
+            </a>
           </div>
         </div>
 
@@ -2348,18 +2381,6 @@
       </div>
     </section>
 
-    <!-- ── FACULTY ACHIEVEMENTS ────────────────────────────────────── -->
-    <section style="background: var(--cream); padding: 20px 0" id="faculty-ach">
-      <div class="container">
-        <div class="reveal" style="text-align: center; margin-bottom: 52px">
-          <p class="section-label">Recognitions</p>
-          <h2 class="section-title">Personal <em>Achievements</em></h2>
-          <div class="divider" style="margin: 12px auto"></div>
-        </div>
-        <div id="gallery-faculty" class="reveal"></div>
-      </div>
-    </section>
-
     <!-- ── STUDENT SUCCESS ─────────────────────────────────────────── -->
     <section id="student-ach">
       <div class="container">
@@ -2423,7 +2444,7 @@
                 <a href="tel:+919222177541">+91 9222177541</a>
               </div>
             </div>
-             <div class="contact-detail">
+            <div class="contact-detail">
               <div class="contact-icon">📧</div>
               <a href="mailto:nirmalacademy1787@gmail.com"
                 >nirmalacademy1787@gmail.com</a
