@@ -6,7 +6,60 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Nirmal Academy</title>
+    <title>Nirmal Academy — Quality Coaching Since 2007 | Panvel</title>
+
+    <!-- ── FAVICON (logo shown in browser tabs & bookmarks) ── -->
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
+    <link rel="apple-touch-icon" href="assets/images/logo.jpg" />
+
+    <!-- ── SEO — shown in Google search results ── -->
+    <meta
+      name="description"
+      content="Nirmal Academy, Panvel — Premier coaching for Grades 6–12 (State Board, CBSE, ICSE). Expert guidance for JEE, NEET, CET, NTSE, Olympiads & Scholarships. Est. 2007. 6000+ students shaped."
+    />
+    <meta
+      name="keywords"
+      content="Nirmal Academy, coaching Panvel, JEE coaching Panvel, NEET coaching, CET preparation, CBSE tuition, ICSE tuition, NTSE coaching, science olympiad, grades 6 to 12"
+    />
+    <meta name="author" content="Nirmal Academy" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://nirmalacademy1787.com/" />
+
+    <!-- ── OPEN GRAPH — logo + preview when shared on WhatsApp, Facebook, LinkedIn ── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nirmalacademy1787.com/" />
+    <meta
+      property="og:title"
+      content="Nirmal Academy — Quality Coaching Since 2007"
+    />
+    <meta
+      property="og:description"
+      content="Expert coaching for JEE, NEET, CET, NTSE & Olympiads. Grades 6–12. Panvel, Maharashtra. 6000+ students. Est. 2007."
+    />
+    <meta
+      property="og:image"
+      content="https://nirmalacademy1787.com/assets/images/logo.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Nirmal Academy" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- ── TWITTER CARD — preview on Twitter/X ── -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Nirmal Academy — Quality Coaching Since 2007"
+    />
+    <meta
+      name="twitter:description"
+      content="Expert coaching for JEE, NEET, CET, NTSE & Olympiads. Grades 6–12. Panvel, Maharashtra."
+    />
+    <meta
+      name="twitter:image"
+      content="https://nirmalacademy1787.com/assets/images/logo.jpg"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
@@ -1552,6 +1605,29 @@
           grid-template-columns: 1fr;
         }
       }
+        .tl-item:nth-child(odd) .tl-card,
+        .tl-item:nth-child(even) .tl-card {
+          order: 2;
+          padding: 0 0 32px;
+          text-align: left;
+          flex: 1;
+        }
+        .tl-item:nth-child(odd) .tl-box::after,
+        .tl-item:nth-child(even) .tl-box::after { display: none; }
+        .tl-item:nth-child(odd) .tl-empty,
+        .tl-item:nth-child(even) .tl-empty { display: none; }
+        .tl-mid {
+          order: 1;
+          padding-top: 14px;
+          align-items: center;
+        }
+        .tl-connector {
+          flex: 1;
+          min-height: 32px;
+        }
+        .tl-node { width: 40px; height: 40px; font-size: 1rem; }
+        .tl-year { font-size: 2rem; }
+  
 
       /* ── FOOTER ───────────────────────────────────────────────── */
       footer {
@@ -1926,12 +2002,12 @@
       </div>
 
       <div class="story-entries">
-        <!-- Entry 01 -->
+        <!-- Entry 01 — Director teaser card -->
         <div class="story-entry reveal">
           <div class="story-photo-pane">
             <img
               src="assets/images/banner_img_2.JPG"
-              alt="Managing Director"
+              alt="Dr. Ramashanker Chourasia — Managing Director"
               loading="lazy"
             />
           </div>
@@ -1943,12 +2019,22 @@
               Quality education is every child's birthright.
             </p>
             <p class="story-bio">
-              Founded Nirmal Academy in 2007 with 15 students and a mission to
-              democratise quality education in Panvel. Over 18 years the
-              institution has grown into a premier coaching centre serving
-              students from grades 6 to 12 across State Board, CBSE, and ICSE —
-              celebrating thousands of success stories along the way.
+              PhD in Meditation and Mental Health &middot; MSc Microbiology &middot; MA Education &middot; B.Ed.
+              Over 19 years of visionary leadership that transformed a single
+              room in Panvel into an institution shaping 6,000+ students.
+              His research-driven, student-first philosophy defines everything
+              Nirmal Academy stands for.
             </p>
+            <a href="aboutDirector.html" style="
+              display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+              background:var(--gold);color:var(--navy);
+              font-family:var(--font-body);font-size:.84rem;font-weight:700;
+              padding:11px 22px;border-radius:8px;text-decoration:none;
+              transition:.3s cubic-bezier(.4,0,.2,1);"
+              onmouseover="this.style.background='#f0c96b';this.style.transform='translateY(-2px)';"
+              onmouseout="this.style.background='#c89b3c';this.style.transform='translateY(0)';">
+              Read His Full Story &nbsp;&rarr;
+            </a>
           </div>
         </div>
 
@@ -2295,18 +2381,6 @@
       </div>
     </section>
 
-    <!-- ── FACULTY ACHIEVEMENTS ────────────────────────────────────── -->
-    <section style="background: var(--cream); padding: 20px 0" id="faculty-ach">
-      <div class="container">
-        <div class="reveal" style="text-align: center; margin-bottom: 52px">
-          <p class="section-label">Recognitions</p>
-          <h2 class="section-title">Personal <em>Achievements</em></h2>
-          <div class="divider" style="margin: 12px auto"></div>
-        </div>
-        <div id="gallery-faculty" class="reveal"></div>
-      </div>
-    </section>
-
     <!-- ── STUDENT SUCCESS ─────────────────────────────────────────── -->
     <section id="student-ach">
       <div class="container">
@@ -2370,7 +2444,7 @@
                 <a href="tel:+919222177541">+91 9222177541</a>
               </div>
             </div>
-             <div class="contact-detail">
+            <div class="contact-detail">
               <div class="contact-icon">📧</div>
               <a href="mailto:nirmalacademy1787@gmail.com"
                 >nirmalacademy1787@gmail.com</a
@@ -2499,8 +2573,18 @@
         achievements: [
           {
             type: "image",
-            src: "assets/images/achivements1.jpeg",
-            caption: "Achievement 2024",
+            src: "assets/images/testinomial15.jpeg",
+            caption: "Achievement 2026",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial14.jpeg",
+            caption: "Achievement 2026",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial12.jpeg",
+            caption: "Achievement 2026",
           },
           {
             type: "image",
@@ -2539,6 +2623,26 @@
           },
         ],
         testimonials: [
+          {
+            type: "image",
+            src: "assets/images/testinomial11.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial12.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial16.jpeg",
+            caption: "Student Feedback",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial17.jpeg",
+            caption: "Student Feedback",
+          },
           {
             type: "image",
             src: "assets/images/testinomial1.jpeg",
@@ -2610,18 +2714,6 @@
             type: "image",
             src: "assets/images/guest_2.jpg",
             caption: "Expert Speaker Series",
-          },
-        ],
-        faculty: [
-          {
-            type: "image",
-            src: "assets/images/achivement1.jpeg",
-            caption: "Faculty Recognition",
-          },
-          {
-            type: "image",
-            src: "assets/images/achivement2.jpeg",
-            caption: "Research & Development Award",
           },
         ],
       };
@@ -2967,7 +3059,6 @@
         autoplay: 4000,
       });
       new Gallery("gallery-events", GALLERY_DATA.events, { perPage: 2 });
-      new Gallery("gallery-faculty", GALLERY_DATA.faculty, { perPage: 2 });
 
       // ACCORDION
       document.querySelectorAll("[data-acc]").forEach((item) => {
