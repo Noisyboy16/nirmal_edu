@@ -1197,9 +1197,6 @@
         gap: 10px;
       }
 
-      .ann-right {
-      }
-
       .upcoming-label {
         display: flex;
         align-items: center;
@@ -1456,6 +1453,165 @@
           grid-template-columns: 1fr;
           gap: 40px;
         }
+      }
+
+      /* ── PARENTS FEEDBACK ─────────────────────────────────────── */
+      #parent-feedback {
+        background: var(--white);
+        padding: 20px 0;
+      }
+      .pf-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        gap: 24px;
+      }
+      .pf-card {
+        background: var(--white);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        border: 1px solid rgba(11, 31, 58, 0.07);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .pf-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(200, 155, 60, 0.25);
+      }
+      .pf-media {
+        position: relative;
+        background: var(--light);
+        min-height: 190px;
+        overflow: hidden;
+      }
+      .pf-media img,
+      .pf-media video {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .pf-card:hover .pf-media img,
+      .pf-card:hover .pf-media video {
+        transform: scale(1.05);
+      }
+      .pf-media.pf-clickable {
+        cursor: pointer;
+      }
+      .pf-play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(11, 31, 58, 0.35);
+      }
+      .pf-play-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        color: var(--navy);
+        transition: transform 0.2s;
+      }
+      .pf-card:hover .pf-play-btn {
+        transform: scale(1.12);
+      }
+      .pf-quote-wrap,
+      .pf-link-wrap {
+        min-height: 190px;
+        padding: 30px 26px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        background: linear-gradient(135deg, #0b1f3a, #1a3860);
+        color: var(--white);
+      }
+      .pf-quote-mark {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .pf-quote-text {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.02rem;
+        line-height: 1.55;
+      }
+      .pf-link-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(200, 155, 60, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: var(--navy);
+      }
+      .pf-link-domain {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.7);
+        word-break: break-word;
+      }
+      .pf-link-btn {
+        margin-top: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--navy);
+        background: var(--gold);
+        padding: 8px 16px;
+        border-radius: 99px;
+        transition: background 0.2s;
+      }
+      .pf-link-btn:hover {
+        background: var(--gold-lt);
+      }
+      .pf-body {
+        padding: 18px 22px;
+        border-top: 1px solid rgba(11, 31, 58, 0.07);
+      }
+      .pf-name {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--navy);
+      }
+      .pf-child {
+        font-size: 0.78rem;
+        color: var(--gold);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        margin-top: 2px;
+      }
+      .pf-stars {
+        margin-top: 8px;
+        color: var(--gold);
+        font-size: 0.82rem;
+        letter-spacing: 2px;
+      }
+      .pf-empty {
+        grid-column: 1 / -1;
+        padding: 40px 0;
+        color: var(--gray);
+        font-size: 0.88rem;
+        text-align: center;
       }
 
       /* ── CONTACT ──────────────────────────────────────────────── */
@@ -1896,6 +2052,7 @@
           <li><a href="#courses">Courses</a></li>
           <li><a href="#announcements">Announcements</a></li>
           <li><a href="#events">Events</a></li>
+          <li><a href="#parent-feedback">Parents Feedback</a></li>
           <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -2421,6 +2578,20 @@
       </div>
     </section>
 
+    <!-- ── PARENTS FEEDBACK ─────────────────────────────────────────── -->
+    <section id="parent-feedback">
+      <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 52px">
+          <p class="section-label">In Their Words</p>
+          <h2 class="section-title">Parents <em>Speak</em></h2>
+          <div class="divider" style="margin: 12px auto"></div>
+        </div>
+        <div class="pf-grid reveal" id="pf-cards-render">
+          <div class="pf-empty">Loading parent feedback...</div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── CONTACT ─────────────────────────────────────────────────── -->
     <section id="contact">
       <div class="container">
@@ -2666,6 +2837,16 @@
           {
             type: "video",
             src: "assets/videos/feedback_vd1.mp4",
+            caption: "Student Feedback",
+          },
+          {
+            type: "video",
+            src: "assets/videos/feedback_vd3.mp4",
+            caption: "Student Feedback",
+          },
+          {
+            type: "video",
+            src: "assets/videos/feedback_vd4.mp4",
             caption: "Student Feedback",
           },
           {
@@ -3410,6 +3591,163 @@
               overlay.style.display = "none";
               video.controls = true;
               video.play();
+            });
+          });
+        });
+      }
+
+      // ── Parents Feedback: real-time listener ──────────────────
+      // Firestore collection: "parentFeedback"
+      // Each doc supports one of these mediaType values:
+      //   "image" → uses  imgSrc
+      //   "video" → uses  vidSrc (+ optional vidPoster)
+      //   "link"  → uses  linkUrl (+ optional linkLabel)
+      //   "text"  → uses  text     (a written quote, no media)
+      // Common fields on every doc: parentName, childInfo (e.g. "Parent of
+      // Aditi, Class 10"), rating (optional, 1-5).
+
+      // Hardcoded entries — shown immediately, on every page load, ahead of
+      // anything added later in Firestore. Replace "Parent Feedback" with
+      // the real parent's name/child info whenever you have it; move these
+      // into the "parentFeedback" Firestore collection any time and delete
+      // them from here — nothing else needs to change.
+      const PF_STATIC_FEEDBACK = [
+        {
+          mediaType: "link",
+          linkUrl: "https://www.instagram.com/reel/DD48z-1u2vP/",
+          linkLabel: "Watch on Instagram",
+          parentName: "Parent Feedback",
+        },
+        {
+          mediaType: "link",
+          linkUrl: "https://www.instagram.com/reel/C8PiCs8Mkio/",
+          linkLabel: "Watch on Instagram",
+          parentName: "Parent Feedback",
+        },
+        {
+          mediaType: "link",
+          linkUrl: "https://www.instagram.com/reel/C82S1vhstPs/",
+          linkLabel: "Watch on Instagram",
+          parentName: "Parent Feedback",
+        },
+        {
+          mediaType: "link",
+          linkUrl: "https://www.instagram.com/reel/C8ZhoUcMXzp/",
+          linkLabel: "Watch on Instagram",
+          parentName: "Parent Feedback",
+        },
+      ];
+
+      function domainFromUrl(url) {
+        try {
+          return new URL(url).hostname.replace(/^www\./, "");
+        } catch {
+          return url;
+        }
+      }
+      const pfEl = document.getElementById("pf-cards-render");
+      if (pfEl) {
+        const pfQ = query(
+          collection(db, "parentFeedback"),
+          orderBy("createdAt", "desc"),
+        );
+        onSnapshot(pfQ, (snap) => {
+          const liveItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          const items = PF_STATIC_FEEDBACK.concat(liveItems);
+          if (!items.length) {
+            pfEl.innerHTML =
+              '<div class="pf-empty">No parent feedback yet. Check back soon!</div>';
+            return;
+          }
+
+          pfEl.innerHTML = items
+            .map((p) => {
+              let mediaPart = "";
+
+              if (p.mediaType === "image" && p.imgSrc) {
+                mediaPart =
+                  '<div class="pf-media pf-clickable" data-img="' +
+                  esc(p.imgSrc) +
+                  '"><img src="' +
+                  esc(p.imgSrc) +
+                  '" alt="' +
+                  esc(p.parentName || "Parent feedback") +
+                  '" loading="lazy"></div>';
+              } else if (p.mediaType === "video" && p.vidSrc) {
+                mediaPart =
+                  '<div class="pf-media">' +
+                  '<video src="' +
+                  esc(p.vidSrc) +
+                  '"' +
+                  (p.vidPoster ? ' poster="' + esc(p.vidPoster) + '"' : "") +
+                  ' muted playsinline preload="none"></video>' +
+                  '<div class="pf-play"><div class="pf-play-btn">\u25B6</div></div>' +
+                  "</div>";
+              } else if (p.mediaType === "link" && p.linkUrl) {
+                mediaPart =
+                  '<div class="pf-link-wrap">' +
+                  '<div class="pf-link-icon">\uD83D\uDD17</div>' +
+                  '<div class="pf-link-domain">' +
+                  esc(p.linkLabel || domainFromUrl(p.linkUrl)) +
+                  "</div>" +
+                  '<a href="' +
+                  esc(p.linkUrl) +
+                  '" target="_blank" rel="noopener" class="pf-link-btn">Visit Link \u2192</a>' +
+                  "</div>";
+              } else {
+                // "text" type, or fallback when no media is set
+                mediaPart =
+                  '<div class="pf-quote-wrap">' +
+                  '<div class="pf-quote-mark">\u201C</div>' +
+                  '<p class="pf-quote-text">' +
+                  esc(p.text || "") +
+                  "</p>" +
+                  "</div>";
+              }
+
+              const stars =
+                p.rating > 0
+                  ? '<div class="pf-stars">' +
+                    "\u2605".repeat(Math.min(5, Math.round(p.rating))) +
+                    "\u2606".repeat(
+                      5 - Math.min(5, Math.round(p.rating)),
+                    ) +
+                    "</div>"
+                  : "";
+
+              return (
+                '<div class="pf-card">' +
+                mediaPart +
+                '<div class="pf-body">' +
+                '<div class="pf-name">' +
+                esc(p.parentName || "Parent") +
+                "</div>" +
+                (p.childInfo
+                  ? '<div class="pf-child">' + esc(p.childInfo) + "</div>"
+                  : "") +
+                stars +
+                "</div>" +
+                "</div>"
+              );
+            })
+            .join("");
+
+          // Re-bind video play buttons on dynamically rendered cards
+          pfEl.querySelectorAll(".pf-play").forEach((overlay) => {
+            overlay.addEventListener("click", () => {
+              const video = overlay.parentElement.querySelector("video");
+              if (!video) return;
+              overlay.style.display = "none";
+              video.controls = true;
+              video.play();
+            });
+          });
+
+          // Open full image in a new tab when an image card is clicked
+          pfEl.querySelectorAll(".pf-media.pf-clickable").forEach((media) => {
+            media.addEventListener("click", () => {
+              const src = media.dataset.img;
+              if (src) window.open(src, "_blank", "noopener");
             });
           });
         });
