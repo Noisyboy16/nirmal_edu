@@ -1499,31 +1499,56 @@
       .pf-card:hover .pf-media video {
         transform: scale(1.05);
       }
-      .pf-media.pf-clickable {
+      .pf-media.pf-clickable,
+      .pf-media.pf-vid {
         cursor: pointer;
       }
-      .pf-play {
+      .pf-vid-overlay {
         position: absolute;
         inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(11, 31, 58, 0.55) 0%,
+          transparent 55%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(11, 31, 58, 0.35);
+        align-items: flex-end;
+        padding: 14px;
       }
-      .pf-play-btn {
+      .pf-media:hover .pf-vid-overlay {
+        opacity: 1;
+      }
+      .pf-vid-caption {
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+      }
+      .pf-vid-zoom {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.7);
         width: 44px;
         height: 44px;
         border-radius: 50%;
-        background: var(--gold);
+        background: rgba(200, 155, 60, 0.9);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.9rem;
         color: var(--navy);
-        transition: transform 0.2s;
+        font-size: 1rem;
+        font-weight: 700;
+        opacity: 0;
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
       }
-      .pf-card:hover .pf-play-btn {
-        transform: scale(1.12);
+      .pf-media:hover .pf-vid-zoom {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
       }
       .pf-quote-wrap,
       .pf-link-wrap {
@@ -1761,29 +1786,38 @@
           grid-template-columns: 1fr;
         }
       }
-        .tl-item:nth-child(odd) .tl-card,
-        .tl-item:nth-child(even) .tl-card {
-          order: 2;
-          padding: 0 0 32px;
-          text-align: left;
-          flex: 1;
-        }
-        .tl-item:nth-child(odd) .tl-box::after,
-        .tl-item:nth-child(even) .tl-box::after { display: none; }
-        .tl-item:nth-child(odd) .tl-empty,
-        .tl-item:nth-child(even) .tl-empty { display: none; }
-        .tl-mid {
-          order: 1;
-          padding-top: 14px;
-          align-items: center;
-        }
-        .tl-connector {
-          flex: 1;
-          min-height: 32px;
-        }
-        .tl-node { width: 40px; height: 40px; font-size: 1rem; }
-        .tl-year { font-size: 2rem; }
-  
+      .tl-item:nth-child(odd) .tl-card,
+      .tl-item:nth-child(even) .tl-card {
+        order: 2;
+        padding: 0 0 32px;
+        text-align: left;
+        flex: 1;
+      }
+      .tl-item:nth-child(odd) .tl-box::after,
+      .tl-item:nth-child(even) .tl-box::after {
+        display: none;
+      }
+      .tl-item:nth-child(odd) .tl-empty,
+      .tl-item:nth-child(even) .tl-empty {
+        display: none;
+      }
+      .tl-mid {
+        order: 1;
+        padding-top: 14px;
+        align-items: center;
+      }
+      .tl-connector {
+        flex: 1;
+        min-height: 32px;
+      }
+      .tl-node {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      .tl-year {
+        font-size: 2rem;
+      }
 
       /* ── FOOTER ───────────────────────────────────────────────── */
       footer {
@@ -2163,7 +2197,7 @@
         <div class="story-entry reveal">
           <div class="story-photo-pane">
             <img
-              src="assets/images/banner_img_2.JPG"
+              src="assets/images/banner_img_2.png"
               alt="Dr. Ramashankar Chourasia — Managing Director"
               loading="lazy"
             />
@@ -2176,20 +2210,39 @@
               Quality education is every child's birthright.
             </p>
             <p class="story-bio">
-              PhD in Meditation and Mental Health &middot; MSc Microbiology &middot; MA Education &middot; B.Ed.
-              Over 19 years of visionary leadership that transformed a single
-              room in Panvel into an institution shaping 6,000+ students.
-              His research-driven, student-first philosophy defines everything
-              Nirmal Academy stands for.
+              PhD in Meditation and Mental Health &middot; MSc Microbiology
+              &middot; MA Education &middot; B.Ed. Over 19 years of visionary
+              leadership that transformed a single room in Panvel into an
+              institution shaping 6,000+ students. His research-driven,
+              student-first philosophy defines everything Nirmal Academy stands
+              for.
             </p>
-            <a href="aboutDirector.html" style="
-              display:inline-flex;align-items:center;gap:8px;margin-top:24px;
-              background:var(--gold);color:var(--navy);
-              font-family:var(--font-body);font-size:.84rem;font-weight:700;
-              padding:11px 22px;border-radius:8px;text-decoration:none;
-              transition:.3s cubic-bezier(.4,0,.2,1);"
-              onmouseover="this.style.background='#f0c96b';this.style.transform='translateY(-2px)';"
-              onmouseout="this.style.background='#c89b3c';this.style.transform='translateY(0)';">
+            <a
+              href="aboutDirector.html"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 24px;
+                background: var(--gold);
+                color: var(--navy);
+                font-family: var(--font-body);
+                font-size: 0.84rem;
+                font-weight: 700;
+                padding: 11px 22px;
+                border-radius: 8px;
+                text-decoration: none;
+                transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              "
+              onmouseover="
+                this.style.background = '#f0c96b';
+                this.style.transform = 'translateY(-2px)';
+              "
+              onmouseout="
+                this.style.background = '#c89b3c';
+                this.style.transform = 'translateY(0)';
+              "
+            >
               Read His Full Story &nbsp;&rarr;
             </a>
           </div>
@@ -2832,6 +2885,12 @@
           {
             type: "image",
             src: "assets/images/testinomial4.jpeg",
+            caption: "Student Feedback",
+          },
+
+          {
+            type: "video",
+            src: "assets/videos/feedback_vd5.mp4",
             caption: "Student Feedback",
           },
           {
@@ -3613,27 +3672,18 @@
       // them from here — nothing else needs to change.
       const PF_STATIC_FEEDBACK = [
         {
-          mediaType: "link",
-          linkUrl: "https://www.instagram.com/reel/DD48z-1u2vP/",
-          linkLabel: "Watch on Instagram",
+          mediaType: "video",
+          vidSrc: "assets/videos/parent_fb_vd1.mp4",
           parentName: "Parent Feedback",
         },
         {
-          mediaType: "link",
-          linkUrl: "https://www.instagram.com/reel/C8PiCs8Mkio/",
-          linkLabel: "Watch on Instagram",
+          mediaType: "video",
+          vidSrc: "assets/videos/parent_fb_vd2.mp4",
           parentName: "Parent Feedback",
         },
         {
-          mediaType: "link",
-          linkUrl: "https://www.instagram.com/reel/C82S1vhstPs/",
-          linkLabel: "Watch on Instagram",
-          parentName: "Parent Feedback",
-        },
-        {
-          mediaType: "link",
-          linkUrl: "https://www.instagram.com/reel/C8ZhoUcMXzp/",
-          linkLabel: "Watch on Instagram",
+          mediaType: "video",
+          vidSrc: "assets/videos/parent_fb_vd3.mp4",
           parentName: "Parent Feedback",
         },
       ];
@@ -3645,6 +3695,52 @@
           return url;
         }
       }
+
+      // Reuses the same .lb-backdrop / .lb-media lightbox look as the
+      // testimonials gallery above, so photo/video feedback opens full-
+      // screen with a dark backdrop and autoplay, just like that section.
+      function closePfLightbox() {
+        const lb = document.getElementById("pf-lightbox");
+        if (!lb) return;
+        lb.classList.remove("open");
+        document.body.style.overflow = "";
+        const v = lb.querySelector("video");
+        if (v) v.pause();
+      }
+      function openPfLightbox(src, type, caption) {
+        let lb = document.getElementById("pf-lightbox");
+        if (!lb) {
+          lb = document.createElement("div");
+          lb.id = "pf-lightbox";
+          lb.className = "lb-backdrop";
+          lb.innerHTML =
+            '<div class="lb-inner">' +
+            '<button class="lb-close" aria-label="Close">\u2715</button>' +
+            '<div class="lb-media-wrap"></div>' +
+            '<div class="lb-caption"></div>' +
+            "</div>";
+          document.body.appendChild(lb);
+          lb.querySelector(".lb-close").addEventListener("click", closePfLightbox);
+          lb.addEventListener("click", (e) => {
+            if (e.target === lb) closePfLightbox();
+          });
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && lb.classList.contains("open"))
+              closePfLightbox();
+          });
+        }
+        const wrap = lb.querySelector(".lb-media-wrap");
+        wrap.innerHTML =
+          type === "video"
+            ? '<video class="lb-media" src="' +
+              esc(src) +
+              '" controls autoplay></video>'
+            : '<img class="lb-media" src="' + esc(src) + '" alt="">';
+        lb.querySelector(".lb-caption").textContent = caption || "";
+        lb.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
       const pfEl = document.getElementById("pf-cards-render");
       if (pfEl) {
         const pfQ = query(
@@ -3666,22 +3762,36 @@
 
               if (p.mediaType === "image" && p.imgSrc) {
                 mediaPart =
-                  '<div class="pf-media pf-clickable" data-img="' +
+                  '<div class="pf-media pf-vid" data-video="' +
                   esc(p.imgSrc) +
+                  '" data-type="image" data-caption="' +
+                  esc(p.parentName || "Parent Feedback") +
                   '"><img src="' +
                   esc(p.imgSrc) +
                   '" alt="' +
                   esc(p.parentName || "Parent feedback") +
-                  '" loading="lazy"></div>';
+                  '" loading="lazy">' +
+                  '<div class="pf-vid-overlay"><span class="pf-vid-caption">' +
+                  esc(p.parentName || "View photo") +
+                  "</span></div>" +
+                  '<div class="pf-vid-zoom">\u2922</div>' +
+                  "</div>";
               } else if (p.mediaType === "video" && p.vidSrc) {
                 mediaPart =
-                  '<div class="pf-media">' +
+                  '<div class="pf-media pf-vid" data-video="' +
+                  esc(p.vidSrc) +
+                  '" data-type="video" data-caption="' +
+                  esc(p.parentName || "Parent Feedback") +
+                  '">' +
                   '<video src="' +
                   esc(p.vidSrc) +
                   '"' +
                   (p.vidPoster ? ' poster="' + esc(p.vidPoster) + '"' : "") +
-                  ' muted playsinline preload="none"></video>' +
-                  '<div class="pf-play"><div class="pf-play-btn">\u25B6</div></div>' +
+                  ' muted playsinline preload="metadata"></video>' +
+                  '<div class="pf-vid-overlay"><span class="pf-vid-caption">' +
+                  esc(p.parentName || "Watch video") +
+                  "</span></div>" +
+                  '<div class="pf-vid-zoom">\u2922</div>' +
                   "</div>";
               } else if (p.mediaType === "link" && p.linkUrl) {
                 mediaPart =
@@ -3709,9 +3819,7 @@
                 p.rating > 0
                   ? '<div class="pf-stars">' +
                     "\u2605".repeat(Math.min(5, Math.round(p.rating))) +
-                    "\u2606".repeat(
-                      5 - Math.min(5, Math.round(p.rating)),
-                    ) +
+                    "\u2606".repeat(5 - Math.min(5, Math.round(p.rating))) +
                     "</div>"
                   : "";
 
@@ -3732,22 +3840,15 @@
             })
             .join("");
 
-          // Re-bind video play buttons on dynamically rendered cards
-          pfEl.querySelectorAll(".pf-play").forEach((overlay) => {
-            overlay.addEventListener("click", () => {
-              const video = overlay.parentElement.querySelector("video");
-              if (!video) return;
-              overlay.style.display = "none";
-              video.controls = true;
-              video.play();
-            });
-          });
-
-          // Open full image in a new tab when an image card is clicked
-          pfEl.querySelectorAll(".pf-media.pf-clickable").forEach((media) => {
-            media.addEventListener("click", () => {
-              const src = media.dataset.img;
-              if (src) window.open(src, "_blank", "noopener");
+          // Open photo/video cards in the same fullscreen lightbox used by
+          // the testimonials gallery (dark backdrop, autoplay, close button)
+          pfEl.querySelectorAll(".pf-vid").forEach((card) => {
+            card.addEventListener("click", () => {
+              openPfLightbox(
+                card.dataset.video,
+                card.dataset.type,
+                card.dataset.caption,
+              );
             });
           });
         });
