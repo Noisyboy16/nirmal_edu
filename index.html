@@ -1853,6 +1853,172 @@
       .reveal-delay-3 {
         transition-delay: 0.3s;
       }
+    
+      /* ── EVENT GALLERY (admin-managed) ────────────────────────── */
+      #event-gallery {
+        background: var(--light);
+        padding: 60px 0;
+      }
+      .eg-header { text-align: center; margin-bottom: 36px; }
+      .eg-header .divider { margin: 12px auto 0; }
+      .eg-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 40px;
+      }
+      .eg-chip {
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 40px;
+        border: 1.5px solid rgba(11, 31, 58, 0.15);
+        background: var(--white);
+        color: var(--navy);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .eg-chip:hover { border-color: var(--gold); }
+      .eg-chip.active {
+        background: var(--navy);
+        border-color: var(--navy);
+        color: var(--gold-lt);
+      }
+      .eg-group { margin-bottom: 48px; }
+      .eg-group-head {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .eg-group-title {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--navy);
+      }
+      .eg-group-meta { font-size: 0.82rem; color: var(--gray); }
+      .eg-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+      }
+      .eg-item {
+        position: relative;
+        aspect-ratio: 4 / 3;
+        border-radius: var(--r-md);
+        overflow: hidden;
+        cursor: pointer;
+        background: var(--navy);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+      }
+      .eg-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+      .eg-item img, .eg-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s;
+      }
+      .eg-item:hover img, .eg-item:hover video { transform: scale(1.06); }
+      .eg-play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(11, 31, 58, 0.25);
+      }
+      .eg-play span {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        padding-left: 4px;
+      }
+      .eg-cap {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        padding: 26px 14px 10px;
+        background: linear-gradient(transparent, rgba(11, 31, 58, 0.85));
+        color: #fff;
+        font-size: 0.8rem;
+        opacity: 0;
+        transition: var(--transition);
+      }
+      .eg-item:hover .eg-cap { opacity: 1; }
+      .eg-more { text-align: center; margin-top: 22px; }
+      .eg-more button {
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 10px 26px;
+        border-radius: 40px;
+        border: 1.5px solid var(--gold);
+        background: transparent;
+        color: var(--navy);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .eg-more button:hover { background: var(--gold); color: var(--navy); }
+
+      /* lightbox */
+      .eg-lb {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: rgba(5, 12, 24, 0.94);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 56px 64px;
+      }
+      .eg-lb.open { display: flex; }
+      .eg-lb-stage {
+        max-width: 100%;
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .eg-lb-stage img, .eg-lb-stage video {
+        max-width: 100%;
+        max-height: calc(100vh - 170px);
+        border-radius: 10px;
+        background: #000;
+      }
+      .eg-lb-cap { color: #e8e4da; font-size: 0.9rem; text-align: center; max-width: 720px; }
+      .eg-lb-btn {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: none;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .eg-lb-btn:hover { background: var(--gold); color: var(--navy); }
+      .eg-lb-close { top: 16px; right: 18px; }
+      .eg-lb-prev { left: 14px; top: 50%; transform: translateY(-50%); }
+      .eg-lb-next { right: 14px; top: 50%; transform: translateY(-50%); }
+      @media (max-width: 600px) {
+        .eg-lb { padding: 56px 12px; }
+        .eg-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .eg-lb-prev { left: 6px; }
+        .eg-lb-next { right: 6px; }
+      }
     </style>
   </head>
   <body>
@@ -2086,6 +2252,9 @@
           <li><a href="#courses">Courses</a></li>
           <li><a href="#announcements">Announcements</a></li>
           <li><a href="#events">Events</a></li>
+          <li id="navGalleryLi" style="display: none">
+            <a href="#event-gallery">Gallery</a>
+          </li>
           <li><a href="#parent-feedback">Parents Feedback</a></li>
           <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         </ul>
@@ -2591,6 +2760,26 @@
       </div>
     </section>
 
+    <!-- ── EVENT GALLERY (managed from admin panel) ───────────────── -->
+    <section id="event-gallery" style="display: none">
+      <div class="container">
+        <div class="eg-header">
+          <p class="section-label">Moments &amp; Memories</p>
+          <h2 class="section-title">Event <em>Gallery</em></h2>
+          <div class="divider"></div>
+        </div>
+        <div class="eg-filters" id="eg-filters"></div>
+        <div id="eg-groups"></div>
+      </div>
+    </section>
+
+    <div class="eg-lb" id="eg-lb">
+      <button class="eg-lb-btn eg-lb-close" id="eg-lb-close" aria-label="Close">✕</button>
+      <button class="eg-lb-btn eg-lb-prev" id="eg-lb-prev" aria-label="Previous">‹</button>
+      <button class="eg-lb-btn eg-lb-next" id="eg-lb-next" aria-label="Next">›</button>
+      <div class="eg-lb-stage" id="eg-lb-stage"></div>
+    </div>
+
     <!-- ── STUDENT SUCCESS ─────────────────────────────────────────── -->
     <section id="student-ach">
       <div class="container">
@@ -3051,6 +3240,13 @@
         document.head.appendChild(style);
       })();
 
+      const escG = (v) =>
+        String(v == null ? "" : v)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+
       class Gallery {
         constructor(mountId, items, opts = {}) {
           this.el = document.getElementById(mountId);
@@ -3090,10 +3286,10 @@
       <div class="gl-card" data-index="${i}">
         ${
           item.type === "video"
-            ? `<video src="${item.src}" muted playsinline preload="metadata" poster="${item.poster || ""}"></video>`
-            : `<img src="${item.src}" alt="${item.caption || ""}" loading="lazy">`
+            ? `<video src="${escG(item.src)}" muted playsinline preload="metadata" poster="${escG(item.poster || "")}"></video>`
+            : `<img src="${escG(item.src)}" alt="${escG(item.caption || "")}" loading="lazy">`
         }
-        <div class="gl-card-overlay"><span class="gl-card-caption">${item.caption || ""}</span></div>
+        <div class="gl-card-overlay"><span class="gl-card-caption">${escG(item.caption || "")}</span></div>
         <div class="gl-zoom-icon">⤢</div>
       </div>`,
             )
@@ -3171,8 +3367,8 @@
           if (v) v.pause();
           this.lbWrap.innerHTML =
             item.type === "video"
-              ? `<video class="lb-media" src="${item.src}" controls autoplay></video>`
-              : `<img class="lb-media" src="${item.src}" alt="${item.caption || ""}">`;
+              ? `<video class="lb-media" src="${escG(item.src)}" controls autoplay></video>`
+              : `<img class="lb-media" src="${escG(item.src)}" alt="${escG(item.caption || "")}">`;
           this.lbCaption.textContent = item.caption || "";
           this.lbCounter.textContent = `${this.lbIndex + 1} / ${this.items.length}`;
         }
@@ -3214,7 +3410,7 @@
             if (card) this._openLB(+card.dataset.index);
           });
           document.addEventListener("keydown", (e) => {
-            if (!this.lb.classList.contains("open")) return;
+            if (this._dead || !this.lb.classList.contains("open")) return;
             if (e.key === "ArrowRight") this._lbGo(this.lbIndex + 1);
             if (e.key === "ArrowLeft") this._lbGo(this.lbIndex - 1);
             if (e.key === "Escape") this._closeLB();
@@ -3261,6 +3457,7 @@
           window.addEventListener("resize", () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
+              if (this._dead) return;
               const newPP = this._defaultPerPage();
               if (newPP !== this.perPage) {
                 this.perPage = newPP;
@@ -3278,8 +3475,17 @@
           this._bindEvents();
           this._slideTo(saved);
         }
+        destroy() {
+          this._dead = true;
+          clearInterval(this._autoTimer);
+          if (this.lb) this.lb.remove();
+          if (this.el) this.el.innerHTML = "";
+          document.body.style.overflow = "";
+        }
         _startAuto() {
+          if (this._dead) return;
           this._autoTimer = setInterval(() => {
+            if (this._dead) return;
             const next = this.index + this.perPage;
             this._slideTo(next >= this.items.length ? 0 : next);
           }, this.autoplay);
@@ -3293,12 +3499,14 @@
       new Gallery("gallery-achievements", GALLERY_DATA.achievements, {
         perPage: 4,
       });
-      new Gallery("gallery-testimonials", GALLERY_DATA.testimonials, {
+      window.rtsGallery = new Gallery("gallery-testimonials", GALLERY_DATA.testimonials, {
         dark: true,
         perPage: 3,
         autoplay: 4000,
       });
       new Gallery("gallery-events", GALLERY_DATA.events, { perPage: 2 });
+      window.Gallery = Gallery;
+      window.GALLERY_DATA = GALLERY_DATA;
 
       // ACCORDION
       document.querySelectorAll("[data-acc]").forEach((item) => {
@@ -3546,6 +3754,175 @@
         });
       }
 
+      // ── Event Gallery: real-time listener (photos/videos from admin) ──
+      (function () {
+        const secEl = document.getElementById("event-gallery");
+        if (!secEl) return;
+        const navLi = document.getElementById("navGalleryLi");
+        const filtersEl = document.getElementById("eg-filters");
+        const groupsEl = document.getElementById("eg-groups");
+        const lb = document.getElementById("eg-lb");
+        const stage = document.getElementById("eg-lb-stage");
+        const PER_GROUP = 8;
+        let items = [];
+        let activeFilter = "all";
+        let expanded = new Set();
+        let lbList = [];
+        let lbIdx = 0;
+
+        const isCld = (u) => u && u.indexOf("res.cloudinary.com") > -1;
+        const thumb = (g) => {
+          if (!isCld(g.url)) return g.url;
+          if (g.type === "video")
+            return g.url.replace("/upload/", "/upload/so_0,w_700,f_jpg/").replace(/\.[a-z0-9]+$/i, ".jpg");
+          return g.url.replace("/upload/", "/upload/f_auto,q_auto,w_700/");
+        };
+        const full = (g) =>
+          isCld(g.url)
+            ? g.url.replace("/upload/", g.type === "video" ? "/upload/q_auto/" : "/upload/f_auto,q_auto,w_1600/")
+            : g.url;
+        const ts = (g) => (g.createdAt && g.createdAt.toMillis ? g.createdAt.toMillis() : Date.now());
+        const fmt = (d) => {
+          if (!d) return "";
+          const x = new Date(d);
+          return isNaN(x) ? "" : x.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+        };
+
+        function build() {
+          if (!items.length) {
+            secEl.style.display = "none";
+            if (navLi) navLi.style.display = "none";
+            return;
+          }
+          secEl.style.display = "";
+          if (navLi) navLi.style.display = "";
+
+          // group by event
+          const map = new Map();
+          items.forEach((g) => {
+            const k = g.eventName || "Gallery";
+            if (!map.has(k)) map.set(k, { name: k, date: g.eventDate || "", list: [] });
+            const grp = map.get(k);
+            if ((g.eventDate || "") > grp.date) grp.date = g.eventDate;
+            grp.list.push(g);
+          });
+          const groups = [...map.values()].sort(
+            (a, b) => (b.date || "").localeCompare(a.date || "") || ts(b.list[0]) - ts(a.list[0]),
+          );
+          groups.forEach((g) => g.list.sort((a, b) => ts(a) - ts(b)));
+
+          if (activeFilter !== "all" && !map.has(activeFilter)) activeFilter = "all";
+
+          filtersEl.innerHTML =
+            '<button class="eg-chip' + (activeFilter === "all" ? " active" : "") + '" data-f="all">All</button>' +
+            groups
+              .map(
+                (g) =>
+                  '<button class="eg-chip' + (activeFilter === g.name ? " active" : "") +
+                  '" data-f="' + esc(g.name) + '">' + esc(g.name) + "</button>",
+              )
+              .join("");
+          filtersEl.style.display = groups.length > 1 ? "flex" : "none";
+
+          const shown = activeFilter === "all" ? groups : groups.filter((g) => g.name === activeFilter);
+          lbList = [];
+          groupsEl.innerHTML = shown
+            .map((g) => {
+              const open = expanded.has(g.name) || activeFilter !== "all";
+              const vis = open ? g.list : g.list.slice(0, PER_GROUP);
+              const cells = vis
+                .map((it) => {
+                  const idx = lbList.push(it) - 1;
+                  const media =
+                    it.type === "video"
+                      ? (isCld(it.url)
+                          ? '<img src="' + esc(thumb(it)) + '" alt="' + esc(it.caption || it.eventName) + '" loading="lazy">'
+                          : '<video src="' + esc(it.url) + '#t=0.5" muted playsinline preload="metadata"></video>') +
+                        '<div class="eg-play"><span>▶</span></div>'
+                      : '<img src="' + esc(thumb(it)) + '" alt="' + esc(it.caption || it.eventName) + '" loading="lazy">';
+                  return (
+                    '<div class="eg-item" data-i="' + idx + '">' + media +
+                    (it.caption ? '<div class="eg-cap">' + esc(it.caption) + "</div>" : "") + "</div>"
+                  );
+                })
+                .join("");
+              const more =
+                !open && g.list.length > PER_GROUP
+                  ? '<div class="eg-more"><button data-more="' + esc(g.name) + '">View all ' + g.list.length + " →</button></div>"
+                  : "";
+              const photos = g.list.filter((x) => x.type !== "video").length;
+              const vids = g.list.length - photos;
+              const meta = [fmt(g.date), photos ? photos + " photo" + (photos > 1 ? "s" : "") : "", vids ? vids + " video" + (vids > 1 ? "s" : "") : ""]
+                .filter(Boolean).join(" · ");
+              return (
+                '<div class="eg-group"><div class="eg-group-head"><h3 class="eg-group-title">' + esc(g.name) +
+                '</h3><span class="eg-group-meta">' + meta + '</span></div><div class="eg-grid">' + cells + "</div>" + more + "</div>"
+              );
+            })
+            .join("");
+        }
+
+        // lightbox
+        function showLb() {
+          const it = lbList[lbIdx];
+          if (!it) return;
+          stage.innerHTML =
+            (it.type === "video"
+              ? '<video src="' + esc(full(it)) + '" controls autoplay playsinline></video>'
+              : '<img src="' + esc(full(it)) + '" alt="' + esc(it.caption || it.eventName) + '">') +
+            '<div class="eg-lb-cap">' + esc(it.eventName) + (it.caption ? " — " + esc(it.caption) : "") +
+            "  (" + (lbIdx + 1) + "/" + lbList.length + ")</div>";
+        }
+        function openLb(i) {
+          lbIdx = i;
+          showLb();
+          lb.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+        function closeLb() {
+          lb.classList.remove("open");
+          stage.innerHTML = "";
+          document.body.style.overflow = "";
+        }
+        function step(d) {
+          lbIdx = (lbIdx + d + lbList.length) % lbList.length;
+          showLb();
+        }
+
+        groupsEl.addEventListener("click", (e) => {
+          const more = e.target.closest("[data-more]");
+          if (more) {
+            expanded.add(more.dataset.more);
+            build();
+            return;
+          }
+          const item = e.target.closest(".eg-item");
+          if (item) openLb(+item.dataset.i);
+        });
+        filtersEl.addEventListener("click", (e) => {
+          const chip = e.target.closest(".eg-chip");
+          if (!chip) return;
+          activeFilter = chip.dataset.f;
+          build();
+        });
+        document.getElementById("eg-lb-close").addEventListener("click", closeLb);
+        document.getElementById("eg-lb-prev").addEventListener("click", () => step(-1));
+        document.getElementById("eg-lb-next").addEventListener("click", () => step(1));
+        lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
+        document.addEventListener("keydown", (e) => {
+          if (!lb.classList.contains("open")) return;
+          if (e.key === "Escape") closeLb();
+          if (e.key === "ArrowLeft") step(-1);
+          if (e.key === "ArrowRight") step(1);
+        });
+
+        const galQ = query(collection(db, "eventGallery"), orderBy("createdAt", "desc"));
+        onSnapshot(galQ, (snap) => {
+          items = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          build();
+        });
+      })();
+
       // ── Events: real-time listener ────────────────────────────
       const evtEl = document.getElementById("evt-cards-render");
       if (evtEl) {
@@ -3688,6 +4065,20 @@
         },
       ];
 
+      // Cloudinary helpers: serve lighter copies of photos, auto poster for videos
+      function cldImg(url, w) {
+        return url && url.indexOf("res.cloudinary.com") > -1
+          ? url.replace("/upload/", "/upload/f_auto,q_auto,w_" + w + "/")
+          : url;
+      }
+      function cldPoster(url) {
+        return url && url.indexOf("res.cloudinary.com") > -1
+          ? url
+              .replace("/upload/", "/upload/so_0,w_700,f_jpg/")
+              .replace(/\.[a-z0-9]+$/i, ".jpg")
+          : "";
+      }
+
       function domainFromUrl(url) {
         try {
           return new URL(url).hostname.replace(/^www\./, "");
@@ -3749,7 +4140,8 @@
         );
         onSnapshot(pfQ, (snap) => {
           const liveItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-          const items = PF_STATIC_FEEDBACK.concat(liveItems);
+          // newest feedback first, then the hardcoded entries
+          const items = liveItems.concat(PF_STATIC_FEEDBACK);
           if (!items.length) {
             pfEl.innerHTML =
               '<div class="pf-empty">No parent feedback yet. Check back soon!</div>';
@@ -3763,11 +4155,11 @@
               if (p.mediaType === "image" && p.imgSrc) {
                 mediaPart =
                   '<div class="pf-media pf-vid" data-video="' +
-                  esc(p.imgSrc) +
+                  esc(cldImg(p.imgSrc, 1600)) +
                   '" data-type="image" data-caption="' +
                   esc(p.parentName || "Parent Feedback") +
                   '"><img src="' +
-                  esc(p.imgSrc) +
+                  esc(cldImg(p.imgSrc, 800)) +
                   '" alt="' +
                   esc(p.parentName || "Parent feedback") +
                   '" loading="lazy">' +
@@ -3786,7 +4178,9 @@
                   '<video src="' +
                   esc(p.vidSrc) +
                   '"' +
-                  (p.vidPoster ? ' poster="' + esc(p.vidPoster) + '"' : "") +
+                  (p.vidPoster || cldPoster(p.vidSrc)
+                    ? ' poster="' + esc(p.vidPoster || cldPoster(p.vidSrc)) + '"'
+                    : "") +
                   ' muted playsinline preload="metadata"></video>' +
                   '<div class="pf-vid-overlay"><span class="pf-vid-caption">' +
                   esc(p.parentName || "Watch video") +
@@ -3853,6 +4247,37 @@
           });
         });
       }
+
+      // ── Results That Speak: items added from the admin panel ──
+      // Firestore collection "testimonials": { type: "image"|"video", src, caption }
+      (function () {
+        let lastKey = "[]";
+        const q = query(collection(db, "testimonials"), orderBy("createdAt", "desc"));
+        onSnapshot(
+          q,
+          (snap) => {
+            const live = snap.docs
+              .map((d) => d.data())
+              .filter((x) => x.src)
+              .map((x) =>
+                x.type === "video"
+                  ? { type: "video", src: x.src, poster: cldPoster(x.src), caption: x.caption || "Student Feedback" }
+                  : { type: "image", src: cldImg(x.src, 1400), caption: x.caption || "Student Feedback" },
+              );
+            const key = JSON.stringify(live);
+            if (key === lastKey) return; // nothing new — keep the carousel as is
+            lastKey = key;
+            if (!window.Gallery || !window.GALLERY_DATA) return;
+            if (window.rtsGallery && window.rtsGallery.destroy) window.rtsGallery.destroy();
+            window.rtsGallery = new window.Gallery(
+              "gallery-testimonials",
+              live.concat(window.GALLERY_DATA.testimonials), // newest first
+              { dark: true, perPage: 3, autoplay: 4000 },
+            );
+          },
+          (err) => console.warn("Results could not be loaded:", err.code || err.message),
+        );
+      })();
 
       // ── Enquiry form submission → Firestore ─────────────────
       const contactForm = document.getElementById("contactForm");
