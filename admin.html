@@ -644,6 +644,260 @@
           grid-template-columns: 1fr;
         }
       }
+    
+      /* ── EVENT GALLERY ────────────────────────────────────── */
+      .gal-drop {
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+        padding: 30px 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.2s;
+        background: #fafbfc;
+      }
+      .gal-drop:hover,
+      .gal-drop.drag {
+        border-color: var(--gold);
+        background: rgba(200, 155, 60, 0.06);
+      }
+      .gal-drop .gd-icon { font-size: 2rem; margin-bottom: 6px; }
+      .gal-drop .gd-main { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+      .gal-drop .gd-sub { font-size: 0.76rem; color: var(--gray); margin-top: 4px; }
+      .gal-queue {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .gal-qi, .gal-card {
+        position: relative;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        background: var(--white);
+      }
+      .gal-thumb {
+        position: relative;
+        aspect-ratio: 4 / 3;
+        background: #0b1f3a;
+        overflow: hidden;
+      }
+      .gal-thumb img, .gal-thumb video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .gal-type-tag {
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        background: rgba(11, 31, 58, 0.82);
+        color: #fff;
+        font-size: 0.66rem;
+        font-weight: 700;
+        padding: 3px 7px;
+        border-radius: 20px;
+      }
+      .gal-x {
+        position: absolute;
+        right: 6px;
+        top: 6px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(239, 68, 68, 0.92);
+        color: #fff;
+        cursor: pointer;
+        font-size: 0.8rem;
+        line-height: 1;
+      }
+      .gal-meta { padding: 8px 10px; font-size: 0.74rem; color: var(--gray); }
+      .gal-meta strong {
+        display: block;
+        color: var(--navy);
+        font-size: 0.78rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .gal-bar { height: 4px; background: var(--border); }
+      .gal-bar > span {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--gold);
+        transition: width 0.2s;
+      }
+      .gal-qi.done .gal-bar > span { background: #22c55e; }
+      .gal-qi.err .gal-bar > span { background: #ef4444; }
+      .gal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        gap: 16px;
+        padding: 22px;
+      }
+      .gal-card .gal-del {
+        width: calc(100% - 20px);
+        margin: 0 10px 10px;
+      }
+    
+      /* ── AWARDS & ACHIEVEMENTS ────────────────────────────── */
+      .aw-img-drop {
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+        padding: 22px 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.2s;
+        background: #fafbfc;
+      }
+      .aw-img-drop:hover,
+      .aw-img-drop.drag {
+        border-color: var(--gold);
+        background: rgba(200, 155, 60, 0.06);
+      }
+      .aw-img-preview {
+        display: none;
+        margin-top: 12px;
+        position: relative;
+        max-width: 260px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        background: var(--white);
+      }
+      .aw-img-preview.show { display: block; }
+      .aw-img-preview img {
+        width: 100%;
+        display: block;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+      .aw-img-preview .aw-img-note {
+        padding: 6px 10px;
+        font-size: 0.72rem;
+        color: var(--gray);
+      }
+      .aw-up-bar {
+        display: none;
+        height: 5px;
+        background: var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 12px;
+      }
+      .aw-up-bar > span {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--gold);
+        transition: width 0.2s;
+      }
+      .aw-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 16px;
+        padding: 22px;
+      }
+      .aw-item {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--white);
+        display: flex;
+        flex-direction: column;
+      }
+      .aw-item-thumb {
+        aspect-ratio: 4 / 3;
+        background: linear-gradient(135deg, #0b1f3a, #1a3860);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.6rem;
+        overflow: hidden;
+      }
+      .aw-item-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .aw-item-body { padding: 12px 14px; flex: 1; }
+      .aw-item-tag {
+        display: inline-block;
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: rgba(200, 155, 60, 0.12);
+        border-radius: 4px;
+        padding: 2px 8px;
+        margin-bottom: 8px;
+      }
+      .aw-item-title { font-size: 0.9rem; font-weight: 700; color: var(--navy); line-height: 1.35; }
+      .aw-item-desc {
+        font-size: 0.76rem;
+        color: var(--gray);
+        margin-top: 6px;
+        line-height: 1.55;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .aw-item-year { font-size: 0.74rem; font-weight: 600; color: var(--gold); margin-top: 8px; }
+      .aw-item-actions { display: flex; gap: 8px; padding: 0 14px 14px; }
+      .aw-item-actions .btn { flex: 1; }
+      .aw-filter-row { padding: 14px 22px 0; display: flex; gap: 8px; flex-wrap: wrap; }
+      .aw-fchip {
+        font-size: 0.76rem;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 30px;
+        border: 1.5px solid var(--border);
+        background: var(--white);
+        color: var(--navy);
+        cursor: pointer;
+      }
+      .aw-fchip.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+    
+      /* ── PARENTS SPEAK type buttons ───────────────────────── */
+      .pf-type-btn {
+        flex: 1;
+        min-width: 110px;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: none;
+        font-family: var(--font);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        color: var(--gray);
+        transition: 0.2s;
+      }
+      .pf-type-btn.active {
+        border-color: var(--gold);
+        background: rgba(200, 155, 60, 0.08);
+        color: var(--navy);
+      }
+      .aw-img-preview video {
+        width: 100%;
+        display: block;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        background: #000;
+      }
+      .aw-item-quote {
+        font-size: 0.8rem;
+        font-style: italic;
+        color: var(--gray);
+        padding: 16px;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -800,6 +1054,18 @@
         </div>
         <div class="nav-item" data-page="events">
           <span class="ni">📅</span><span>Upcoming Events</span>
+        </div>
+        <div class="nav-item" data-page="gallery">
+          <span class="ni">📸</span><span>Event Gallery</span>
+        </div>
+        <div class="nav-item" data-page="awards">
+          <span class="ni">🏆</span><span>Awards &amp; Achievements</span>
+        </div>
+        <div class="nav-item" data-page="results">
+          <span class="ni">⭐</span><span>Results That Speak</span>
+        </div>
+        <div class="nav-item" data-page="parents">
+          <span class="ni">💬</span><span>Parents Speak</span>
         </div>
         <div class="nav-item" data-page="banner">
           <span class="ni">🎯</span><span>Offer Banner</span>
@@ -1546,6 +1812,401 @@
           </div>
         </div>
 
+        <!-- ══════════════ EVENT GALLERY PAGE ══════════════ -->
+        <div class="page" id="page-gallery">
+          <div class="panel" style="margin-bottom: 20px">
+            <div class="panel-header">
+              <span class="panel-title">📸 Upload Event Photos &amp; Videos</span>
+            </div>
+            <div class="panel-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Event Name *</label>
+                  <input
+                    type="text"
+                    id="gal-event"
+                    list="gal-event-list"
+                    placeholder="e.g. Annual Day 2026"
+                    autocomplete="off"
+                  />
+                  <datalist id="gal-event-list"></datalist>
+                </div>
+                <div class="form-group">
+                  <label>Event Date</label>
+                  <input type="date" id="gal-date" />
+                </div>
+                <div class="form-group full">
+                  <label>Caption (optional, applied to every file in this upload)</label>
+                  <input
+                    type="text"
+                    id="gal-caption"
+                    placeholder="e.g. Students receiving their awards"
+                  />
+                </div>
+                <div class="form-group full">
+                  <label>Files *</label>
+                  <div
+                    class="gal-drop"
+                    id="gal-drop"
+                    onclick="document.getElementById('gal-file-input').click()"
+                    ondragover="event.preventDefault(); this.classList.add('drag')"
+                    ondragleave="this.classList.remove('drag')"
+                    ondrop="handleGalDrop(event)"
+                  >
+                    <div class="gd-icon">🖼️🎬</div>
+                    <div class="gd-main">Click to choose or drag &amp; drop files here</div>
+                    <div class="gd-sub">
+                      Multiple images &amp; videos allowed · Photos are shrunk automatically to
+                      under 1 MB (select up to 5 MB each) · Videos up to 20 MB (compress large videos first)
+                    </div>
+                  </div>
+                  <input
+                    type="file"
+                    id="gal-file-input"
+                    accept="image/*,video/*"
+                    multiple
+                    style="display: none"
+                    onchange="addGalFiles(this.files); this.value = ''"
+                  />
+                </div>
+              </div>
+              <div class="gal-queue" id="gal-queue"></div>
+              <div class="form-row">
+                <button class="btn btn-ghost" onclick="clearGalQueue()">Clear</button>
+                <button class="btn btn-gold" id="gal-upload-btn" onclick="uploadGallery()">
+                  ⬆️ Upload &amp; Publish
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">Published Gallery</span>
+              <span class="topbar-badge" id="gal-count-badge">0 items</span>
+            </div>
+            <div id="gal-grid-wrap">
+              <div class="empty-state">
+                <div class="e-icon">📭</div>
+                No photos or videos uploaded yet.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════ AWARDS & ACHIEVEMENTS PAGE ══════════════ -->
+        <div class="page" id="page-awards">
+          <div class="panel" style="margin-bottom: 20px">
+            <div class="panel-header">
+              <span class="panel-title" id="aw-form-title">➕ Add Award / Achievement</span>
+            </div>
+            <div class="panel-body">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Title *</label>
+                  <input
+                    type="text"
+                    id="aw-title"
+                    placeholder="e.g. National Teacher's Award 2026"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Category *</label>
+                  <select id="aw-category">
+                    <option value="award">🏆 Award</option>
+                    <option value="academic">🎓 Academic</option>
+                    <option value="recognition">📰 Recognition</option>
+                    <option value="community">🤝 Community</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Year *</label>
+                  <input
+                    type="text"
+                    id="aw-year"
+                    placeholder="e.g. 2026  or  2007 – Present"
+                  />
+                </div>
+                <div class="form-group full">
+                  <label>Description *</label>
+                  <textarea
+                    id="aw-desc"
+                    placeholder="Short description shown on the card..."
+                    style="min-height: 110px"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Photo Caption (optional)</label>
+                  <input
+                    type="text"
+                    id="aw-caption"
+                    placeholder="Shown when the photo is opened full-screen (defaults to title)"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Icon (used only if there is no image)</label>
+                  <input
+                    type="text"
+                    id="aw-icon"
+                    placeholder="e.g. 🏆  (leave blank for default)"
+                  />
+                </div>
+                <div class="form-group full">
+                  <label>Image / Certificate Photo (optional)</label>
+                  <div
+                    class="aw-img-drop"
+                    id="aw-img-drop"
+                    onclick="document.getElementById('aw-file-input').click()"
+                    ondragover="event.preventDefault(); this.classList.add('drag')"
+                    ondragleave="this.classList.remove('drag')"
+                    ondrop="event.preventDefault(); this.classList.remove('drag'); pickAwardImage(event.dataTransfer.files)"
+                  >
+                    <div style="font-size: 1.6rem">🖼️</div>
+                    <div style="font-size: 0.86rem; font-weight: 600; color: var(--navy)">
+                      Click to choose or drag &amp; drop one image
+                    </div>
+                    <div style="font-size: 0.74rem; color: var(--gray); margin-top: 4px">
+                      Photos up to 5 MB are shrunk automatically to under 1 MB
+                    </div>
+                  </div>
+                  <input
+                    type="file"
+                    id="aw-file-input"
+                    accept="image/*"
+                    style="display: none"
+                    onchange="pickAwardImage(this.files); this.value = ''"
+                  />
+                  <div class="aw-img-preview" id="aw-img-preview">
+                    <img id="aw-img-preview-img" alt="" />
+                    <div class="aw-img-note" id="aw-img-note"></div>
+                    <button
+                      class="btn btn-red btn-sm"
+                      style="margin: 0 10px 10px"
+                      onclick="removeAwardImage()"
+                    >
+                      ✕ Remove image
+                    </button>
+                  </div>
+                  <div class="aw-up-bar" id="aw-up-bar"><span></span></div>
+                </div>
+              </div>
+              <div class="form-row">
+                <button class="btn btn-ghost" id="aw-cancel-btn" onclick="resetAwardForm()">
+                  Clear
+                </button>
+                <button class="btn btn-gold" id="aw-save-btn" onclick="saveAward()">
+                  💾 Publish Award
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">Published Awards &amp; Achievements</span>
+              <span class="topbar-badge" id="aw-count-badge">0 items</span>
+            </div>
+            <div class="aw-filter-row" id="aw-filter-row"></div>
+            <div id="aw-list-wrap">
+              <div class="empty-state">
+                <div class="e-icon">📭</div>
+                No awards added from the admin panel yet.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════ RESULTS THAT SPEAK PAGE ══════════════ -->
+        <div class="page" id="page-results">
+          <div class="panel" style="margin-bottom: 20px">
+            <div class="panel-header">
+              <span class="panel-title" id="rs-form-title">➕ Add Result / Student Feedback</span>
+            </div>
+            <div class="panel-body">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Caption (applied to every file in this upload)</label>
+                  <input
+                    type="text"
+                    id="rs-caption"
+                    placeholder="e.g. Student Feedback  (default)  or  NEET 2026 — Aditi, 650/720"
+                  />
+                </div>
+                <div class="form-group full" id="rs-files-group">
+                  <label>Photos / Videos *</label>
+                  <div
+                    class="gal-drop"
+                    id="rs-drop"
+                    onclick="document.getElementById('rs-file-input').click()"
+                    ondragover="event.preventDefault(); this.classList.add('drag')"
+                    ondragleave="this.classList.remove('drag')"
+                    ondrop="event.preventDefault(); this.classList.remove('drag'); addResultFiles(event.dataTransfer.files)"
+                  >
+                    <div class="gd-icon">🖼️🎬</div>
+                    <div class="gd-main">Click to choose or drag &amp; drop files here</div>
+                    <div class="gd-sub">
+                      Multiple images &amp; videos allowed · Photos shrunk automatically to
+                      under 1 MB (select up to 5 MB each) · Videos up to 20 MB
+                    </div>
+                  </div>
+                  <input
+                    type="file"
+                    id="rs-file-input"
+                    accept="image/*,video/*"
+                    multiple
+                    style="display: none"
+                    onchange="addResultFiles(this.files); this.value = ''"
+                  />
+                </div>
+              </div>
+              <div class="gal-queue" id="rs-queue"></div>
+              <div class="form-row">
+                <button class="btn btn-ghost" id="rs-cancel-btn" onclick="resetResultForm()">Clear</button>
+                <button class="btn btn-gold" id="rs-save-btn" onclick="saveResults()">
+                  ⬆️ Upload &amp; Publish
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">Published Results</span>
+              <span class="topbar-badge" id="rs-count-badge">0 items</span>
+            </div>
+            <div class="aw-filter-row" id="rs-filter-row"></div>
+            <div id="rs-list-wrap">
+              <div class="empty-state">
+                <div class="e-icon">📭</div>
+                Nothing added from the admin panel yet.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════ PARENTS SPEAK PAGE ══════════════ -->
+        <div class="page" id="page-parents">
+          <div class="panel" style="margin-bottom: 20px">
+            <div class="panel-header">
+              <span class="panel-title" id="pf-form-title">➕ Add Parent Feedback</span>
+            </div>
+            <div class="panel-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Parent Name *</label>
+                  <input type="text" id="pf-name" placeholder="e.g. Mrs. Sunita Sharma" />
+                </div>
+                <div class="form-group">
+                  <label>Child Info</label>
+                  <input
+                    type="text"
+                    id="pf-child"
+                    placeholder="e.g. Parent of Aditi, Class 10"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Star Rating (optional)</label>
+                  <select id="pf-rating">
+                    <option value="0">No rating</option>
+                    <option value="5">★★★★★ (5)</option>
+                    <option value="4">★★★★☆ (4)</option>
+                    <option value="3">★★★☆☆ (3)</option>
+                    <option value="2">★★☆☆☆ (2)</option>
+                    <option value="1">★☆☆☆☆ (1)</option>
+                  </select>
+                </div>
+                <div class="form-group full">
+                  <label>Feedback Type *</label>
+                  <div class="media-type-toggle" style="flex-wrap: wrap">
+                    <button class="pf-type-btn active" data-pt="text" onclick="setParentType('text')">📝 Written Quote</button>
+                    <button class="pf-type-btn" data-pt="image" onclick="setParentType('image')">🖼 Photo</button>
+                    <button class="pf-type-btn" data-pt="video" onclick="setParentType('video')">🎬 Video</button>
+                    <button class="pf-type-btn" data-pt="link" onclick="setParentType('link')">🔗 Link</button>
+                  </div>
+                </div>
+
+                <div class="form-group full" id="pf-grp-text">
+                  <label>Feedback Text *</label>
+                  <textarea
+                    id="pf-text"
+                    placeholder="What the parent said..."
+                    style="min-height: 110px"
+                  ></textarea>
+                </div>
+
+                <div class="form-group full" id="pf-grp-media" style="display: none">
+                  <label id="pf-media-label">Photo *</label>
+                  <div
+                    class="aw-img-drop"
+                    id="pf-drop"
+                    onclick="document.getElementById('pf-file-input').click()"
+                    ondragover="event.preventDefault(); this.classList.add('drag')"
+                    ondragleave="this.classList.remove('drag')"
+                    ondrop="event.preventDefault(); this.classList.remove('drag'); pickParentMedia(event.dataTransfer.files)"
+                  >
+                    <div style="font-size: 1.6rem" id="pf-drop-icon">🖼️</div>
+                    <div style="font-size: 0.86rem; font-weight: 600; color: var(--navy)">
+                      Click to choose or drag &amp; drop a file
+                    </div>
+                    <div style="font-size: 0.74rem; color: var(--gray); margin-top: 4px" id="pf-drop-hint">
+                      Photos up to 5 MB are shrunk automatically to under 1 MB
+                    </div>
+                  </div>
+                  <input
+                    type="file"
+                    id="pf-file-input"
+                    accept="image/*"
+                    style="display: none"
+                    onchange="pickParentMedia(this.files); this.value = ''"
+                  />
+                  <div class="aw-img-preview" id="pf-preview">
+                    <img id="pf-prev-img" alt="" />
+                    <video id="pf-prev-vid" controls muted playsinline style="display: none"></video>
+                    <div class="aw-img-note" id="pf-prev-note"></div>
+                    <button class="btn btn-red btn-sm" style="margin: 0 10px 10px" onclick="removeParentMedia()">
+                      ✕ Remove
+                    </button>
+                  </div>
+                  <div class="aw-up-bar" id="pf-up-bar"><span></span></div>
+                </div>
+
+                <div class="form-group full" id="pf-grp-link" style="display: none">
+                  <label>Link URL *</label>
+                  <input type="text" id="pf-link-url" placeholder="https://..." />
+                </div>
+                <div class="form-group full" id="pf-grp-link2" style="display: none">
+                  <label>Link Label (optional)</label>
+                  <input
+                    type="text"
+                    id="pf-link-label"
+                    placeholder="e.g. Google Review  (defaults to the website name)"
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <button class="btn btn-ghost" id="pf-cancel-btn" onclick="resetParentForm()">Clear</button>
+                <button class="btn btn-gold" id="pf-save-btn" onclick="saveParent()">
+                  💾 Publish Feedback
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">Published Parent Feedback</span>
+              <span class="topbar-badge" id="pf-count-badge">0 items</span>
+            </div>
+            <div class="aw-filter-row" id="pf-filter-row"></div>
+            <div id="pf-list-wrap">
+              <div class="empty-state">
+                <div class="e-icon">📭</div>
+                No feedback added from the admin panel yet.
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- ══════════════ BANNER PAGE ══════════════ -->
         <div class="page" id="page-banner">
           <!-- Banner Form -->
@@ -2026,6 +2687,28 @@
       let events = [];
       let enquiries = [];
       let bannerData = {};
+      let galleryItems = [];
+      let galQueue = [];
+      let galUploading = false;
+      let awardItems = [];
+      let editAwardId = null;
+      let awFile = null;
+      let awExisting = { url: "", path: "" };
+      let awListFilter = "all";
+      let awSaving = false;
+      let resultItems = [];
+      let rsQueue = [];
+      let rsUploading = false;
+      let editResultId = null;
+      let rsFilter = "all";
+      let parentItems = [];
+      let editParentId = null;
+      let pfType = "text";
+      let pfFile = null;
+      let pfExisting = { url: "", path: "" };
+      let pfOrig = { type: "", url: "", path: "" };
+      let pfSaving = false;
+      let pfFilter = "all";
       let editAnnId = null;
       let editEvtId = null;
       let selectedAnnType = "event";
@@ -2078,6 +2761,41 @@
           renderDashboard();
         });
 
+        // Event gallery listener
+        const galQ = query(
+          collection(db, "eventGallery"),
+          orderBy("createdAt", "desc"),
+        );
+        onSnapshot(galQ, (snap) => {
+          galleryItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          renderGalleryGrid();
+        });
+
+        // Awards & Achievements listener
+        const awQ = query(collection(db, "awards"), orderBy("createdAt", "desc"));
+        onSnapshot(awQ, (snap) => {
+          awardItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          renderAwardsList();
+        });
+
+        // Results That Speak listener
+        onSnapshot(
+          query(collection(db, "testimonials"), orderBy("createdAt", "desc")),
+          (snap) => {
+            resultItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+            renderResultsList();
+          },
+        );
+
+        // Parents Speak listener
+        onSnapshot(
+          query(collection(db, "parentFeedback"), orderBy("createdAt", "desc")),
+          (snap) => {
+            parentItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+            renderParentsList();
+          },
+        );
+
         renderDashboard();
       }
 
@@ -2089,6 +2807,10 @@
         announcements: { title: "Announcements", badge: "Manage Notices" },
         events: { title: "Upcoming Events", badge: "Schedule Events" },
         enquiries: { title: "Enquiries", badge: "Student Enquiries" },
+        gallery: { title: "Event Gallery", badge: "Photos & Videos" },
+        awards: { title: "Awards & Achievements", badge: "Director Page" },
+        results: { title: "Results That Speak", badge: "Student Stories" },
+        parents: { title: "Parents Speak", badge: "Parent Feedback" },
         banner: { title: "Offer Banner", badge: "Popup Settings" },
       };
 
@@ -3023,6 +3745,1074 @@
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => el.classList.remove("show"), 3000);
       };
+
+      // ════════════════════════════════════════════════════════════
+      // EVENT GALLERY — upload to Firebase Storage + save in Firestore
+      // ════════════════════════════════════════════════════════════
+      // ── CLOUDINARY SETTINGS — fill these two values ──────────────
+      const CLOUDINARY_CLOUD_NAME = "e7gwrugn";
+      const CLOUDINARY_UPLOAD_PRESET = "event_gallery";
+
+      // ── FILE SIZE LIMITS (change these numbers if needed) ────────
+      const GAL_MAX_IMG = 1 * 1024 * 1024; // saved image size limit: 1 MB
+      const GAL_MAX_IMG_ORIGINAL = 5 * 1024 * 1024; // phone photos are shrunk automatically
+      const GAL_MAX_VID = 20 * 1024 * 1024; // video limit: 20 MB
+
+      window.handleGalDrop = function (e) {
+        e.preventDefault();
+        document.getElementById("gal-drop").classList.remove("drag");
+        addGalFiles(e.dataTransfer.files);
+      };
+
+      window.addGalFiles = function (fileList) {
+        Array.from(fileList).forEach((file) => {
+          const isImg = file.type.startsWith("image/");
+          const isVid = file.type.startsWith("video/");
+          if (!isImg && !isVid) {
+            toast("⚠️", file.name + " is not an image or video");
+            return;
+          }
+          const shrinkable = /^image\/(jpeg|png|webp)$/.test(file.type);
+          if (isImg && shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) {
+            toast("⚠️", file.name + " — image too large (max 5 MB)");
+            return;
+          }
+          if (isImg && !shrinkable && file.size > GAL_MAX_IMG) {
+            toast("⚠️", file.name + " — image too large (max 1 MB for this format)");
+            return;
+          }
+          if (isVid && file.size > GAL_MAX_VID) {
+            toast("⚠️", file.name + " — video too large (max 20 MB). Please compress it first.");
+            return;
+          }
+          galQueue.push({
+            qid: "q" + Date.now() + Math.random().toString(36).slice(2, 7),
+            file,
+            type: isImg ? "image" : "video",
+            preview: URL.createObjectURL(file),
+            status: "pending",
+          });
+        });
+        renderGalQueue();
+      };
+
+      window.removeGalQueued = function (qid) {
+        if (galUploading) return;
+        galQueue = galQueue.filter((q) => q.qid !== qid);
+        renderGalQueue();
+      };
+
+      window.clearGalQueue = function () {
+        if (galUploading) return;
+        galQueue = [];
+        ["gal-event", "gal-date", "gal-caption"].forEach(
+          (id) => (document.getElementById(id).value = ""),
+        );
+        renderGalQueue();
+      };
+
+      function renderGalQueue() {
+        const box = document.getElementById("gal-queue");
+        box.innerHTML = galQueue
+          .map((q) => {
+            const media =
+              q.type === "image"
+                ? `<img src="${q.preview}" alt="" />`
+                : `<video src="${q.preview}#t=0.5" muted preload="metadata"></video>`;
+            return `<div class="gal-qi ${q.status === "done" ? "done" : q.status === "error" ? "err" : ""}" id="${q.qid}">
+              <div class="gal-thumb">${media}
+                <span class="gal-type-tag">${q.type === "image" ? "🖼 Image" : "🎬 Video"}</span>
+                ${galUploading ? "" : `<button class="gal-x" onclick="removeGalQueued('${q.qid}')">✕</button>`}
+              </div>
+              <div class="gal-meta"><strong>${esc(q.file.name)}</strong>${(q.file.size / 1024 / 1024).toFixed(2)} MB</div>
+              <div class="gal-bar"><span></span></div>
+            </div>`;
+          })
+          .join("");
+      }
+
+      function setGalProgress(qid, pct) {
+        const bar = document.querySelector("#" + qid + " .gal-bar > span");
+        if (bar) bar.style.width = pct + "%";
+      }
+
+      // Shrink photos so every saved image is under the 1 MB limit
+      async function compressImage(file) {
+        if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return file;
+        if (file.size < 600 * 1024) return file; // already small
+        const attempts = [
+          [1600, 0.8],
+          [1400, 0.7],
+          [1200, 0.6],
+          [1000, 0.5],
+        ];
+        let best = file;
+        try {
+          const src = await createImageBitmap(file);
+          const sw = src.width, sh = src.height;
+          src.close();
+          for (const [MAX, quality] of attempts) {
+            const scale = Math.min(1, MAX / Math.max(sw, sh));
+            const bmp = await createImageBitmap(file, {
+              resizeWidth: Math.round(sw * scale),
+              resizeHeight: Math.round(sh * scale),
+              resizeQuality: "medium",
+            });
+            const c = document.createElement("canvas");
+            c.width = bmp.width;
+            c.height = bmp.height;
+            c.getContext("2d").drawImage(bmp, 0, 0);
+            bmp.close();
+            const blob = await new Promise((res) => c.toBlob(res, "image/jpeg", quality));
+            if (blob && blob.size < best.size) best = blob;
+            if (best.size <= GAL_MAX_IMG) break;
+          }
+        } catch (e) {}
+        return best;
+      }
+
+      function uploadOneToCloudinary(q, blob) {
+        return new Promise((resolve, reject) => {
+          const kind = q.type === "video" ? "video" : "image";
+          const xhr = new XMLHttpRequest();
+          xhr.open(
+            "POST",
+            `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${kind}/upload`,
+          );
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable)
+              setGalProgress(q.qid, Math.round((e.loaded / e.total) * 100));
+          };
+          xhr.onload = () => {
+            let res = {};
+            try { res = JSON.parse(xhr.responseText); } catch (e) {}
+            if (xhr.status >= 200 && xhr.status < 300 && res.secure_url) {
+              resolve({ url: res.secure_url, path: res.public_id, resourceType: kind });
+            } else {
+              reject(new Error((res.error && res.error.message) || "Upload failed (" + xhr.status + ")"));
+            }
+          };
+          xhr.onerror = () => reject(new Error("Network error"));
+          const fd = new FormData();
+          fd.append("file", blob, q.file.name);
+          fd.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+          xhr.send(fd);
+        });
+      }
+
+      window.uploadGallery = async function () {
+        if (galUploading) return;
+        const eventName = document.getElementById("gal-event").value.trim();
+        if (!eventName) {
+          toast("⚠️", "Please enter the event name");
+          return;
+        }
+        const pending = galQueue.filter((q) => q.status !== "done");
+        if (!pending.length) {
+          toast("⚠️", "Please add at least one photo or video");
+          return;
+        }
+        if (CLOUDINARY_CLOUD_NAME.startsWith("YOUR_") || CLOUDINARY_UPLOAD_PRESET.startsWith("YOUR_")) {
+          toast("⚠️", "Set CLOUDINARY_CLOUD_NAME and CLOUDINARY_UPLOAD_PRESET in admin.html first");
+          return;
+        }
+        const eventDate = document.getElementById("gal-date").value;
+        const caption = document.getElementById("gal-caption").value.trim();
+        const btn = document.getElementById("gal-upload-btn");
+        galUploading = true;
+        btn.disabled = true;
+        btn.textContent = "Uploading…";
+        renderGalQueue();
+        pending.forEach((q) => setGalProgress(q.qid, 0));
+
+        let ok = 0;
+        let finished = 0;
+        const total = pending.length;
+        const CONCURRENCY = 4;
+        const queue = pending.slice();
+
+        async function worker() {
+          while (queue.length) {
+            const q = queue.shift();
+            try {
+              const blob = q.type === "image" ? await compressImage(q.file) : q.file;
+              if (q.type === "image" && blob.size > GAL_MAX_IMG)
+                throw new Error(q.file.name + " is still over 1 MB after shrinking");
+              const { path, url, resourceType } = await uploadOneToCloudinary(q, blob);
+              await addDoc(collection(db, "eventGallery"), {
+                eventName,
+                eventDate,
+                caption,
+                type: q.type,
+                url,
+                path,
+                provider: "cloudinary",
+                resourceType,
+                fileName: q.file.name,
+                size: blob.size,
+                createdAt: serverTimestamp(),
+              });
+              q.status = "done";
+              ok++;
+              document.getElementById(q.qid)?.classList.add("done");
+              setGalProgress(q.qid, 100);
+            } catch (e) {
+              console.error(e);
+              q.status = "error";
+              document.getElementById(q.qid)?.classList.add("err");
+              toast("❌", "Upload failed: " + (e.code || e.message));
+            }
+            finished++;
+            btn.textContent = "Uploading " + finished + "/" + total + "…";
+          }
+        }
+        btn.textContent = "Uploading 0/" + total + "…";
+        await Promise.all(
+          Array.from({ length: Math.min(CONCURRENCY, total) }, worker),
+        );
+
+        galUploading = false;
+        btn.disabled = false;
+        btn.textContent = "⬆️ Upload & Publish";
+        if (ok) toast("✅", ok + " file" + (ok > 1 ? "s" : "") + " published to website!");
+        if (ok === pending.length) {
+          setTimeout(() => {
+            galQueue = [];
+            ["gal-date", "gal-caption"].forEach((id) => (document.getElementById(id).value = ""));
+            renderGalQueue();
+          }, 1200);
+        } else {
+          galQueue = galQueue.filter((q) => q.status !== "done");
+          renderGalQueue();
+        }
+      };
+
+      function cldThumb(g) {
+        if (!g.url || g.url.indexOf("res.cloudinary.com") < 0) return null;
+        if (g.type === "video")
+          return g.url.replace("/upload/", "/upload/so_0,w_400,f_jpg/").replace(/\.[a-z0-9]+$/i, ".jpg");
+        return g.url.replace("/upload/", "/upload/f_auto,q_auto,w_400/");
+      }
+
+      function renderGalleryGrid() {
+        document.getElementById("gal-count-badge").textContent =
+          galleryItems.length + " items";
+        // event-name suggestions
+        const names = [...new Set(galleryItems.map((g) => g.eventName).filter(Boolean))];
+        document.getElementById("gal-event-list").innerHTML = names
+          .map((n) => `<option value="${esc(n)}"></option>`)
+          .join("");
+
+        const wrap = document.getElementById("gal-grid-wrap");
+        if (!galleryItems.length) {
+          wrap.innerHTML =
+            '<div class="empty-state"><div class="e-icon">📭</div>No photos or videos uploaded yet.</div>';
+          return;
+        }
+        wrap.innerHTML =
+          '<div class="gal-grid">' +
+          galleryItems
+            .map((g) => {
+              const media =
+                cldThumb(g)
+                  ? `<img src="${esc(cldThumb(g))}" alt="${esc(g.caption || g.eventName)}" loading="lazy" />`
+                  : g.type === "video"
+                    ? `<video src="${esc(g.url)}#t=0.5" muted preload="metadata"></video>`
+                    : `<img src="${esc(g.url)}" alt="${esc(g.caption || g.eventName)}" loading="lazy" />`;
+              return `<div class="gal-card">
+                <div class="gal-thumb">${media}<span class="gal-type-tag">${g.type === "video" ? "🎬 Video" : "🖼 Image"}</span></div>
+                <div class="gal-meta"><strong>${esc(g.eventName)}</strong>${g.eventDate ? fmtDate(g.eventDate) : "No date"}${g.caption ? " · " + esc(g.caption) : ""}</div>
+                <button class="btn btn-red btn-sm gal-del" onclick="deleteGalItem('${g.id}')">🗑️ Delete</button>
+              </div>`;
+            })
+            .join("") +
+          "</div>";
+      }
+
+      window.deleteGalItem = function (id) {
+        const g = galleryItems.find((x) => x.id === id);
+        if (!g) return;
+        confirmAction(
+          "Delete this " + (g.type === "video" ? "video" : "photo") + " from the website gallery?",
+          async () => {
+            try {
+              await deleteDoc(doc(db, "eventGallery", id));
+              toast("🗑️", "Removed from website gallery");
+            } catch (e) {
+              toast("❌", "Error: " + e.message);
+            }
+          },
+        );
+      };
+
+      // ════════════════════════════════════════════════════════════
+      // AWARDS & ACHIEVEMENTS (shown on the Director page)
+      // ════════════════════════════════════════════════════════════
+      const AW_CATS = {
+        award: { label: "🏆 Award", icon: "🏆" },
+        academic: { label: "🎓 Academic", icon: "🎓" },
+        recognition: { label: "📰 Recognition", icon: "📰" },
+        community: { label: "🤝 Community", icon: "🤝" },
+      };
+
+      window.pickAwardImage = function (files) {
+        const file = files && files[0];
+        if (!file) return;
+        if (!file.type.startsWith("image/")) {
+          toast("⚠️", "Please choose an image file");
+          return;
+        }
+        const shrinkable = /^image\/(jpeg|png|webp)$/.test(file.type);
+        if (shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) {
+          toast("⚠️", "Image too large (max 5 MB)");
+          return;
+        }
+        if (!shrinkable && file.size > GAL_MAX_IMG) {
+          toast("⚠️", "Image too large (max 1 MB for this format)");
+          return;
+        }
+        awFile = file;
+        showAwardPreview(URL.createObjectURL(file), file.name);
+      };
+
+      function showAwardPreview(src, note) {
+        document.getElementById("aw-img-preview-img").src = src;
+        document.getElementById("aw-img-note").textContent = note || "";
+        document.getElementById("aw-img-preview").classList.add("show");
+      }
+
+      window.removeAwardImage = function () {
+        awFile = null;
+        awExisting = { url: "", path: "" };
+        document.getElementById("aw-img-preview").classList.remove("show");
+        document.getElementById("aw-img-preview-img").src = "";
+      };
+
+      window.resetAwardForm = function () {
+        if (awSaving) return;
+        editAwardId = null;
+        ["aw-title", "aw-year", "aw-desc", "aw-caption", "aw-icon"].forEach(
+          (id) => (document.getElementById(id).value = ""),
+        );
+        document.getElementById("aw-category").value = "award";
+        removeAwardImage();
+        document.getElementById("aw-form-title").textContent = "➕ Add Award / Achievement";
+        document.getElementById("aw-save-btn").textContent = "💾 Publish Award";
+        document.getElementById("aw-cancel-btn").textContent = "Clear";
+      };
+
+      function uploadAwardImage(blob, name, onProgress) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`);
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) onProgress(Math.round((e.loaded / e.total) * 100));
+          };
+          xhr.onload = () => {
+            let res = {};
+            try { res = JSON.parse(xhr.responseText); } catch (e) {}
+            if (xhr.status >= 200 && xhr.status < 300 && res.secure_url)
+              resolve({ url: res.secure_url, path: res.public_id });
+            else reject(new Error((res.error && res.error.message) || "Upload failed (" + xhr.status + ")"));
+          };
+          xhr.onerror = () => reject(new Error("Network error"));
+          const fd = new FormData();
+          fd.append("file", blob, name);
+          fd.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+          xhr.send(fd);
+        });
+      }
+
+      window.saveAward = async function () {
+        if (awSaving) return;
+        const title = document.getElementById("aw-title").value.trim();
+        const category = document.getElementById("aw-category").value;
+        const year = document.getElementById("aw-year").value.trim();
+        const description = document.getElementById("aw-desc").value.trim();
+        const caption = document.getElementById("aw-caption").value.trim();
+        const icon = document.getElementById("aw-icon").value.trim();
+        if (!title || !year || !description) {
+          toast("⚠️", "Please fill Title, Year and Description");
+          return;
+        }
+        if (awFile && (CLOUDINARY_CLOUD_NAME.startsWith("YOUR_") || CLOUDINARY_UPLOAD_PRESET.startsWith("YOUR_"))) {
+          toast("⚠️", "Set the Cloudinary details in admin.html first");
+          return;
+        }
+        const btn = document.getElementById("aw-save-btn");
+        const bar = document.getElementById("aw-up-bar");
+        awSaving = true;
+        btn.disabled = true;
+        btn.textContent = "Saving…";
+        try {
+          let imageUrl = awExisting.url;
+          let imagePath = awExisting.path;
+          if (awFile) {
+            bar.style.display = "block";
+            bar.firstElementChild.style.width = "0%";
+            const blob = await compressImage(awFile);
+            if (blob.size > GAL_MAX_IMG) throw new Error("Image is still over 1 MB after shrinking");
+            const up = await uploadAwardImage(blob, awFile.name, (p) => (bar.firstElementChild.style.width = p + "%"));
+            imageUrl = up.url;
+            imagePath = up.path;
+          }
+          const data = { title, category, year, description, caption, icon, imageUrl, imagePath };
+          if (editAwardId) {
+            data.updatedAt = serverTimestamp();
+            await updateDoc(doc(db, "awards", editAwardId), data);
+            toast("✅", "Award updated on website!");
+          } else {
+            data.createdAt = serverTimestamp();
+            await addDoc(collection(db, "awards"), data);
+            toast("✅", "Award published to website!");
+          }
+          awSaving = false;
+          resetAwardForm();
+        } catch (e) {
+          console.error(e);
+          toast("❌", "Error: " + (e.code || e.message));
+        }
+        awSaving = false;
+        btn.disabled = false;
+        bar.style.display = "none";
+        btn.textContent = editAwardId ? "💾 Update Award" : "💾 Publish Award";
+      };
+
+      window.editAward = function (id) {
+        const a = awardItems.find((x) => x.id === id);
+        if (!a || awSaving) return;
+        editAwardId = id;
+        document.getElementById("aw-title").value = a.title || "";
+        document.getElementById("aw-category").value = a.category || "award";
+        document.getElementById("aw-year").value = a.year || "";
+        document.getElementById("aw-desc").value = a.description || "";
+        document.getElementById("aw-caption").value = a.caption || "";
+        document.getElementById("aw-icon").value = a.icon || "";
+        awFile = null;
+        awExisting = { url: a.imageUrl || "", path: a.imagePath || "" };
+        if (a.imageUrl) showAwardPreview(cldThumb({ url: a.imageUrl, type: "image" }) || a.imageUrl, "Current image — choose a new one to replace it");
+        else removeAwardImage();
+        document.getElementById("aw-form-title").textContent = "✏️ Edit Award / Achievement";
+        document.getElementById("aw-save-btn").textContent = "💾 Update Award";
+        document.getElementById("aw-cancel-btn").textContent = "Cancel Edit";
+        document.getElementById("page-awards").scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      window.deleteAward = function (id) {
+        const a = awardItems.find((x) => x.id === id);
+        if (!a) return;
+        confirmAction('Delete "' + a.title + '" from the website?', async () => {
+          try {
+            await deleteDoc(doc(db, "awards", id));
+            if (editAwardId === id) resetAwardForm();
+            toast("🗑️", "Removed from website");
+          } catch (e) {
+            toast("❌", "Error: " + e.message);
+          }
+        });
+      };
+
+      window.setAwardFilter = function (f) {
+        awListFilter = f;
+        renderAwardsList();
+      };
+
+      function renderAwardsList() {
+        document.getElementById("aw-count-badge").textContent = awardItems.length + " items";
+        const chips = [["all", "All (" + awardItems.length + ")"]].concat(
+          Object.keys(AW_CATS).map((k) => [
+            k,
+            AW_CATS[k].label + " (" + awardItems.filter((a) => a.category === k).length + ")",
+          ]),
+        );
+        document.getElementById("aw-filter-row").innerHTML = chips
+          .map(([k, l]) => `<button class="aw-fchip ${awListFilter === k ? "active" : ""}" onclick="setAwardFilter('${k}')">${l}</button>`)
+          .join("");
+        const list = awListFilter === "all" ? awardItems : awardItems.filter((a) => a.category === awListFilter);
+        const wrap = document.getElementById("aw-list-wrap");
+        if (!list.length) {
+          wrap.innerHTML = '<div class="empty-state"><div class="e-icon">📭</div>No awards here yet.</div>';
+          return;
+        }
+        wrap.innerHTML =
+          '<div class="aw-list">' +
+          list
+            .map((a) => {
+              const cat = AW_CATS[a.category] || AW_CATS.award;
+              const thumb = a.imageUrl
+                ? `<img src="${esc(cldThumb({ url: a.imageUrl, type: "image" }) || a.imageUrl)}" alt="" loading="lazy" />`
+                : esc(a.icon || cat.icon);
+              return `<div class="aw-item">
+                <div class="aw-item-thumb">${thumb}</div>
+                <div class="aw-item-body">
+                  <span class="aw-item-tag">${cat.label}</span>
+                  <div class="aw-item-title">${esc(a.title)}</div>
+                  <div class="aw-item-desc">${esc(a.description)}</div>
+                  <div class="aw-item-year">📅 ${esc(a.year)}</div>
+                </div>
+                <div class="aw-item-actions">
+                  <button class="btn btn-ghost btn-sm" onclick="editAward('${a.id}')">✏️ Edit</button>
+                  <button class="btn btn-red btn-sm" onclick="deleteAward('${a.id}')">🗑️ Delete</button>
+                </div>
+              </div>`;
+            })
+            .join("") +
+          "</div>";
+      }
+
+      // ════════════════════════════════════════════════════════════
+      // SHARED: generic Cloudinary upload (image or video)
+      // ════════════════════════════════════════════════════════════
+      function cldUpload(kind, blob, name, onProgress) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${kind}/upload`);
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) onProgress(Math.round((e.loaded / e.total) * 100));
+          };
+          xhr.onload = () => {
+            let res = {};
+            try { res = JSON.parse(xhr.responseText); } catch (e) {}
+            if (xhr.status >= 200 && xhr.status < 300 && res.secure_url)
+              resolve({ url: res.secure_url, path: res.public_id });
+            else reject(new Error((res.error && res.error.message) || "Upload failed (" + xhr.status + ")"));
+          };
+          xhr.onerror = () => reject(new Error("Network error"));
+          const fd = new FormData();
+          fd.append("file", blob, name);
+          fd.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+          xhr.send(fd);
+        });
+      }
+      function cldConfigMissing() {
+        return CLOUDINARY_CLOUD_NAME.startsWith("YOUR_") || CLOUDINARY_UPLOAD_PRESET.startsWith("YOUR_");
+      }
+      function rgEl(id) {
+        return document.getElementById(id);
+      }
+
+      // ════════════════════════════════════════════════════════════
+      // RESULTS THAT SPEAK (student photos / videos on the home page)
+      // ════════════════════════════════════════════════════════════
+      window.addResultFiles = function (fileList) {
+        if (rsUploading || editResultId) return;
+        Array.from(fileList).forEach((file) => {
+          const isImg = file.type.startsWith("image/");
+          const isVid = file.type.startsWith("video/");
+          if (!isImg && !isVid) {
+            toast("⚠️", file.name + " is not an image or video");
+            return;
+          }
+          const shrinkable = /^image\/(jpeg|png|webp)$/.test(file.type);
+          if (isImg && shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) {
+            toast("⚠️", file.name + " — image too large (max 5 MB)");
+            return;
+          }
+          if (isImg && !shrinkable && file.size > GAL_MAX_IMG) {
+            toast("⚠️", file.name + " — image too large (max 1 MB for this format)");
+            return;
+          }
+          if (isVid && file.size > GAL_MAX_VID) {
+            toast("⚠️", file.name + " — video too large (max 20 MB). Please compress it first.");
+            return;
+          }
+          rsQueue.push({
+            qid: "rs" + Date.now() + Math.random().toString(36).slice(2, 7),
+            file,
+            type: isImg ? "image" : "video",
+            preview: URL.createObjectURL(file),
+            status: "pending",
+          });
+        });
+        renderRsQueue();
+      };
+
+      window.removeRsQueued = function (qid) {
+        if (rsUploading) return;
+        rsQueue = rsQueue.filter((q) => q.qid !== qid);
+        renderRsQueue();
+      };
+
+      function renderRsQueue() {
+        rgEl("rs-queue").innerHTML = rsQueue
+          .map((q) => {
+            const media =
+              q.type === "image"
+                ? `<img src="${q.preview}" alt="" />`
+                : `<video src="${q.preview}#t=0.5" muted preload="metadata"></video>`;
+            return `<div class="gal-qi ${q.status === "done" ? "done" : q.status === "error" ? "err" : ""}" id="${q.qid}">
+              <div class="gal-thumb">${media}
+                <span class="gal-type-tag">${q.type === "image" ? "🖼 Image" : "🎬 Video"}</span>
+                ${rsUploading ? "" : `<button class="gal-x" onclick="removeRsQueued('${q.qid}')">✕</button>`}
+              </div>
+              <div class="gal-meta"><strong>${esc(q.file.name)}</strong>${(q.file.size / 1024 / 1024).toFixed(2)} MB</div>
+              <div class="gal-bar"><span></span></div>
+            </div>`;
+          })
+          .join("");
+      }
+
+      window.resetResultForm = function () {
+        if (rsUploading) return;
+        editResultId = null;
+        rsQueue = [];
+        rgEl("rs-caption").value = "";
+        rgEl("rs-files-group").style.display = "";
+        rgEl("rs-form-title").textContent = "➕ Add Result / Student Feedback";
+        rgEl("rs-save-btn").textContent = "⬆️ Upload & Publish";
+        rgEl("rs-cancel-btn").textContent = "Clear";
+        renderRsQueue();
+      };
+
+      window.saveResults = async function () {
+        if (rsUploading) return;
+        const btn = rgEl("rs-save-btn");
+
+        // editing: only the caption can change
+        if (editResultId) {
+          const caption = rgEl("rs-caption").value.trim();
+          if (!caption) {
+            toast("⚠️", "Please enter a caption");
+            return;
+          }
+          try {
+            await updateDoc(doc(db, "testimonials", editResultId), { caption, updatedAt: serverTimestamp() });
+            toast("✅", "Caption updated on website!");
+            resetResultForm();
+          } catch (e) {
+            toast("❌", "Error: " + (e.code || e.message));
+          }
+          return;
+        }
+
+        const pending = rsQueue.filter((q) => q.status !== "done");
+        if (!pending.length) {
+          toast("⚠️", "Please add at least one photo or video");
+          return;
+        }
+        if (cldConfigMissing()) {
+          toast("⚠️", "Set the Cloudinary details in admin.html first");
+          return;
+        }
+        const caption = rgEl("rs-caption").value.trim() || "Student Feedback";
+        rsUploading = true;
+        btn.disabled = true;
+        renderRsQueue();
+        pending.forEach((q) => setGalProgress(q.qid, 0));
+
+        let ok = 0, finished = 0;
+        const total = pending.length;
+        const queue = pending.slice();
+        async function worker() {
+          while (queue.length) {
+            const q = queue.shift();
+            try {
+              const blob = q.type === "image" ? await compressImage(q.file) : q.file;
+              if (q.type === "image" && blob.size > GAL_MAX_IMG)
+                throw new Error(q.file.name + " is still over 1 MB after shrinking");
+              const up = await cldUpload(q.type, blob, q.file.name, (p) => setGalProgress(q.qid, p));
+              await addDoc(collection(db, "testimonials"), {
+                type: q.type,
+                src: up.url,
+                path: up.path,
+                caption,
+                fileName: q.file.name,
+                size: blob.size,
+                createdAt: serverTimestamp(),
+              });
+              q.status = "done";
+              ok++;
+              rgEl(q.qid)?.classList.add("done");
+              setGalProgress(q.qid, 100);
+            } catch (e) {
+              console.error(e);
+              q.status = "error";
+              rgEl(q.qid)?.classList.add("err");
+              toast("❌", "Upload failed: " + (e.code || e.message));
+            }
+            finished++;
+            btn.textContent = "Uploading " + finished + "/" + total + "…";
+          }
+        }
+        btn.textContent = "Uploading 0/" + total + "…";
+        await Promise.all(Array.from({ length: Math.min(4, total) }, worker));
+
+        rsUploading = false;
+        btn.disabled = false;
+        btn.textContent = "⬆️ Upload & Publish";
+        if (ok) toast("✅", ok + " file" + (ok > 1 ? "s" : "") + " published to website!");
+        if (ok === total) {
+          setTimeout(() => {
+            rsQueue = [];
+            rgEl("rs-caption").value = "";
+            renderRsQueue();
+          }, 1200);
+        } else {
+          rsQueue = rsQueue.filter((q) => q.status !== "done");
+          renderRsQueue();
+        }
+      };
+
+      window.editResult = function (id) {
+        const r = resultItems.find((x) => x.id === id);
+        if (!r || rsUploading) return;
+        editResultId = id;
+        rsQueue = [];
+        renderRsQueue();
+        rgEl("rs-caption").value = r.caption || "";
+        rgEl("rs-files-group").style.display = "none";
+        rgEl("rs-form-title").textContent = "✏️ Edit Caption";
+        rgEl("rs-save-btn").textContent = "💾 Update Caption";
+        rgEl("rs-cancel-btn").textContent = "Cancel Edit";
+        rgEl("page-results").scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      window.deleteResult = function (id) {
+        const r = resultItems.find((x) => x.id === id);
+        if (!r) return;
+        confirmAction("Delete this " + (r.type === "video" ? "video" : "photo") + " from the website?", async () => {
+          try {
+            await deleteDoc(doc(db, "testimonials", id));
+            if (editResultId === id) resetResultForm();
+            toast("🗑️", "Removed from website");
+          } catch (e) {
+            toast("❌", "Error: " + e.message);
+          }
+        });
+      };
+
+      window.setResultFilter = function (f) {
+        rsFilter = f;
+        renderResultsList();
+      };
+
+      function renderResultsList() {
+        rgEl("rs-count-badge").textContent = resultItems.length + " items";
+        const nImg = resultItems.filter((r) => r.type !== "video").length;
+        const chips = [
+          ["all", "All (" + resultItems.length + ")"],
+          ["image", "🖼 Photos (" + nImg + ")"],
+          ["video", "🎬 Videos (" + (resultItems.length - nImg) + ")"],
+        ];
+        rgEl("rs-filter-row").innerHTML = chips
+          .map(([k, l]) => `<button class="aw-fchip ${rsFilter === k ? "active" : ""}" onclick="setResultFilter('${k}')">${l}</button>`)
+          .join("");
+        const list = resultItems.filter((r) =>
+          rsFilter === "all" ? true : rsFilter === "video" ? r.type === "video" : r.type !== "video",
+        );
+        const wrap = rgEl("rs-list-wrap");
+        if (!list.length) {
+          wrap.innerHTML = '<div class="empty-state"><div class="e-icon">📭</div>Nothing here yet.</div>';
+          return;
+        }
+        wrap.innerHTML =
+          '<div class="aw-list">' +
+          list
+            .map((r) => {
+              const isVid = r.type === "video";
+              const t = cldThumb({ url: r.src, type: isVid ? "video" : "image" });
+              const thumb = t
+                ? `<img src="${esc(t)}" alt="" loading="lazy" />`
+                : isVid
+                  ? `<video src="${esc(r.src)}#t=0.5" muted preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>`
+                  : `<img src="${esc(r.src)}" alt="" loading="lazy" />`;
+              return `<div class="aw-item">
+                <div class="aw-item-thumb">${thumb}</div>
+                <div class="aw-item-body">
+                  <span class="aw-item-tag">${isVid ? "🎬 Video" : "🖼 Photo"}</span>
+                  <div class="aw-item-title">${esc(r.caption || "Student Feedback")}</div>
+                </div>
+                <div class="aw-item-actions">
+                  <button class="btn btn-ghost btn-sm" onclick="editResult('${r.id}')">✏️ Edit</button>
+                  <button class="btn btn-red btn-sm" onclick="deleteResult('${r.id}')">🗑️ Delete</button>
+                </div>
+              </div>`;
+            })
+            .join("") +
+          "</div>";
+      }
+
+      // ════════════════════════════════════════════════════════════
+      // PARENTS SPEAK (written quote / photo / video / link)
+      // ════════════════════════════════════════════════════════════
+      const PF_TYPES = {
+        text: "📝 Quote",
+        image: "🖼 Photo",
+        video: "🎬 Video",
+        link: "🔗 Link",
+      };
+
+      function pfShowPreview(kind, src, note) {
+        const img = rgEl("pf-prev-img");
+        const vid = rgEl("pf-prev-vid");
+        if (kind === "video") {
+          img.style.display = "none";
+          img.removeAttribute("src");
+          vid.style.display = "block";
+          vid.src = src;
+        } else {
+          vid.style.display = "none";
+          vid.removeAttribute("src");
+          img.style.display = "block";
+          img.src = src;
+        }
+        rgEl("pf-prev-note").textContent = note || "";
+        rgEl("pf-preview").classList.add("show");
+      }
+      function pfHidePreview() {
+        rgEl("pf-preview").classList.remove("show");
+        rgEl("pf-prev-img").removeAttribute("src");
+        const v = rgEl("pf-prev-vid");
+        v.pause();
+        v.removeAttribute("src");
+      }
+
+      // UI only: show the fields that belong to the chosen type
+      function applyParentType(t) {
+        pfType = t;
+        document
+          .querySelectorAll(".pf-type-btn")
+          .forEach((b) => b.classList.toggle("active", b.dataset.pt === t));
+        rgEl("pf-grp-text").style.display = t === "text" ? "" : "none";
+        rgEl("pf-grp-media").style.display = t === "image" || t === "video" ? "" : "none";
+        rgEl("pf-grp-link").style.display = t === "link" ? "" : "none";
+        rgEl("pf-grp-link2").style.display = t === "link" ? "" : "none";
+        if (t === "image" || t === "video") {
+          rgEl("pf-media-label").textContent = (t === "image" ? "Photo" : "Video") + " *";
+          rgEl("pf-drop-icon").textContent = t === "image" ? "🖼️" : "🎬";
+          rgEl("pf-drop-hint").textContent =
+            t === "image"
+              ? "Photos up to 5 MB are shrunk automatically to under 1 MB"
+              : "Videos up to 20 MB (compress large videos first)";
+          rgEl("pf-file-input").accept = t === "image" ? "image/*" : "video/*";
+          if (pfFile) pfShowPreview(t, URL.createObjectURL(pfFile), pfFile.name);
+          else if (pfExisting.url)
+            pfShowPreview(
+              t,
+              t === "image" ? cldThumb({ url: pfExisting.url, type: "image" }) || pfExisting.url : pfExisting.url,
+              "Current file — choose a new one to replace it",
+            );
+          else pfHidePreview();
+        }
+      }
+
+      window.setParentType = function (t) {
+        if (t === pfType) return;
+        // changing type drops the chosen media, unless going back to the saved type
+        pfFile = null;
+        pfExisting =
+          editParentId && t === pfOrig.type && (t === "image" || t === "video")
+            ? { url: pfOrig.url, path: pfOrig.path }
+            : { url: "", path: "" };
+        applyParentType(t);
+      };
+
+      window.pickParentMedia = function (files) {
+        const file = files && files[0];
+        if (!file) return;
+        if (pfType === "image") {
+          if (!file.type.startsWith("image/")) return toast("⚠️", "Please choose an image file");
+          const shrinkable = /^image\/(jpeg|png|webp)$/.test(file.type);
+          if (shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) return toast("⚠️", "Image too large (max 5 MB)");
+          if (!shrinkable && file.size > GAL_MAX_IMG) return toast("⚠️", "Image too large (max 1 MB for this format)");
+        } else if (pfType === "video") {
+          if (!file.type.startsWith("video/")) return toast("⚠️", "Please choose a video file");
+          if (file.size > GAL_MAX_VID) return toast("⚠️", "Video too large (max 20 MB). Please compress it first.");
+        } else return;
+        pfFile = file;
+        pfShowPreview(pfType, URL.createObjectURL(file), file.name);
+      };
+
+      window.removeParentMedia = function () {
+        pfFile = null;
+        pfExisting = { url: "", path: "" };
+        pfHidePreview();
+      };
+
+      window.resetParentForm = function () {
+        if (pfSaving) return;
+        editParentId = null;
+        pfOrig = { type: "", url: "", path: "" };
+        pfFile = null;
+        pfExisting = { url: "", path: "" };
+        ["pf-name", "pf-child", "pf-text", "pf-link-url", "pf-link-label"].forEach((id) => (rgEl(id).value = ""));
+        rgEl("pf-rating").value = "0";
+        pfHidePreview();
+        applyParentType("text");
+        rgEl("pf-form-title").textContent = "➕ Add Parent Feedback";
+        rgEl("pf-save-btn").textContent = "💾 Publish Feedback";
+        rgEl("pf-cancel-btn").textContent = "Clear";
+      };
+
+      window.saveParent = async function () {
+        if (pfSaving) return;
+        const parentName = rgEl("pf-name").value.trim();
+        const childInfo = rgEl("pf-child").value.trim();
+        const rating = Number(rgEl("pf-rating").value) || 0;
+        if (!parentName) return toast("⚠️", "Please enter the parent's name");
+
+        const data = {
+          parentName,
+          childInfo,
+          rating,
+          mediaType: pfType,
+          text: "",
+          imgSrc: "",
+          vidSrc: "",
+          vidPoster: "",
+          linkUrl: "",
+          linkLabel: "",
+          mediaPath: "",
+        };
+        if (pfType === "text") {
+          data.text = rgEl("pf-text").value.trim();
+          if (!data.text) return toast("⚠️", "Please enter the feedback text");
+        } else if (pfType === "link") {
+          data.linkUrl = rgEl("pf-link-url").value.trim();
+          data.linkLabel = rgEl("pf-link-label").value.trim();
+          if (!/^https?:\/\/\S+$/i.test(data.linkUrl))
+            return toast("⚠️", "Please enter a valid link starting with http:// or https://");
+        } else if (!pfFile && !pfExisting.url) {
+          return toast("⚠️", "Please add a " + (pfType === "image" ? "photo" : "video"));
+        }
+        if (pfFile && cldConfigMissing()) return toast("⚠️", "Set the Cloudinary details in admin.html first");
+
+        const btn = rgEl("pf-save-btn");
+        const bar = rgEl("pf-up-bar");
+        pfSaving = true;
+        btn.disabled = true;
+        btn.textContent = "Saving…";
+        try {
+          if (pfType === "image" || pfType === "video") {
+            let url = pfExisting.url;
+            let path = pfExisting.path;
+            if (pfFile) {
+              bar.style.display = "block";
+              bar.firstElementChild.style.width = "0%";
+              const blob = pfType === "image" ? await compressImage(pfFile) : pfFile;
+              if (pfType === "image" && blob.size > GAL_MAX_IMG) throw new Error("Image is still over 1 MB after shrinking");
+              const up = await cldUpload(pfType, blob, pfFile.name, (p) => (bar.firstElementChild.style.width = p + "%"));
+              url = up.url;
+              path = up.path;
+            }
+            if (pfType === "image") data.imgSrc = url;
+            else data.vidSrc = url;
+            data.mediaPath = path;
+          }
+          if (editParentId) {
+            data.updatedAt = serverTimestamp();
+            await updateDoc(doc(db, "parentFeedback", editParentId), data);
+            toast("✅", "Feedback updated on website!");
+          } else {
+            data.createdAt = serverTimestamp();
+            await addDoc(collection(db, "parentFeedback"), data);
+            toast("✅", "Feedback published to website!");
+          }
+          pfSaving = false;
+          resetParentForm();
+        } catch (e) {
+          console.error(e);
+          toast("❌", "Error: " + (e.code || e.message));
+        }
+        pfSaving = false;
+        btn.disabled = false;
+        bar.style.display = "none";
+        btn.textContent = editParentId ? "💾 Update Feedback" : "💾 Publish Feedback";
+      };
+
+      window.editParent = function (id) {
+        const p = parentItems.find((x) => x.id === id);
+        if (!p || pfSaving) return;
+        const type = PF_TYPES[p.mediaType] ? p.mediaType : "text";
+        editParentId = id;
+        rgEl("pf-name").value = p.parentName || "";
+        rgEl("pf-child").value = p.childInfo || "";
+        rgEl("pf-rating").value = String(p.rating || 0);
+        rgEl("pf-text").value = p.text || "";
+        rgEl("pf-link-url").value = p.linkUrl || "";
+        rgEl("pf-link-label").value = p.linkLabel || "";
+        const url = type === "image" ? p.imgSrc || "" : type === "video" ? p.vidSrc || "" : "";
+        pfFile = null;
+        pfExisting = { url, path: p.mediaPath || "" };
+        pfOrig = { type, url, path: p.mediaPath || "" };
+        applyParentType(type);
+        rgEl("pf-form-title").textContent = "✏️ Edit Parent Feedback";
+        rgEl("pf-save-btn").textContent = "💾 Update Feedback";
+        rgEl("pf-cancel-btn").textContent = "Cancel Edit";
+        rgEl("page-parents").scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      window.deleteParent = function (id) {
+        const p = parentItems.find((x) => x.id === id);
+        if (!p) return;
+        confirmAction('Delete the feedback from "' + (p.parentName || "this parent") + '"?', async () => {
+          try {
+            await deleteDoc(doc(db, "parentFeedback", id));
+            if (editParentId === id) resetParentForm();
+            toast("🗑️", "Removed from website");
+          } catch (e) {
+            toast("❌", "Error: " + e.message);
+          }
+        });
+      };
+
+      window.setParentFilter = function (f) {
+        pfFilter = f;
+        renderParentsList();
+      };
+
+      function renderParentsList() {
+        rgEl("pf-count-badge").textContent = parentItems.length + " items";
+        const typeOf = (p) => (PF_TYPES[p.mediaType] ? p.mediaType : "text");
+        const chips = [["all", "All (" + parentItems.length + ")"]].concat(
+          Object.keys(PF_TYPES).map((k) => [
+            k,
+            PF_TYPES[k] + " (" + parentItems.filter((p) => typeOf(p) === k).length + ")",
+          ]),
+        );
+        rgEl("pf-filter-row").innerHTML = chips
+          .map(([k, l]) => `<button class="aw-fchip ${pfFilter === k ? "active" : ""}" onclick="setParentFilter('${k}')">${l}</button>`)
+          .join("");
+        const list = pfFilter === "all" ? parentItems : parentItems.filter((p) => typeOf(p) === pfFilter);
+        const wrap = rgEl("pf-list-wrap");
+        if (!list.length) {
+          wrap.innerHTML = '<div class="empty-state"><div class="e-icon">📭</div>Nothing here yet.</div>';
+          return;
+        }
+        wrap.innerHTML =
+          '<div class="aw-list">' +
+          list
+            .map((p) => {
+              const t = typeOf(p);
+              let thumb;
+              if (t === "image")
+                thumb = `<img src="${esc(cldThumb({ url: p.imgSrc, type: "image" }) || p.imgSrc)}" alt="" loading="lazy" />`;
+              else if (t === "video") {
+                const th = cldThumb({ url: p.vidSrc, type: "video" });
+                thumb = th
+                  ? `<img src="${esc(th)}" alt="" loading="lazy" />`
+                  : `<video src="${esc(p.vidSrc)}#t=0.5" muted preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>`;
+              } else if (t === "link") thumb = "🔗";
+              else thumb = `<div class="aw-item-quote">“${esc(p.text)}”</div>`;
+              const stars = p.rating > 0 ? "★".repeat(Math.round(p.rating)) + "☆".repeat(5 - Math.round(p.rating)) : "";
+              return `<div class="aw-item">
+                <div class="aw-item-thumb">${thumb}</div>
+                <div class="aw-item-body">
+                  <span class="aw-item-tag">${PF_TYPES[t]}</span>
+                  <div class="aw-item-title">${esc(p.parentName || "Parent")}</div>
+                  ${p.childInfo ? `<div class="aw-item-desc">${esc(p.childInfo)}</div>` : ""}
+                  ${t === "link" ? `<div class="aw-item-desc">${esc(p.linkLabel || p.linkUrl)}</div>` : ""}
+                  ${stars ? `<div class="aw-item-year">${stars}</div>` : ""}
+                </div>
+                <div class="aw-item-actions">
+                  <button class="btn btn-ghost btn-sm" onclick="editParent('${p.id}')">✏️ Edit</button>
+                  <button class="btn btn-red btn-sm" onclick="deleteParent('${p.id}')">🗑️ Delete</button>
+                </div>
+              </div>`;
+            })
+            .join("") +
+          "</div>";
+      }
 
       // ════════════════════════════════════════════════════════════
       // HELPERS
