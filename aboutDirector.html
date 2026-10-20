@@ -2206,7 +2206,114 @@
           if (e.key === "ArrowLeft") showLbSlide(currentLbIdx - 1);
           if (e.key === "ArrowRight") showLbSlide(currentLbIdx + 1);
         });
+
+        // ── Admin-managed cards (loaded from Firestore) ──
+        let dynamicCards = [];
+        window.awSetDynamicCards = function (els) {
+          // remove the previous admin-managed cards
+          dynamicCards.forEach((c) => {
+            const i = cards.indexOf(c);
+            if (i > -1) cards.splice(i, 1);
+            c.remove();
+          });
+          dynamicCards = els;
+          const activeTab = document.querySelector(".aw-tab.active");
+          const filter = activeTab ? activeTab.dataset.filter : "all";
+          const frag = document.createDocumentFragment();
+          els.forEach((c) => {
+            if (filter !== "all" && c.dataset.cat !== filter) c.classList.add("aw-hidden");
+            if (c.dataset.img) c.addEventListener("click", () => openLightbox(c));
+            frag.appendChild(c);
+          });
+          grid.insertBefore(frag, grid.firstChild); // newest first
+          cards.unshift(...els);
+          els.forEach((c) => cardIO.observe(c));
+        };
       })();
+    </script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        query,
+        orderBy,
+        onSnapshot,
+      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+      const app = initializeApp({
+        apiKey: "AIzaSyBB0ixAQ5-EyaMC7ZmOTPmzKmUacBqwoTk",
+        authDomain: "nirmal-academy-a14d5.firebaseapp.com",
+        projectId: "nirmal-academy-a14d5",
+        storageBucket: "nirmal-academy-a14d5.firebasestorage.app",
+        messagingSenderId: "830472511607",
+        appId: "1:830472511607:web:5ef2220bc8d9b6a458a672",
+        measurementId: "G-DXTK8HYJ66",
+      });
+      const db = getFirestore(app);
+
+      const CATS = {
+        award: { label: "🏆 Award", icon: "🏆" },
+        academic: { label: "🎓 Academic", icon: "🎓" },
+        recognition: { label: "📰 Recognition", icon: "📰" },
+        community: { label: "🤝 Community", icon: "🤝" },
+      };
+
+      function esc(str) {
+        return String(str == null ? "" : str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+      // Cloudinary: serve a lighter, auto-optimised copy
+      function cld(url, t) {
+        return url && url.indexOf("res.cloudinary.com") > -1
+          ? url.replace("/upload/", "/upload/" + t + "/")
+          : url;
+      }
+      function yearKey(y) {
+        const m = String(y || "").match(/\d{4}/);
+        return m ? parseInt(m[0], 10) : 0;
+      }
+      const ms = (a) => (a.createdAt && a.createdAt.toMillis ? a.createdAt.toMillis() : Date.now());
+
+      function buildCard(a) {
+        const cat = CATS[a.category] ? a.category : "award";
+        const c = CATS[cat];
+        const el = document.createElement("div");
+        el.className = "aw-card";
+        el.dataset.cat = cat;
+        const caption = a.caption || a.title || "";
+        let top;
+        if (a.imageUrl) {
+          el.dataset.img = cld(a.imageUrl, "f_auto,q_auto,w_1600");
+          el.dataset.caption = caption;
+          top =
+            '<div class="aw-card-img"><img src="' + esc(cld(a.imageUrl, "f_auto,q_auto,w_900")) +
+            '" alt="' + esc(a.title) + '" loading="lazy" /><div class="aw-zoom-overlay"><div class="aw-zoom-icon">⤢</div></div></div>';
+        } else {
+          top = '<div class="aw-card-icon-wrap">' + esc(a.icon || c.icon) + "</div>";
+        }
+        el.innerHTML =
+          top +
+          '<div class="aw-card-body"><span class="aw-cat-tag">' + c.label + "</span>" +
+          '<div class="aw-title">' + esc(a.title) + "</div>" +
+          '<p class="aw-desc">' + esc(a.description).replace(/\n/g, "<br />") + "</p>" +
+          '<span class="aw-year-badge">📅 ' + esc(a.year) + "</span></div>";
+        return el;
+      }
+
+      const q = query(collection(db, "awards"), orderBy("createdAt", "desc"));
+      onSnapshot(
+        q,
+        (snap) => {
+          const items = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          items.sort((a, b) => yearKey(b.year) - yearKey(a.year) || ms(b) - ms(a));
+          if (window.awSetDynamicCards) window.awSetDynamicCards(items.map(buildCard));
+        },
+        (err) => console.warn("Awards could not be loaded:", err.code || err.message),
+      );
     </script>
   </body>
 </html>
