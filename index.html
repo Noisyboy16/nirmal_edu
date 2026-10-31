@@ -1853,14 +1853,19 @@
       .reveal-delay-3 {
         transition-delay: 0.3s;
       }
-    
+
       /* ── EVENT GALLERY (admin-managed) ────────────────────────── */
       #event-gallery {
         background: var(--light);
         padding: 60px 0;
       }
-      .eg-header { text-align: center; margin-bottom: 36px; }
-      .eg-header .divider { margin: 12px auto 0; }
+      .eg-header {
+        text-align: center;
+        margin-bottom: 36px;
+      }
+      .eg-header .divider {
+        margin: 12px auto 0;
+      }
       .eg-filters {
         display: flex;
         flex-wrap: wrap;
@@ -1880,13 +1885,17 @@
         cursor: pointer;
         transition: var(--transition);
       }
-      .eg-chip:hover { border-color: var(--gold); }
+      .eg-chip:hover {
+        border-color: var(--gold);
+      }
       .eg-chip.active {
         background: var(--navy);
         border-color: var(--navy);
         color: var(--gold-lt);
       }
-      .eg-group { margin-bottom: 48px; }
+      .eg-group {
+        margin-bottom: 48px;
+      }
       .eg-group-head {
         display: flex;
         align-items: baseline;
@@ -1899,7 +1908,10 @@
         font-size: 1.5rem;
         color: var(--navy);
       }
-      .eg-group-meta { font-size: 0.82rem; color: var(--gray); }
+      .eg-group-meta {
+        font-size: 0.82rem;
+        color: var(--gray);
+      }
       .eg-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -1915,15 +1927,22 @@
         box-shadow: var(--shadow-sm);
         transition: var(--transition);
       }
-      .eg-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-      .eg-item img, .eg-item video {
+      .eg-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .eg-item img,
+      .eg-item video {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
         transition: transform 0.5s;
       }
-      .eg-item:hover img, .eg-item:hover video { transform: scale(1.06); }
+      .eg-item:hover img,
+      .eg-item:hover video {
+        transform: scale(1.06);
+      }
       .eg-play {
         position: absolute;
         inset: 0;
@@ -1946,7 +1965,9 @@
       }
       .eg-cap {
         position: absolute;
-        left: 0; right: 0; bottom: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         padding: 26px 14px 10px;
         background: linear-gradient(transparent, rgba(11, 31, 58, 0.85));
         color: #fff;
@@ -1954,8 +1975,13 @@
         opacity: 0;
         transition: var(--transition);
       }
-      .eg-item:hover .eg-cap { opacity: 1; }
-      .eg-more { text-align: center; margin-top: 22px; }
+      .eg-item:hover .eg-cap {
+        opacity: 1;
+      }
+      .eg-more {
+        text-align: center;
+        margin-top: 22px;
+      }
       .eg-more button {
         font-family: var(--font-body);
         font-weight: 600;
@@ -1968,7 +1994,10 @@
         cursor: pointer;
         transition: var(--transition);
       }
-      .eg-more button:hover { background: var(--gold); color: var(--navy); }
+      .eg-more button:hover {
+        background: var(--gold);
+        color: var(--navy);
+      }
 
       /* lightbox */
       .eg-lb {
@@ -1981,7 +2010,9 @@
         justify-content: center;
         padding: 56px 64px;
       }
-      .eg-lb.open { display: flex; }
+      .eg-lb.open {
+        display: flex;
+      }
       .eg-lb-stage {
         max-width: 100%;
         max-height: 100%;
@@ -1990,13 +2021,19 @@
         align-items: center;
         gap: 12px;
       }
-      .eg-lb-stage img, .eg-lb-stage video {
+      .eg-lb-stage img,
+      .eg-lb-stage video {
         max-width: 100%;
         max-height: calc(100vh - 170px);
         border-radius: 10px;
         background: #000;
       }
-      .eg-lb-cap { color: #e8e4da; font-size: 0.9rem; text-align: center; max-width: 720px; }
+      .eg-lb-cap {
+        color: #e8e4da;
+        font-size: 0.9rem;
+        text-align: center;
+        max-width: 720px;
+      }
       .eg-lb-btn {
         position: absolute;
         background: rgba(255, 255, 255, 0.12);
@@ -2009,15 +2046,38 @@
         cursor: pointer;
         transition: 0.2s;
       }
-      .eg-lb-btn:hover { background: var(--gold); color: var(--navy); }
-      .eg-lb-close { top: 16px; right: 18px; }
-      .eg-lb-prev { left: 14px; top: 50%; transform: translateY(-50%); }
-      .eg-lb-next { right: 14px; top: 50%; transform: translateY(-50%); }
+      .eg-lb-btn:hover {
+        background: var(--gold);
+        color: var(--navy);
+      }
+      .eg-lb-close {
+        top: 16px;
+        right: 18px;
+      }
+      .eg-lb-prev {
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .eg-lb-next {
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
       @media (max-width: 600px) {
-        .eg-lb { padding: 56px 12px; }
-        .eg-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .eg-lb-prev { left: 6px; }
-        .eg-lb-next { right: 6px; }
+        .eg-lb {
+          padding: 56px 12px;
+        }
+        .eg-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .eg-lb-prev {
+          left: 6px;
+        }
+        .eg-lb-next {
+          right: 6px;
+        }
       }
     </style>
   </head>
@@ -2460,7 +2520,7 @@
       <div class="container">
         <div class="achievements-header reveal">
           <p class="section-label">Our Milestones</p>
-          <h2 class="section-title">Student <em>Achievements</em></h2>
+          <h2 class="section-title">Student <em>Achievements & Results</em></h2>
           <div class="divider" style="margin: 12px auto 0"></div>
         </div>
         <div id="gallery-achievements" class="reveal"></div>
@@ -2648,7 +2708,7 @@
             Student Stories
           </p>
           <h2 class="section-title" style="color: #fff">
-            Results That <em>Speak</em>
+            Words of <em>Appreciation</em>
           </h2>
           <div class="divider" style="margin: 12px auto"></div>
         </div>
@@ -2774,9 +2834,19 @@
     </section>
 
     <div class="eg-lb" id="eg-lb">
-      <button class="eg-lb-btn eg-lb-close" id="eg-lb-close" aria-label="Close">✕</button>
-      <button class="eg-lb-btn eg-lb-prev" id="eg-lb-prev" aria-label="Previous">‹</button>
-      <button class="eg-lb-btn eg-lb-next" id="eg-lb-next" aria-label="Next">›</button>
+      <button class="eg-lb-btn eg-lb-close" id="eg-lb-close" aria-label="Close">
+        ✕
+      </button>
+      <button
+        class="eg-lb-btn eg-lb-prev"
+        id="eg-lb-prev"
+        aria-label="Previous"
+      >
+        ‹
+      </button>
+      <button class="eg-lb-btn eg-lb-next" id="eg-lb-next" aria-label="Next">
+        ›
+      </button>
       <div class="eg-lb-stage" id="eg-lb-stage"></div>
     </div>
 
@@ -2825,7 +2895,7 @@
       <div class="container">
         <div class="reveal" style="text-align: center; margin-bottom: 52px">
           <p class="section-label">In Their Words</p>
-          <h2 class="section-title">Parents <em>Speak</em></h2>
+          <h2 class="section-title">Voices of <em>Trust</em></h2>
           <div class="divider" style="margin: 12px auto"></div>
         </div>
         <div class="pf-grid reveal" id="pf-cards-render">
@@ -3034,49 +3104,78 @@
             src: "assets/images/achivements8.jpeg",
             caption: "NEET Achievers",
           },
-        ],
-        testimonials: [
+          {
+            type: "image",
+            src: "assets/images/testinomial5.jpeg",
+            caption: "Achievers",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial6.jpeg",
+            caption: "Achievers",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial7.jpeg",
+            caption: "Achievers",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial8.jpeg",
+            caption: "Achievers",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial9.jpeg",
+            caption: "Achievers",
+          },
+          {
+            type: "image",
+            src: "assets/images/testinomial10.jpeg",
+            caption: "Achievers",
+          },
           {
             type: "image",
             src: "assets/images/testinomial11.jpeg",
-            caption: "Student Feedback",
+            caption: "Achievers",
           },
           {
             type: "image",
             src: "assets/images/testinomial12.jpeg",
-            caption: "Student Feedback",
+            caption: "Achievers",
           },
           {
             type: "image",
             src: "assets/images/testinomial16.jpeg",
-            caption: "Student Feedback",
+            caption: "Achievers",
           },
           {
             type: "image",
             src: "assets/images/testinomial17.jpeg",
-            caption: "Student Feedback",
+            caption: "Achievers",
           },
           {
             type: "image",
             src: "assets/images/testinomial1.jpeg",
-            caption: "Student Feedback",
+            caption: "Achievers",
           },
           {
             type: "image",
             src: "assets/images/testinomial2.jpeg",
-            caption: "Student Feedback",
+            caption: "Achievers",
           },
           {
             type: "image",
             src: "assets/images/testinomial3.jpeg",
-            caption: "Student Feedback",
+            caption: "Achievers",
           },
           {
             type: "image",
             src: "assets/images/testinomial4.jpeg",
-            caption: "Student Feedback",
+            caption: "Achievers",
           },
-
+        ],
+        testimonials: [
           {
             type: "video",
             src: "assets/videos/feedback_vd5.mp4",
@@ -3095,36 +3194,6 @@
           {
             type: "video",
             src: "assets/videos/feedback_vd4.mp4",
-            caption: "Student Feedback",
-          },
-          {
-            type: "image",
-            src: "assets/images/testinomial5.jpeg",
-            caption: "Student Feedback",
-          },
-          {
-            type: "image",
-            src: "assets/images/testinomial6.jpeg",
-            caption: "Student Feedback",
-          },
-          {
-            type: "image",
-            src: "assets/images/testinomial7.jpeg",
-            caption: "Student Feedback",
-          },
-          {
-            type: "image",
-            src: "assets/images/testinomial8.jpeg",
-            caption: "Student Feedback",
-          },
-          {
-            type: "image",
-            src: "assets/images/testinomial9.jpeg",
-            caption: "Student Feedback",
-          },
-          {
-            type: "image",
-            src: "assets/images/testinomial10.jpeg",
             caption: "Student Feedback",
           },
           {
@@ -3499,11 +3568,15 @@
       new Gallery("gallery-achievements", GALLERY_DATA.achievements, {
         perPage: 4,
       });
-      window.rtsGallery = new Gallery("gallery-testimonials", GALLERY_DATA.testimonials, {
-        dark: true,
-        perPage: 3,
-        autoplay: 4000,
-      });
+      window.rtsGallery = new Gallery(
+        "gallery-testimonials",
+        GALLERY_DATA.testimonials,
+        {
+          dark: true,
+          perPage: 3,
+          autoplay: 4000,
+        },
+      );
       new Gallery("gallery-events", GALLERY_DATA.events, { perPage: 2 });
       window.Gallery = Gallery;
       window.GALLERY_DATA = GALLERY_DATA;
@@ -3774,18 +3847,34 @@
         const thumb = (g) => {
           if (!isCld(g.url)) return g.url;
           if (g.type === "video")
-            return g.url.replace("/upload/", "/upload/so_0,w_700,f_jpg/").replace(/\.[a-z0-9]+$/i, ".jpg");
+            return g.url
+              .replace("/upload/", "/upload/so_0,w_700,f_jpg/")
+              .replace(/\.[a-z0-9]+$/i, ".jpg");
           return g.url.replace("/upload/", "/upload/f_auto,q_auto,w_700/");
         };
         const full = (g) =>
           isCld(g.url)
-            ? g.url.replace("/upload/", g.type === "video" ? "/upload/q_auto/" : "/upload/f_auto,q_auto,w_1600/")
+            ? g.url.replace(
+                "/upload/",
+                g.type === "video"
+                  ? "/upload/q_auto/"
+                  : "/upload/f_auto,q_auto,w_1600/",
+              )
             : g.url;
-        const ts = (g) => (g.createdAt && g.createdAt.toMillis ? g.createdAt.toMillis() : Date.now());
+        const ts = (g) =>
+          g.createdAt && g.createdAt.toMillis
+            ? g.createdAt.toMillis()
+            : Date.now();
         const fmt = (d) => {
           if (!d) return "";
           const x = new Date(d);
-          return isNaN(x) ? "" : x.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+          return isNaN(x)
+            ? ""
+            : x.toLocaleDateString("en-IN", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              });
         };
 
         function build() {
@@ -3801,30 +3890,44 @@
           const map = new Map();
           items.forEach((g) => {
             const k = g.eventName || "Gallery";
-            if (!map.has(k)) map.set(k, { name: k, date: g.eventDate || "", list: [] });
+            if (!map.has(k))
+              map.set(k, { name: k, date: g.eventDate || "", list: [] });
             const grp = map.get(k);
             if ((g.eventDate || "") > grp.date) grp.date = g.eventDate;
             grp.list.push(g);
           });
           const groups = [...map.values()].sort(
-            (a, b) => (b.date || "").localeCompare(a.date || "") || ts(b.list[0]) - ts(a.list[0]),
+            (a, b) =>
+              (b.date || "").localeCompare(a.date || "") ||
+              ts(b.list[0]) - ts(a.list[0]),
           );
           groups.forEach((g) => g.list.sort((a, b) => ts(a) - ts(b)));
 
-          if (activeFilter !== "all" && !map.has(activeFilter)) activeFilter = "all";
+          if (activeFilter !== "all" && !map.has(activeFilter))
+            activeFilter = "all";
 
           filtersEl.innerHTML =
-            '<button class="eg-chip' + (activeFilter === "all" ? " active" : "") + '" data-f="all">All</button>' +
+            '<button class="eg-chip' +
+            (activeFilter === "all" ? " active" : "") +
+            '" data-f="all">All</button>' +
             groups
               .map(
                 (g) =>
-                  '<button class="eg-chip' + (activeFilter === g.name ? " active" : "") +
-                  '" data-f="' + esc(g.name) + '">' + esc(g.name) + "</button>",
+                  '<button class="eg-chip' +
+                  (activeFilter === g.name ? " active" : "") +
+                  '" data-f="' +
+                  esc(g.name) +
+                  '">' +
+                  esc(g.name) +
+                  "</button>",
               )
               .join("");
           filtersEl.style.display = groups.length > 1 ? "flex" : "none";
 
-          const shown = activeFilter === "all" ? groups : groups.filter((g) => g.name === activeFilter);
+          const shown =
+            activeFilter === "all"
+              ? groups
+              : groups.filter((g) => g.name === activeFilter);
           lbList = [];
           groupsEl.innerHTML = shown
             .map((g) => {
@@ -3836,27 +3939,59 @@
                   const media =
                     it.type === "video"
                       ? (isCld(it.url)
-                          ? '<img src="' + esc(thumb(it)) + '" alt="' + esc(it.caption || it.eventName) + '" loading="lazy">'
-                          : '<video src="' + esc(it.url) + '#t=0.5" muted playsinline preload="metadata"></video>') +
+                          ? '<img src="' +
+                            esc(thumb(it)) +
+                            '" alt="' +
+                            esc(it.caption || it.eventName) +
+                            '" loading="lazy">'
+                          : '<video src="' +
+                            esc(it.url) +
+                            '#t=0.5" muted playsinline preload="metadata"></video>') +
                         '<div class="eg-play"><span>▶</span></div>'
-                      : '<img src="' + esc(thumb(it)) + '" alt="' + esc(it.caption || it.eventName) + '" loading="lazy">';
+                      : '<img src="' +
+                        esc(thumb(it)) +
+                        '" alt="' +
+                        esc(it.caption || it.eventName) +
+                        '" loading="lazy">';
                   return (
-                    '<div class="eg-item" data-i="' + idx + '">' + media +
-                    (it.caption ? '<div class="eg-cap">' + esc(it.caption) + "</div>" : "") + "</div>"
+                    '<div class="eg-item" data-i="' +
+                    idx +
+                    '">' +
+                    media +
+                    (it.caption
+                      ? '<div class="eg-cap">' + esc(it.caption) + "</div>"
+                      : "") +
+                    "</div>"
                   );
                 })
                 .join("");
               const more =
                 !open && g.list.length > PER_GROUP
-                  ? '<div class="eg-more"><button data-more="' + esc(g.name) + '">View all ' + g.list.length + " →</button></div>"
+                  ? '<div class="eg-more"><button data-more="' +
+                    esc(g.name) +
+                    '">View all ' +
+                    g.list.length +
+                    " →</button></div>"
                   : "";
               const photos = g.list.filter((x) => x.type !== "video").length;
               const vids = g.list.length - photos;
-              const meta = [fmt(g.date), photos ? photos + " photo" + (photos > 1 ? "s" : "") : "", vids ? vids + " video" + (vids > 1 ? "s" : "") : ""]
-                .filter(Boolean).join(" · ");
+              const meta = [
+                fmt(g.date),
+                photos ? photos + " photo" + (photos > 1 ? "s" : "") : "",
+                vids ? vids + " video" + (vids > 1 ? "s" : "") : "",
+              ]
+                .filter(Boolean)
+                .join(" · ");
               return (
-                '<div class="eg-group"><div class="eg-group-head"><h3 class="eg-group-title">' + esc(g.name) +
-                '</h3><span class="eg-group-meta">' + meta + '</span></div><div class="eg-grid">' + cells + "</div>" + more + "</div>"
+                '<div class="eg-group"><div class="eg-group-head"><h3 class="eg-group-title">' +
+                esc(g.name) +
+                '</h3><span class="eg-group-meta">' +
+                meta +
+                '</span></div><div class="eg-grid">' +
+                cells +
+                "</div>" +
+                more +
+                "</div>"
               );
             })
             .join("");
@@ -3868,10 +4003,22 @@
           if (!it) return;
           stage.innerHTML =
             (it.type === "video"
-              ? '<video src="' + esc(full(it)) + '" controls autoplay playsinline></video>'
-              : '<img src="' + esc(full(it)) + '" alt="' + esc(it.caption || it.eventName) + '">') +
-            '<div class="eg-lb-cap">' + esc(it.eventName) + (it.caption ? " — " + esc(it.caption) : "") +
-            "  (" + (lbIdx + 1) + "/" + lbList.length + ")</div>";
+              ? '<video src="' +
+                esc(full(it)) +
+                '" controls autoplay playsinline></video>'
+              : '<img src="' +
+                esc(full(it)) +
+                '" alt="' +
+                esc(it.caption || it.eventName) +
+                '">') +
+            '<div class="eg-lb-cap">' +
+            esc(it.eventName) +
+            (it.caption ? " — " + esc(it.caption) : "") +
+            "  (" +
+            (lbIdx + 1) +
+            "/" +
+            lbList.length +
+            ")</div>";
         }
         function openLb(i) {
           lbIdx = i;
@@ -3905,10 +4052,18 @@
           activeFilter = chip.dataset.f;
           build();
         });
-        document.getElementById("eg-lb-close").addEventListener("click", closeLb);
-        document.getElementById("eg-lb-prev").addEventListener("click", () => step(-1));
-        document.getElementById("eg-lb-next").addEventListener("click", () => step(1));
-        lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
+        document
+          .getElementById("eg-lb-close")
+          .addEventListener("click", closeLb);
+        document
+          .getElementById("eg-lb-prev")
+          .addEventListener("click", () => step(-1));
+        document
+          .getElementById("eg-lb-next")
+          .addEventListener("click", () => step(1));
+        lb.addEventListener("click", (e) => {
+          if (e.target === lb) closeLb();
+        });
         document.addEventListener("keydown", (e) => {
           if (!lb.classList.contains("open")) return;
           if (e.key === "Escape") closeLb();
@@ -3916,7 +4071,10 @@
           if (e.key === "ArrowRight") step(1);
         });
 
-        const galQ = query(collection(db, "eventGallery"), orderBy("createdAt", "desc"));
+        const galQ = query(
+          collection(db, "eventGallery"),
+          orderBy("createdAt", "desc"),
+        );
         onSnapshot(galQ, (snap) => {
           items = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
           build();
@@ -4111,7 +4269,10 @@
             '<div class="lb-caption"></div>' +
             "</div>";
           document.body.appendChild(lb);
-          lb.querySelector(".lb-close").addEventListener("click", closePfLightbox);
+          lb.querySelector(".lb-close").addEventListener(
+            "click",
+            closePfLightbox,
+          );
           lb.addEventListener("click", (e) => {
             if (e.target === lb) closePfLightbox();
           });
@@ -4179,7 +4340,9 @@
                   esc(p.vidSrc) +
                   '"' +
                   (p.vidPoster || cldPoster(p.vidSrc)
-                    ? ' poster="' + esc(p.vidPoster || cldPoster(p.vidSrc)) + '"'
+                    ? ' poster="' +
+                      esc(p.vidPoster || cldPoster(p.vidSrc)) +
+                      '"'
                     : "") +
                   ' muted playsinline preload="metadata"></video>' +
                   '<div class="pf-vid-overlay"><span class="pf-vid-caption">' +
@@ -4252,7 +4415,10 @@
       // Firestore collection "testimonials": { type: "image"|"video", src, caption }
       (function () {
         let lastKey = "[]";
-        const q = query(collection(db, "testimonials"), orderBy("createdAt", "desc"));
+        const q = query(
+          collection(db, "testimonials"),
+          orderBy("createdAt", "desc"),
+        );
         onSnapshot(
           q,
           (snap) => {
@@ -4261,21 +4427,35 @@
               .filter((x) => x.src)
               .map((x) =>
                 x.type === "video"
-                  ? { type: "video", src: x.src, poster: cldPoster(x.src), caption: x.caption || "Student Feedback" }
-                  : { type: "image", src: cldImg(x.src, 1400), caption: x.caption || "Student Feedback" },
+                  ? {
+                      type: "video",
+                      src: x.src,
+                      poster: cldPoster(x.src),
+                      caption: x.caption || "Student Feedback",
+                    }
+                  : {
+                      type: "image",
+                      src: cldImg(x.src, 1400),
+                      caption: x.caption || "Student Feedback",
+                    },
               );
             const key = JSON.stringify(live);
             if (key === lastKey) return; // nothing new — keep the carousel as is
             lastKey = key;
             if (!window.Gallery || !window.GALLERY_DATA) return;
-            if (window.rtsGallery && window.rtsGallery.destroy) window.rtsGallery.destroy();
+            if (window.rtsGallery && window.rtsGallery.destroy)
+              window.rtsGallery.destroy();
             window.rtsGallery = new window.Gallery(
               "gallery-testimonials",
               live.concat(window.GALLERY_DATA.testimonials), // newest first
               { dark: true, perPage: 3, autoplay: 4000 },
             );
           },
-          (err) => console.warn("Results could not be loaded:", err.code || err.message),
+          (err) =>
+            console.warn(
+              "Results could not be loaded:",
+              err.code || err.message,
+            ),
         );
       })();
 
