@@ -1496,7 +1496,7 @@
                           margin-top: 4px;
                         "
                       >
-                        JPG, PNG, GIF, WebP — max 5 MB
+                        JPG, PNG, GIF, WebP — max 1 MB
                       </div>
                       <input
                         type="file"
@@ -1618,7 +1618,7 @@
                           margin-top: 4px;
                         "
                       >
-                        MP4, WebM, OGG — max 20 MB
+                        MP4, WebM, OGG — max 5 MB
                       </div>
                       <input
                         type="file"
@@ -1856,8 +1856,7 @@
                     <div class="gd-icon">🖼️🎬</div>
                     <div class="gd-main">Click to choose or drag &amp; drop files here</div>
                     <div class="gd-sub">
-                      Multiple images &amp; videos allowed · Photos are shrunk automatically to
-                      under 1 MB (select up to 5 MB each) · Videos up to 20 MB (compress large videos first)
+                      Multiple images &amp; videos allowed · Photos are shrunk automatically to (select up to 1 MB each) · Videos up to 5 MB (compress large videos first)
                     </div>
                   </div>
                   <input
@@ -1966,7 +1965,7 @@
                       Click to choose or drag &amp; drop one image
                     </div>
                     <div style="font-size: 0.74rem; color: var(--gray); margin-top: 4px">
-                      Photos up to 5 MB are shrunk automatically to under 1 MB
+                      Photos up to 1 MB are shrunk automatically
                     </div>
                   </div>
                   <input
@@ -2045,8 +2044,7 @@
                     <div class="gd-icon">🖼️🎬</div>
                     <div class="gd-main">Click to choose or drag &amp; drop files here</div>
                     <div class="gd-sub">
-                      Multiple images &amp; videos allowed · Photos shrunk automatically to
-                      under 1 MB (select up to 5 MB each) · Videos up to 20 MB
+                      Multiple images &amp; videos allowed · Photos shrunk automatically· Videos up to 5 MB
                     </div>
                   </div>
                   <input
@@ -2149,7 +2147,7 @@
                       Click to choose or drag &amp; drop a file
                     </div>
                     <div style="font-size: 0.74rem; color: var(--gray); margin-top: 4px" id="pf-drop-hint">
-                      Photos up to 5 MB are shrunk automatically to under 1 MB
+                      Photos up to 1 MB.
                     </div>
                   </div>
                   <input
@@ -2878,8 +2876,8 @@
       window.previewEvtImageFile = function (input) {
         const file = input.files[0];
         if (!file) return;
-        if (file.size > 5 * 1024 * 1024) {
-          toast("⚠️", "Image too large — max 5 MB");
+        if (file.size > 1 * 1024 * 1024) {
+          toast("⚠️", "Image too large — max 1 MB");
           input.value = "";
           return;
         }
@@ -2924,8 +2922,8 @@
       window.previewEvtVideoFile = function (input) {
         const file = input.files[0];
         if (!file) return;
-        if (file.size > 20 * 1024 * 1024) {
-          toast("⚠️", "Video too large — max 20 MB");
+        if (file.size > 5 * 1024 * 1024) {
+          toast("⚠️", "Video too large — max 5 MB");
           input.value = "";
           return;
         }
@@ -3755,8 +3753,8 @@
 
       // ── FILE SIZE LIMITS (change these numbers if needed) ────────
       const GAL_MAX_IMG = 1 * 1024 * 1024; // saved image size limit: 1 MB
-      const GAL_MAX_IMG_ORIGINAL = 5 * 1024 * 1024; // phone photos are shrunk automatically
-      const GAL_MAX_VID = 20 * 1024 * 1024; // video limit: 20 MB
+      const GAL_MAX_IMG_ORIGINAL = 1 * 1024 * 1024; // phone photos are shrunk automatically
+      const GAL_MAX_VID = 5 * 1024 * 1024; // video limit: 5 MB
 
       window.handleGalDrop = function (e) {
         e.preventDefault();
@@ -3774,7 +3772,7 @@
           }
           const shrinkable = /^image\/(jpeg|png|webp)$/.test(file.type);
           if (isImg && shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) {
-            toast("⚠️", file.name + " — image too large (max 5 MB)");
+            toast("⚠️", file.name + " — image too large (max 1 MB)");
             return;
           }
           if (isImg && !shrinkable && file.size > GAL_MAX_IMG) {
@@ -3782,7 +3780,7 @@
             return;
           }
           if (isVid && file.size > GAL_MAX_VID) {
-            toast("⚠️", file.name + " — video too large (max 20 MB). Please compress it first.");
+            toast("⚠️", file.name + " — video too large (max 5 MB). Please compress it first.");
             return;
           }
           galQueue.push({
@@ -4064,7 +4062,7 @@
         }
         const shrinkable = /^image\/(jpeg|png|webp)$/.test(file.type);
         if (shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) {
-          toast("⚠️", "Image too large (max 5 MB)");
+          toast("⚠️", "Image too large (max 1 MB)");
           return;
         }
         if (!shrinkable && file.size > GAL_MAX_IMG) {
@@ -4305,7 +4303,7 @@
           }
           const shrinkable = /^image\/(jpeg|png|webp)$/.test(file.type);
           if (isImg && shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) {
-            toast("⚠️", file.name + " — image too large (max 5 MB)");
+            toast("⚠️", file.name + " — image too large (max 1 MB)");
             return;
           }
           if (isImg && !shrinkable && file.size > GAL_MAX_IMG) {
@@ -4313,7 +4311,7 @@
             return;
           }
           if (isVid && file.size > GAL_MAX_VID) {
-            toast("⚠️", file.name + " — video too large (max 20 MB). Please compress it first.");
+            toast("⚠️", file.name + " — video too large (max 5 MB). Please compress it first.");
             return;
           }
           rsQueue.push({
@@ -4582,8 +4580,8 @@
           rgEl("pf-drop-icon").textContent = t === "image" ? "🖼️" : "🎬";
           rgEl("pf-drop-hint").textContent =
             t === "image"
-              ? "Photos up to 5 MB are shrunk automatically to under 1 MB"
-              : "Videos up to 20 MB (compress large videos first)";
+              ? "Photos up to 1 MB are shrunk automatically"
+              : "Videos up to 5 MB (compress large videos first)";
           rgEl("pf-file-input").accept = t === "image" ? "image/*" : "video/*";
           if (pfFile) pfShowPreview(t, URL.createObjectURL(pfFile), pfFile.name);
           else if (pfExisting.url)
@@ -4613,11 +4611,11 @@
         if (pfType === "image") {
           if (!file.type.startsWith("image/")) return toast("⚠️", "Please choose an image file");
           const shrinkable = /^image\/(jpeg|png|webp)$/.test(file.type);
-          if (shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) return toast("⚠️", "Image too large (max 5 MB)");
+          if (shrinkable && file.size > GAL_MAX_IMG_ORIGINAL) return toast("⚠️", "Image too large (max 1 MB)");
           if (!shrinkable && file.size > GAL_MAX_IMG) return toast("⚠️", "Image too large (max 1 MB for this format)");
         } else if (pfType === "video") {
           if (!file.type.startsWith("video/")) return toast("⚠️", "Please choose a video file");
-          if (file.size > GAL_MAX_VID) return toast("⚠️", "Video too large (max 20 MB). Please compress it first.");
+          if (file.size > GAL_MAX_VID) return toast("⚠️", "Video too large (max 5 MB). Please compress it first.");
         } else return;
         pfFile = file;
         pfShowPreview(pfType, URL.createObjectURL(file), file.name);
